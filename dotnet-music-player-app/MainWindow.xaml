@@ -75,7 +75,7 @@
                     <Grid>
                         <Border Opacity="0.03" CornerRadius="20">
                             <Border.Background>
-                                <ImageBrush ImageSource="https://img.freepik.com/premium-vector/treble-clef-music-symbol-with-cute-flowers_257845-1623.jpg"/>
+                                <ImageBrush ImageSource="https://img.freepik.com/premium-vector/treble-clef-music-symbol-with-cute-flowers_257845-1623.jpg" Stretch="UniformToFill"/>
                             </Border.Background>
                         </Border>
                         
@@ -93,7 +93,29 @@
                     </Grid>
                 </Border>
             </StackPanel>
+
+            <!--Left Portion-->
+            <Border Grid.Column="0" CornerRadius="40 0 0 40" Background="#0D1117" Margin="0 22 0 0">
+                <StackPanel Margin="30 50 30 0">
+                    <TextBlock Text="Recently Played" Style="{StaticResource menuTitle }" Margin="0 0 0 10" FontSize="28" HorizontalAlignment="Left"/>
+                        
+                    <!--Recently Played (need to use API)-->
+                    <uc:SongItem Title="Song1" Margin="-20 0 0 0"/>
+                    <uc:SongItem Title="Song1" Margin="-20 0 0 0"/>
+                    <uc:SongItem Title="Song1" Margin="-20 0 0 0"/>
+                    <uc:SongItem Title="Song1" Margin="-20 0 0 0"/>
+                    <uc:SongItem Title="Song1" Margin="-20 0 0 0"/>
+                </StackPanel>
+            </Border>
             
+            <!--Player-->
+            <Border  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="#03bf69" CornerRadius="0 40 0 40">
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource playButton}">
+                        <Icon:PackIconMaterial Style="{StaticResource playButtonIcon}"/>
+                    </Button>
+                </StackPanel>
+            </Border>
         </Grid>
         
     </Border>
