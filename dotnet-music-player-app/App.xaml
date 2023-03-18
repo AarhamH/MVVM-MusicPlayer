@@ -54,6 +54,14 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Visibility" Value="{Binding Path=Tag,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"/>
         </Style>
+
+        <Style x:Key="musicText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#02be68"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+
+        </Style>
         
         
         

@@ -9,10 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="MVM\Model\" />
-    <Folder Include="MVM\ViewModel\" />
-    <Folder Include="MVM\View\" />
-    <Folder Include="MVM\" />
+    <Folder Include="Resources\Model\" />
+    <Folder Include="Resources\Images\" />
   </ItemGroup>
 
   <ItemGroup>
