@@ -10,9 +10,9 @@ namespace dotnet_music_player_app
     {
         public MainWindow()
         {
-            InitializeComponent();
         }
 
+        public bool flag;
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if(e.ChangedButton == MouseButton.Left) 
@@ -20,5 +20,6 @@ namespace dotnet_music_player_app
                 this.DragMove();
             }
         }
+
     }
 }

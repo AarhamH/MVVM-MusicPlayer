@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Icon ="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:uc ="clr-namespace:dotnet_music_player_app.Resources.Controls"
         xmlns:local="clr-namespace:dotnet_music_player_app"
         Height="700" Width="1050" 
         ResizeMode="NoResize" 
@@ -13,138 +12,17 @@
         WindowStyle="None"
         Background="Transparent">
 
-    <Border Background="#0D1117" CornerRadius="40" MouseDown="Border_MouseDown">
+    <Grid>
+        <!--Window Border-->
+        <Border Background="#010409" CornerRadius="20"/>
+
+        <!--Base-->
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="500"/>
-                <ColumnDefinition Width="230"/>
-
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="660"/>
             </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="100"/>
-            </Grid.RowDefinitions>
-            
-            <!--Menu-->
-
-            <Border Background="#0D1117" CornerRadius="0 40 40 0" Grid.RowSpan="2" Grid.Column="2">
-                <StackPanel Margin="0 30 0 0">
-                    <!--Elipses-->
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10 40 10">
-                        <Ellipse Fill="#ffbf2f " Width="10" Height="10"/>
-                        <Ellipse Fill="#2acb42" Width="10" Height="10" Margin="7 0"/>
-                        <Ellipse Fill="#ff6258" Width="10" Height="10"/>
-                    </StackPanel>
-
-                    <TextBlock Text="YASS Queen" Style="{StaticResource menuTitle}"/>
-
-                    <Button Style="{StaticResource menuButton}" Background="#02be68" Foreground="WhiteSmoke">
-                        <Grid>
-                            <Icon:PackIconMaterial Style="{StaticResource menuButtonIcon}" Visibility="Visible"/>
-                            <TextBlock Text="Songs" Margin="10 0 0 0"/>
-                        </Grid>
-                    </Button>
-
-                    <Button Style="{StaticResource menuButton}">
-                        <Grid>
-                            <Icon:PackIconMaterial Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Playlist" Margin="10 0 0 0"/>
-                        </Grid>
-                    </Button>
-
-                </StackPanel>
-            </Border>
-
-            <!--Music Panel-->
-            <StackPanel Grid.Column="1" Background="#0D1117" Margin="20 60 20 0">
-                <TextBlock Text=" Music" Style="{StaticResource musicText}"/>
-                <Border CornerRadius="20" Margin="0 10 0 0" Height="480">
-                    <Border.Background>
-                        <LinearGradientBrush>
-                            <GradientStop Color="#30ad9a" Offset="0"/>
-                            <GradientStop Color="#18c274" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
-
-                    <Border.Effect>
-                        <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.4" Color="#1fae7a"/>
-                    </Border.Effect>
-
-                    <Grid>
-                        <Border Opacity="0.03" CornerRadius="20">
-                            <Border.Background>
-                                <ImageBrush ImageSource="https://img.freepik.com/premium-vector/treble-clef-music-symbol-with-cute-flowers_257845-1623.jpg" Stretch="UniformToFill"/>
-                            </Border.Background>
-                        </Border>
-                        
-                        <!--Music List-->
-                        <StackPanel Margin="30">
-                            <TextBlock Text="List" Foreground="White" FontSize="26" FontWeight="Bold"/>
-                            <!--APPLY SPOTIFY API HERE-->
-
-                            <uc:SongItem Number="1" Title="Song1" Time="0:00"/>
-                            <uc:SongItem Number="1" Title="Song1 Name" Time="0:00"/>
-                            <uc:SongItem Number="1" Title="Song1 Really Long Name" Time="0:00"/>
-
-
-                        </StackPanel>
-                    </Grid>
-                </Border>
-            </StackPanel>
-
-            <!--Left Portion-->
-            <Border Grid.Column="0" CornerRadius="40 0 0 40" Background="#0D1117" Margin="0 22 0 0">
-                <StackPanel Margin="30 50 30 0">
-                    <TextBlock Text="Recently Played" Style="{StaticResource menuTitle }" Margin="0 0 0 10" FontSize="28" HorizontalAlignment="Left"/>
-                        
-                    <!--Recently Played (need to use API)-->
-                    <uc:SongItem Title="Song1" Margin="-20 0 0 0"/>
-                    <uc:SongItem Title="Song1" Margin="-20 0 0 0"/>
-                    <uc:SongItem Title="Song1" Margin="-20 0 0 0"/>
-                    <uc:SongItem Title="Song1" Margin="-20 0 0 0"/>
-                    <uc:SongItem Title="Song1" Margin="-20 0 0 0"/>
-                </StackPanel>
-            </Border>
-            
-            <!--Player-->
-            <Border  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="#03bf69" CornerRadius="0 40 0 40">
-                <StackPanel Orientation="Horizontal">
-                    <Ellipse Width="60" Height="60" Margin="30 0 0 0">
-                        <Ellipse.Fill>
-                            <ImageBrush ImageSource="https://img.freepik.com/free-icon/treble-clef_318-1943.jpg"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                        
-                    <StackPanel VerticalAlignment="Center" Margin="20 0 30 0">
-                        <TextBlock Text="Song1" Foreground="White" FontSize="22" FontWeight="Bold"/>
-                        <TextBlock Text="Artist" Foreground="#9ae5c3" FontSize="18" FontWeight="SemiBold"/>
-                    </StackPanel>
-
-                    <Button Style="{StaticResource playerButton}">
-                        <Icon:PackIconMaterial Kind="SkipPrevious" Style="{StaticResource playerButtonIcon}"/>
-                    </Button>
-
-                    <Button Style="{StaticResource playerButton}">
-                        <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource playerButtonIcon}"/>
-                    </Button>
-
-                    <Button Style="{StaticResource playerButton}">
-                        <Icon:PackIconMaterial Kind="SkipNext" Style="{StaticResource playerButtonIcon}"/>
-                    </Button>
-
-                    <Slider Style="{DynamicResource SliderStyle1}" x:Name="slider" IsSelectionRangeEnabled="True" VerticalAlignment="Center" Value="5" Width="350" SelectionEnd="{Binding ElementName=slider,Path=Value}"/>
-
-                    <Button Style="{StaticResource playerButton}">
-                        <Icon:PackIconMaterial Kind="VolumeMedium" Style="{StaticResource playerButtonIcon}"/>
-                    </Button>
-
-
-                </StackPanel>
-            </Border>
         </Grid>
-        
-    </Border>
+    </Grid>
     
 </Window>
