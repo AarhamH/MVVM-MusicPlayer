@@ -111,9 +111,36 @@
             <!--Player-->
             <Border  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="#03bf69" CornerRadius="0 40 0 40">
                 <StackPanel Orientation="Horizontal">
-                    <Button Style="{StaticResource playButton}">
-                        <Icon:PackIconMaterial Style="{StaticResource playButtonIcon}"/>
+                    <Ellipse Width="60" Height="60" Margin="30 0 0 0">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="https://img.freepik.com/free-icon/treble-clef_318-1943.jpg"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                        
+                    <StackPanel VerticalAlignment="Center" Margin="20 0 30 0">
+                        <TextBlock Text="Song1" Foreground="White" FontSize="22" FontWeight="Bold"/>
+                        <TextBlock Text="Artist" Foreground="#9ae5c3" FontSize="18" FontWeight="SemiBold"/>
+                    </StackPanel>
+
+                    <Button Style="{StaticResource playerButton}">
+                        <Icon:PackIconMaterial Kind="SkipPrevious" Style="{StaticResource playerButtonIcon}"/>
                     </Button>
+
+                    <Button Style="{StaticResource playerButton}">
+                        <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource playerButtonIcon}"/>
+                    </Button>
+
+                    <Button Style="{StaticResource playerButton}">
+                        <Icon:PackIconMaterial Kind="SkipNext" Style="{StaticResource playerButtonIcon}"/>
+                    </Button>
+
+                    <Slider Style="{DynamicResource SliderStyle1}" x:Name="slider" IsSelectionRangeEnabled="True" VerticalAlignment="Center" Value="5" Width="350" SelectionEnd="{Binding ElementName=slider,Path=Value}"/>
+
+                    <Button Style="{StaticResource playerButton}">
+                        <Icon:PackIconMaterial Kind="VolumeMedium" Style="{StaticResource playerButtonIcon}"/>
+                    </Button>
+
+
                 </StackPanel>
             </Border>
         </Grid>
