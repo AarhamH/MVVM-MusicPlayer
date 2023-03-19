@@ -18,7 +18,7 @@ namespace dotnet_music_player_app.Resources.Utils
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public Relay(Action<object> execute, Func<object, bool> canExecute)
+        public Relay(Action<object> execute, Func<object, bool> canExecute = null)
         {
             _execute = execute;
             _canExecute = canExecute;

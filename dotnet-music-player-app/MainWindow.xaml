@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Icon ="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:local="clr-namespace:dotnet_music_player_app"
+        xmlns:vm="clr-namespace:dotnet_music_player_app.Resources.ViewModel"
+        xmlns:Menu="clr-namespace:dotnet_music_player_app.Resources.Utils"
         Height="700" Width="1050" 
         ResizeMode="NoResize" 
         AllowsTransparency="True"
@@ -12,6 +13,7 @@
         WindowStyle="None"
         Background="Transparent">
 
+    
     <Grid>
         <!--Window Border-->
         <Border Background="#010409" CornerRadius="20"/>
