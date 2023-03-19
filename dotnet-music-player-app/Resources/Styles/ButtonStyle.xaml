@@ -13,12 +13,12 @@
 
                     <Border x:Name="border" 
                             Height="50" 
-                            Width="22" 
+                            Width="220" 
                             BorderThickness="0">
 
                         <Border.Background>
                             <SolidColorBrush x:Name="BorderBackground" 
-                                             Color="GhostWhite"/>
+                                             Color="#010409"/>
                         </Border.Background>
 
                         <Grid>

@@ -23,6 +23,17 @@
                 <ColumnDefinition Width="660"/>
             </Grid.ColumnDefinitions>
         </Grid>
+        
+        <!--Nav-->
+        <Grid HorizontalAlignment="Left"
+              Width="220">
+
+            <Border Background="#0d1117" CornerRadius="20 0 0 20"/>
+            <StackPanel Height="400" Width="220">
+                
+            </StackPanel>
+
+        </Grid>
     </Grid>
     
 </Window>

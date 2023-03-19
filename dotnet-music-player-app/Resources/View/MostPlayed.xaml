@@ -3,10 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:dotnet_music_player_app.Resources.View"
+             xmlns:vm="clr-namespace:dotnet_music_player_app.Resources.ViewModel"
+             xmlns:uc="clr-namespace:dotnet_music_player_app.Resources.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="622"
+             Style="{StaticResource PageStyle}">
+
+    <UserControl.DataContext>
+        <vm:SongPage/>
+    </UserControl.DataContext>
     <Grid>
-            
+
+        <Border CornerRadius="0 20 20 0" Background="#010409"/>
+        <StackPanel>
+            <TextBlock Text="Most Played"
+                   FontSize="30"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Left"
+                   Margin="20 20 0 0"
+                   Foreground="#21d763"/>
+
+            <uc:SongItem Number="01" Title="Song1" Time="0:00"/>
+            <uc:SongItem Number="01" Title="Song1" Time="0:00"/>
+            <uc:SongItem Number="01" Title="Song1" Time="0:00"/>
+            <uc:SongItem Number="01" Title="Song1" Time="0:00"/>
+            <uc:SongItem Number="01" Title="Song1" Time="0:00"/>
+            <uc:SongItem Number="01" Title="Song1" Time="0:00"/>
+        </StackPanel>
+
+
     </Grid>
 </UserControl>
