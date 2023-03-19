@@ -10,7 +10,7 @@
              Style="{StaticResource PageStyle}">
 
     <UserControl.DataContext>
-        <vm:SongPage/>
+        <vm:PlayLists/>
     </UserControl.DataContext>
     <Grid>
 

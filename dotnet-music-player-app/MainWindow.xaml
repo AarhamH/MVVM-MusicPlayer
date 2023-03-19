@@ -13,6 +13,9 @@
         WindowStyle="None"
         Background="Transparent">
 
+    <Window.DataContext>
+        <vm:Navigation/>
+    </Window.DataContext>
     
     <Grid>
         <!--Window Border-->
@@ -24,18 +27,60 @@
                 <ColumnDefinition Width="220"/>
                 <ColumnDefinition Width="660"/>
             </Grid.ColumnDefinitions>
-        </Grid>
-        
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+
         <!--Nav-->
         <Grid HorizontalAlignment="Left"
               Width="220">
 
             <Border Background="#0d1117" CornerRadius="20 0 0 20"/>
+
             <StackPanel Height="400" Width="220">
-                
+                <!--SongPage-->
+                <Menu:Button Style="{StaticResource BtnStyle}"
+                             Command="{Binding SongPageCommand}"
+                             IsChecked="True">
+
+                    <TextBlock Text="Songs" Style="{StaticResource TextStyle}"/>
+
+                </Menu:Button>
+
+                <!--Playlist-->
+                <Menu:Button Style="{StaticResource BtnStyle}"
+                             Command="{Binding PlaylistCommand}"
+                             IsChecked="True">
+
+                    <TextBlock Text="Playlist" Style="{StaticResource TextStyle}"/>
+
+                </Menu:Button>
+
+                <!--Most Played-->
+                <Menu:Button Style="{StaticResource BtnStyle}"
+                             Command="{Binding MostPlayedCommand}"
+                             IsChecked="True">
+
+                    <TextBlock Text="Most Played" Style="{StaticResource TextStyle}"/>
+
+                </Menu:Button>
+
             </StackPanel>
 
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <ContentControl x:Name="Page"
+                                Content="{Binding CurrentView}"/>
+            </Grid>
         </Grid>
+
+
+
     </Grid>
+    
+
     
 </Window>
