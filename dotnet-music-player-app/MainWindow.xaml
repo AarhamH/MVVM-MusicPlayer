@@ -37,22 +37,22 @@
         <Grid HorizontalAlignment="Left"
               Width="220">
 
-            <Border Background="#0d1117" CornerRadius="20 0 0 20"/>
+            <Border Background="#0d1117" CornerRadius="20 0 0 0"/>
 
             <StackPanel Height="400" Width="220">
                 <!--SongPage-->
-                <Menu:Button Style="{StaticResource BtnStyle}"
+                    <Menu:Button Style="{StaticResource BtnStyle}"
                              Command="{Binding SongPageCommand}"
                              IsChecked="True">
 
-                    <TextBlock Text="Songs" Style="{StaticResource TextStyle}"/>
+                        <TextBlock Text="Songs" Style="{StaticResource TextStyle}"/>
 
-                </Menu:Button>
+                    </Menu:Button>
 
-                <!--Playlist-->
+                    <!--Playlist-->
                 <Menu:Button Style="{StaticResource BtnStyle}"
                              Command="{Binding PlaylistCommand}"
-                             IsChecked="True">
+                             IsChecked="False">
 
                     <TextBlock Text="Playlist" Style="{StaticResource TextStyle}"/>
 
@@ -61,7 +61,7 @@
                 <!--Most Played-->
                 <Menu:Button Style="{StaticResource BtnStyle}"
                              Command="{Binding MostPlayedCommand}"
-                             IsChecked="True">
+                             IsChecked="False">
 
                     <TextBlock Text="Most Played" Style="{StaticResource TextStyle}"/>
 
@@ -71,7 +71,7 @@
 
             </Grid>
 
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="1" Margin="60 0 0 0">
                 <ContentControl x:Name="Page"
                                 Content="{Binding CurrentView}"/>
             </Grid>

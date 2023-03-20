@@ -28,7 +28,7 @@
                                     Width="4" 
                                     HorizontalAlignment="Left" 
                                     VerticalAlignment="Center" 
-                                    Background="#ffffff" 
+                                    Background="#010409" 
                                     Visibility="Collapsed" 
                                     CornerRadius="2"/>
 
@@ -52,7 +52,7 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BorderBackground" 
                                                     Storyboard.TargetProperty="Color"
-                                                    From="GhostWhite" To="#21D763"
+                                                    From="#010409" To="#21D763"
                                                     Duration="0:0:0.3"/>
                                 </Storyboard>
                             </BeginStoryboard>
@@ -67,7 +67,7 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BorderBackground" 
                                                     Storyboard.TargetProperty="Color"
-                                                    From="#21D763" To="GhostWhite"
+                                                    From="#21D763" To="#010409"
                                                     Duration="0:0:0.3"/>
                                 </Storyboard>
                             </BeginStoryboard>

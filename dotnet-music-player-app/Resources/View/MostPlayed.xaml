@@ -23,12 +23,6 @@
                    Margin="20 20 0 0"
                    Foreground="#21d763"/>
 
-            <uc:SongItem Number="01" Title="Song1" Time="0:00"/>
-            <uc:SongItem Number="01" Title="Song1" Time="0:00"/>
-            <uc:SongItem Number="01" Title="Song1" Time="0:00"/>
-            <uc:SongItem Number="01" Title="Song1" Time="0:00"/>
-            <uc:SongItem Number="01" Title="Song1" Time="0:00"/>
-            <uc:SongItem Number="01" Title="Song1" Time="0:00"/>
         </StackPanel>
 
 
