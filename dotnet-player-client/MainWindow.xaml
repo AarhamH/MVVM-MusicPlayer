@@ -5,8 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotnet_player_client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="AarhamAudio" Height="720" Width="1100" MinHeight="600" MinWidth="800"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip">
+        
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180px"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-    </Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30px"/>
+                <RowDefinition Height="600"/>
+                <RowDefinition Height="90px"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Column="0"
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Grid.RowSpan="3"
+                    Background="#010409"/>
+
+            <Border Grid.Column="0"
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Background="#0d1117"
+                    x:Name="TopBorder" MouseDown="TopBorder_MouseDown">
+
+                <Grid Grid.Row="0"
+                      Grid.Column="0"
+                      HorizontalAlignment="Stretch">
+
+                    <Label Margin="5 0 0 0"
+                           FontFamily="{StaticResource Raleway}"
+                           FontWeight="Regular"
+                           Content="{Binding BarTitle}"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Foreground="White"/>
+                    <StackPanel VerticalAlignment="Center"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+
+                    </StackPanel>
+                </Grid>
+                
+            </Border>
+
+        </Grid>
+    </Border>
 </Window>
