@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace dotnet_music_player_app.Resources.View
+namespace dotnet_player_client
 {
     /// <summary>
-    /// Interaction logic for MostPlayed.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MostPlayed : UserControl
+    public partial class MainWindow : Window
     {
-        public MostPlayed()
+        public MainWindow()
         {
             InitializeComponent();
         }

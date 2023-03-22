@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "dotnet-player-client": {
+      "commandName": "Project"
+        "nativeDebugging": false
+    }
+  }
+}
