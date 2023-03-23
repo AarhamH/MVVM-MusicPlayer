@@ -53,7 +53,15 @@
                        VerticalAlignment="Center"
                        FontWeight="Bold"/>
 
-            <Image Grid.Column="1" Grid.Row="2" Source="/Images/logo.png"/>
+            <TextBlock Grid.Row="2"
+                       Grid.Column="1"
+                       Text="Home"
+                       FontFamily="{StaticResource Raleway}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="15px"
+                       Foreground="#ebebeb"
+                       FontWeight="Regular"/>
 
         </Grid>
     </Grid>
