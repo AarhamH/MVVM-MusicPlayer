@@ -1,6 +1,6 @@
 ﻿namespace dotnet_player_data.Objects
 {
-    public class SongObjects
+    public class SongObjects : IDObject
     {
         public string? Path { get; set; }
         public virtual int? ListID { get; set; }

@@ -30,4 +30,8 @@
     <PackageReference Include="VideoLibrary" Version="3.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\dotnet-player-data\dotnet-player-data.csproj" />
+  </ItemGroup>
+
 </Project>
