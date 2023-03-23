@@ -31,30 +31,15 @@ namespace dotnet_player_client
                 DragMove();
         }
 
-        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        private void MinButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
 
-        private void MaximizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (Application.Current.MainWindow.WindowState != WindowState.Maximized)
-            {
-                Application.Current.MainWindow.WindowState = WindowState.Maximized;
-                if (sender is Button button)
-                    button.Content = "❐";
-            }
-            else
-            {
-                Application.Current.MainWindow.WindowState = WindowState.Normal;
-                if (sender is Button button)
-                    button.Content = "▢";
-            }
-        }
-      
-        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
+
     }
 }

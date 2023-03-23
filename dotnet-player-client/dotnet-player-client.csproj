@@ -18,6 +18,7 @@
     <Folder Include="Icon\" />
     <Folder Include="FileDropInterface\" />
     <Folder Include="Models\" />
+    <Folder Include="Themes\FormComponents\" />
     <Folder Include="Views\" />
     <Folder Include="Stores\" />
     <Folder Include="Services\" />

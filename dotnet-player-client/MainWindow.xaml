@@ -49,12 +49,16 @@
                     <StackPanel VerticalAlignment="Center"
                                 HorizontalAlignment="Right"
                                 Orientation="Horizontal">
+                        <Button Content="⎯" Style="{StaticResource BarButton}"
+                                    x:Name="MinButton" Click="MinButton_Click"/>
+
+                        <Button Content="X" Style="{StaticResource BarButton}"
+                                    x:Name="CloseButton" Click="CloseButton_Click"/>
 
                     </StackPanel>
                 </Grid>
-                
             </Border>
-
+            
         </Grid>
     </Border>
 </Window>

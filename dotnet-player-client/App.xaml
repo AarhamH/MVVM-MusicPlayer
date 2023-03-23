@@ -5,6 +5,9 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="./Themes/Core/BarButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
 
             <FontFamily x:Key="Raleway">pack://application:,,,/Fonts/Raleway/#Raleway</FontFamily>
 
