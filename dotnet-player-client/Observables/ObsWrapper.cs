@@ -1,6 +1,6 @@
 ﻿namespace dotnet_player_client.Observables
 {
-    public class Wrapper<O> : Object
+    public class ObsWrapper<O> : ObsObject
     {
         private O? _object;
         public O? Object

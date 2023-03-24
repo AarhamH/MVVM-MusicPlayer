@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace dotnet_player_client.Observables
 {
-    public abstract class Object : INotifyPropertyChanged
+    public abstract class ObsObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

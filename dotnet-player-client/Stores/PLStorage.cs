@@ -72,7 +72,7 @@ namespace dotnet_player_client.Stores
             {
                 try
                 {
-                    dbContext.SongObjects.Remove(new SongObjects { Id = playListID });
+                    dbContext.SongObjects.Remove(new SongObjects { Id = playListID  });
                     await dbContext.SaveChangesAsync();
                 }
                 catch
