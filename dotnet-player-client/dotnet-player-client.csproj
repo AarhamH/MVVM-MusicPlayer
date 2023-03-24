@@ -10,16 +10,11 @@
 
   <ItemGroup>
     <Folder Include="Command\" />
-    <Folder Include="Components\" />
     <Folder Include="Controls\" />
     <Folder Include="Converters\" />
-    <Folder Include="Cores\" />
-    <Folder Include="Enumeration\" />
     <Folder Include="Icon\" />
-    <Folder Include="FileDropInterface\" />
     <Folder Include="Models\" />
     <Folder Include="Themes\FormComponents\" />
-    <Folder Include="Stores\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 

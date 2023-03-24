@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
+// NOT MY CODE (OBTAINED ONLINE) //
 namespace dotnet_player_client.Components
 {
     public class LoadingSpinner : Control
