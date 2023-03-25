@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace dotnet_player_client.Models
 {
-    internal class PLModel : ObsObject
+    public class PLModel : ObsObject
     {
         private int? pl_ID;
         private bool? pl_isSelect;
