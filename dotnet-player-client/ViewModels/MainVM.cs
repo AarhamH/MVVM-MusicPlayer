@@ -65,7 +65,7 @@ namespace dotnet_player_client.ViewModels
         public MainVM(HomeVM homeView, PlayerVM playerVM, ToolbarVM toolbardVM)
         {
             CurrentView = homeView;
-            PlayerView = playerVM;
+            // create player view
 
         }
     }

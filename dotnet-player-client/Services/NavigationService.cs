@@ -70,11 +70,11 @@ namespace dotnet_player_client.Services
             var mainVm = _mainViewModelFunc?.Invoke();
             var downloadsVm = _downloadViewModelFunc?.Invoke();
 
-            if (mainVm != null && mainVm.CurrentView is not DownloadsViewModel)
+            if (mainVm != null && mainVm.CurrentView is not DownloadVM)
             {
                 mainVm.CurrentView = downloadsVm;
-                CurrentPage = PageType.Downloads;
-                PageChangedEvent?.Invoke(this, new PageChangedEventArgs(CurrentPage));
+                CurrentPage = PageType.Download;
+                PageChangedEvent?.Invoke(this, new PageChangeArgs(CurrentPage));
             }
         }
     }

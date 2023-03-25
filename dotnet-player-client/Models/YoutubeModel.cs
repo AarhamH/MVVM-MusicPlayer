@@ -108,6 +108,19 @@ namespace dotnet_player_client.Models
             }
         }
 
+        public string? Title
+        {
+            get { return vid_title; }
+            set
+            {
+                if (vid_title != value)
+                {
+                    vid_title = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public string? URL
         {
             get { return vid_url; }
