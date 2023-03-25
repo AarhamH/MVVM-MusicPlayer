@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MusicPlayerClient.Commands
+namespace dotnet_player_client.Command
 {
-    public abstract class CommandBase : ICommand
+    public abstract class BaseCommand : ICommand
     {
         public event EventHandler? CanExecuteChanged;
         protected Action? OnCompletedExecution { get; set; }

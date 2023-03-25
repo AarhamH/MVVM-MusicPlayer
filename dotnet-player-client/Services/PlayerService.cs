@@ -15,9 +15,9 @@ using dotnet_player_client.Arguments;
 using dotnet_player_client.Stores;
 using dotnet_player_client.Enumeration;
 
-namespace MusicPlayerClient.Services
+namespace dotnet_player_client.Services
 {
-    public interface IMusicPlayerService
+    public interface IPlayerService
     {
         public event EventHandler<SongArgs>? MusicPlayerEvent;
         public event EventHandler? AfterMusicPlayerEvent;
@@ -36,7 +36,7 @@ namespace MusicPlayerClient.Services
         public void PlayPrevious();
     }
 
-    public class MusicPlayerService : IMusicPlayerService
+    public class PlayerService : IPlayerService
     {
         private readonly SongStorage _mediaStore;
         private IWavePlayer _waveOutDevice;
@@ -90,7 +90,7 @@ namespace MusicPlayerClient.Services
 
         public PlaybackState PlayerState => _waveOutDevice?.PlaybackState ?? PlaybackState.Stopped;
 
-        public MusicPlayerService(SongStorage mediaStore)
+        public PlayerService(SongStorage mediaStore)
         {
             _mediaStore = mediaStore;
             _waveOutDevice = new WaveOut();
