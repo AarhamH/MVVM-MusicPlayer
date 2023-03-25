@@ -9,11 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Command\" />
     <Folder Include="Controls\" />
-    <Folder Include="Converters\" />
     <Folder Include="Icon\" />
-    <Folder Include="Models\" />
     <Folder Include="Themes\FormComponents\" />
     <Folder Include="Properties\" />
   </ItemGroup>
