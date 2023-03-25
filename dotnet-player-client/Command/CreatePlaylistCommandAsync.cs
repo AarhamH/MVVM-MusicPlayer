@@ -1,8 +1,7 @@
-﻿using MusicPlayerClient.Extensions;
-using MusicPlayerClient.Models;
-using MusicPlayerClient.Services;
-using MusicPlayerClient.Stores;
-using MusicPlayerData.DataEntities;
+﻿using dotnet_player_client.Models;
+using dotnet_player_client.Services;
+using dotnet_player_client.Stores;
+using dotnet_player_data.Objects;
 using NAudio.Wave;
 using System;
 using System.Collections.Generic;
@@ -11,39 +10,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MusicPlayerClient.Commands
+namespace dotnet_player_client.Command
 {
-    public class CreatePlaylistAsyncCommand : AsyncCommandBase
+    public class CreatePlaylistCommandAsync : BaseCommandAsync
     {
-        private readonly PlaylistStore _playlistStore;
-        private readonly ObservableCollection<PlaylistModel>? _observablePlaylists;
-        public CreatePlaylistAsyncCommand(PlaylistStore playlistStore)
+        private readonly PLStorage _playlistStore;
+        private readonly ObservableCollection<PLModel>? _observablePlaylists;
+        public CreatePlaylistCommandAsync(PLStorage playlistStore)
         {
             _playlistStore = playlistStore;
         }
 
-        public CreatePlaylistAsyncCommand(PlaylistStore playlistStore, ObservableCollection<PlaylistModel> observablePlaylists) : this(playlistStore)
+        public CreatePlaylistCommandAsync(PLStorage playlistStore, ObservableCollection<PLModel> observablePlaylists) : this(playlistStore)
         {
             _observablePlaylists = observablePlaylists;
         }
 
         protected override async Task ExecuteAsync(object? parameter)
         {
-            var playlistId = _playlistStore.Playlists.Count() + 1;
+            var playlistId = _playlistStore.PlayList.Count() + 1;
 
-            var playlist = new PlaylistEntity
+            var playlist = new PlayListObject
             {
-                Name = $"My Playlist #{playlistId}",
-                CreationDate = DateTime.Now
+                PLTitle = $"My Playlist #{playlistId}",
             };
 
-            await _playlistStore.Add(playlist);
+            await _playlistStore.Append(playlist);
 
-            _observablePlaylists?.Insert(0, new PlaylistModel
+            _observablePlaylists?.Insert(0, new PLModel
             {
-                Id = playlist.Id,
-                Name = playlist.Name,
-                CreationDate = playlist.CreationDate
+                ID = playlist.Id,
+                Name = playlist.PLTitle,
             });
         }
     }
