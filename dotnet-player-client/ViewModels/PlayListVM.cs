@@ -23,13 +23,12 @@ using dotnet_player_client.ViewModels;
 
 namespace MusicPlayerClient.ViewModels
 {
-    public class PlayListVM : VMBase, IFileDrop
+    public class PlayListVM : VMBase
     {
         private readonly IPlayerService _musicService;
         private readonly BrowserNavStorage _playlistBrowserNavigationStore;
         private readonly SongStorage _mediaStore;
         private readonly PLStorage _playlistStore;
-        public string CurrentDateString { get; }
 
         public string? _currentPlaylistName;
         public string? CurrentPlaylistName
@@ -42,7 +41,6 @@ namespace MusicPlayerClient.ViewModels
             }
         }
 
-        public string PlaylistCreationDate { get; }
         public ObservableCollection<SongModel>? AllSongsOfPlaylist { get; set; }
         public ICommand RenamePlaylist { get; }
         public ICommand PlaySong { get; }
@@ -58,8 +56,8 @@ namespace MusicPlayerClient.ViewModels
             _mediaStore = mediaStore;
             _playlistStore = playlistStore;
 
-            RenamePlaylist = new RenamePlaylistAsyncCommand(_playlistStore, _playlistBrowserNavigationStore);
-
+            RenamePlaylist = new RenamePlaylistCommandAsync(_playlistStore, _playlistBrowserNavigationStore);
+            
             _musicService.MusicPlayerEvent += OnMusicPlayerEvent;
             _mediaStore.PLAppended += OnPlaylistSongsAdded;
 
@@ -69,7 +67,6 @@ namespace MusicPlayerClient.ViewModels
 
             _currentPlaylistName = playlistStore.PlayList.FirstOrDefault(x => x.Id == playlistBrowserNavigationStore.BrowserPlaylistID)?.PLTitle ?? "Undefined";
 
-            CurrentDateString = DateTime.Now.ToString("dd MMM, yyyy");
 
             Task.Run(LoadSongs);
         }
@@ -91,9 +88,8 @@ namespace MusicPlayerClient.ViewModels
 
             OnPropertyChanged(nameof(AllSongsOfPlaylist));
 
-            DeleteSong = new DeleteSpecificSongAsyncCommand(_musicService, _mediaStore, AllSongsOfPlaylist);
+            DeleteSong = new DeleteSongCommandAsync(_musicService, _mediaStore, AllSongsOfPlaylist);
         }
-
         private void OnMusicPlayerEvent(object? sender, SongArgs e)
         {
             switch (e.FuncType)
@@ -163,7 +159,7 @@ namespace MusicPlayerClient.ViewModels
         public override void Dispose()
         {
             _musicService.MusicPlayerEvent -= OnMusicPlayerEvent;
-            _mediaStore.PLAppended -= OnPlaylistSongsAdded;
+            _mediaStore.PLAppended -= OnPlaylistSongsAdded; 
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MusicPlayerClient.ViewModels;
 
 namespace dotnet_player_client.Services
 {
@@ -59,7 +60,8 @@ namespace dotnet_player_client.Services
             {
                 mainVm.CurrentView = playlistVm;
                 CurrentPage = PageType.Playlist;
-                PageChangedEvent?.Invoke(this, new PageChangedEventArgs(CurrentPage));
+                PageChangedEvent?.Invoke(this, new PageChangeArgs(CurrentPage));
+                
             }
         }
 
