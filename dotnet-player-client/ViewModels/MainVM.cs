@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dotnet_player_client.ViewModels
 {
-    internal class MainVM : VMBase
+    public class MainVM : VMBase
     {
         public string BarTitle { get; } = "Audio Player";
 
@@ -62,9 +62,11 @@ namespace dotnet_player_client.ViewModels
             }
         }
 
-        public MainVM(HomeVM homeView)
+        public MainVM(HomeVM homeView, PlayerVM playerVM, ToolbarVM toolbardVM)
         {
-            // TODO set the views in constructor
+            CurrentView = homeView;
+            PlayerView = playerVM;
+
         }
     }
 }

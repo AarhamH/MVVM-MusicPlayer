@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dotnet_player_client.ViewModels
 {
-    internal class DownloadVM
+    public class DownloadVM
     {
     }
 }

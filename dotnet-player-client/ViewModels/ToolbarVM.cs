@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dotnet_player_client.ViewModels
 {
-    public class PlayerVM
+    public class ToolbarVM
     {
     }
 }
