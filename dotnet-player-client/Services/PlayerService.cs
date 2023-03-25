@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using dotnet_player_data.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,12 +9,276 @@ using NAudio;
 using NAudio.Wave;
 using dotnet_player_data.Objects;
 using System.IO;
+using System.Diagnostics;
+using NAudio.Wave.SampleProviders;
+using dotnet_player_client.Arguments;
+using dotnet_player_client.Stores;
 using dotnet_player_client.Enumeration;
 
-namespace dotnet_player_client.Services
+namespace MusicPlayerClient.Services
 {
-    public interface IPlayerService
+    public interface IMusicPlayerService
     {
+        public event EventHandler<SongArgs>? MusicPlayerEvent;
+        public event EventHandler? AfterMusicPlayerEvent;
+        public string PlayingSongPath { get; }
+        public string PlayingSongName { get; }
+        public SongObjects? CurrentSong { get; }
+        public PlaybackState PlayerState { get; }
+        public float Volume { get; set; }
+        public long Position { get; set; }
+        public long TotalTime { get; }
+        public void Play(int mediaId);
+        public void Stop();
+        public void RePlay();
+        public void PlayPause();
+        public void PlayNext(bool callStoppedPlay = true);
+        public void PlayPrevious();
+    }
 
+    public class MusicPlayerService : IMusicPlayerService
+    {
+        private readonly SongStorage _mediaStore;
+        private IWavePlayer _waveOutDevice;
+        private IWaveProvider? _audioFile;
+        private SongObjects? _currentSong;
+        public SongObjects? CurrentSong => _currentSong;
+
+        public event EventHandler<SongArgs>? MusicPlayerEvent;
+        public event EventHandler? AfterMusicPlayerEvent;
+
+        public float Volume
+        {
+            get => _waveOutDevice?.Volume ?? 0;
+            set
+            {
+                if (_waveOutDevice != null && value >= 0 && value <= 1)
+                {
+                    _waveOutDevice.Volume = value;
+                }
+            }
+        }
+
+        public long Position
+        {
+            get
+            {
+                var pos = (_audioFile as AudioFileReader)?.Position / (_audioFile as AudioFileReader)?.WaveFormat.AverageBytesPerSecond ?? 0;
+                if (TotalTime < pos)
+                    return TotalTime;
+
+                return pos;
+            }
+            set
+            {
+                var audio = _audioFile as AudioFileReader;
+                if (audio != null)
+                {
+                    audio.Position = (long?)(audio.WaveFormat.AverageBytesPerSecond * value) ?? 0;
+                }
+            }
+        }
+
+        public long TotalTime
+        {
+            get => (_audioFile as AudioFileReader)?.Length / (_audioFile as AudioFileReader)?.WaveFormat.AverageBytesPerSecond ?? 0;
+        }
+
+        public string PlayingSongPath => _currentSong?.Path ?? "";
+
+        public string PlayingSongName => Path.GetFileNameWithoutExtension(_currentSong?.Path) ?? "";
+
+        public PlaybackState PlayerState => _waveOutDevice?.PlaybackState ?? PlaybackState.Stopped;
+
+        public MusicPlayerService(SongStorage mediaStore)
+        {
+            _mediaStore = mediaStore;
+            _waveOutDevice = new WaveOut();
+            _waveOutDevice.PlaybackStopped += OnStoppedPlay;
+        }
+
+        public void ChangeVolume(float volume)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Play(int mediaId)
+        {
+            OnPausePlay();
+            _currentSong = _mediaStore.Songs.FirstOrDefault(x => x.Id == mediaId);
+            if (_currentSong != null)
+            {
+                _waveOutDevice?.Stop();
+                _waveOutDevice?.Dispose();
+
+                try
+                {
+                    _audioFile = new AudioFileReader(_currentSong.Path);
+                    _waveOutDevice = new WaveOut();
+                    _waveOutDevice.PlaybackStopped += OnStoppedPlay;
+                    _waveOutDevice.Init(_audioFile);
+                    _waveOutDevice.Play();
+                    OnStartPlay();
+                }
+                catch
+                {
+                    Stop();
+                }
+            }
+        }
+
+        public void PlayPause()
+        {
+            if (_waveOutDevice == null) return;
+            if (_waveOutDevice.PlaybackState == PlaybackState.Paused)
+            {
+                _waveOutDevice.Play();
+                OnStartPlay();
+            }
+            else
+            {
+                _waveOutDevice.Pause();
+                OnPausePlay();
+            }
+        }
+
+        public void RePlay()
+        {
+            if (_audioFile != null)
+            {
+                _waveOutDevice?.Stop();
+                _waveOutDevice?.Dispose();
+
+                _waveOutDevice = new WaveOut();
+                _waveOutDevice.PlaybackStopped += OnStoppedPlay;
+                Position = 0;
+                _waveOutDevice.Init(_audioFile);
+                _waveOutDevice.Play();
+                OnStartPlay();
+            }
+        }
+
+        public void Stop()
+        {
+            _currentSong = null;
+            (_audioFile as AudioFileReader)?.Dispose();
+            _audioFile = null;
+            _waveOutDevice?.Stop();
+            _waveOutDevice?.Dispose();
+
+            OnStoppedPlay(this, null);
+
+            _waveOutDevice = new WaveOut();
+            _waveOutDevice.PlaybackStopped += OnStoppedPlay;
+        }
+
+        public void PlayNext(bool callStoppedPlay = true)
+        {
+            if (_currentSong != null)
+            {
+            Skip:
+                var tempmedia = _mediaStore.Songs.FirstOrDefault(x => x.Id > _currentSong.Id && _currentSong.ListID == x.ListID);
+                if (tempmedia != null)
+                {
+                    _waveOutDevice?.Stop();
+                    _waveOutDevice?.Dispose();
+
+                    if (callStoppedPlay)
+                        OnStoppedPlay(this, null);
+
+                    _currentSong = tempmedia;
+
+                    try
+                    {
+                        _audioFile = new AudioFileReader(_currentSong.Path);
+                        _waveOutDevice = new WaveOut();
+                        _waveOutDevice.PlaybackStopped += OnStoppedPlay;
+                        _waveOutDevice.Init(_audioFile);
+                        _waveOutDevice.Play();
+                        OnStartPlay();
+                    }
+                    catch
+                    {
+                        if (_mediaStore.Songs.FirstOrDefault(x => x.Id > _currentSong.Id && _currentSong.ListID == x.ListID) == null)
+                        {
+                            Stop();
+                        }
+                        else
+                        {
+                            goto Skip;
+                        }
+                    }
+                }
+            }
+        }
+
+        public void PlayPrevious()
+        {
+            if (_currentSong != null)
+            {
+            Prev:
+                var tempmedia = _mediaStore.Songs.Reverse().FirstOrDefault(x => x.Id < _currentSong.Id && _currentSong.ListID == x.ListID);
+                if (tempmedia != null)
+                {
+                    _waveOutDevice?.Stop();
+                    _waveOutDevice?.Dispose();
+
+                    OnStoppedPlay(this, null);
+
+                    _currentSong = tempmedia;
+
+                    try
+                    {
+                        _audioFile = new AudioFileReader(_currentSong.Path);
+                        _waveOutDevice = new WaveOut();
+                        _waveOutDevice.PlaybackStopped += OnStoppedPlay;
+                        _waveOutDevice.Init(_audioFile);
+                        _waveOutDevice.Play();
+                        OnStartPlay();
+                    }
+                    catch
+                    {
+                        if (_mediaStore.Songs.FirstOrDefault(x => x.Id < _currentSong.Id && _currentSong.ListID == x.ListID) == null)
+                        {
+                            Stop();
+                        }
+                        else
+                        {
+                            goto Prev;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void OnStoppedPlay(object? sender, StoppedEventArgs? e)
+        {
+            if (e == null)
+            {
+                MusicPlayerEvent?.Invoke(this, new SongArgs(PlayerFuncType.Stopped, _currentSong, _audioFile));
+            }
+            else
+            {
+                MusicPlayerEvent?.Invoke(this, new SongArgs(PlayerFuncType.Finished, _currentSong, _audioFile));
+            }
+            OnAfterPlay();
+        }
+
+        private void OnStartPlay()
+        {
+            MusicPlayerEvent?.Invoke(this, new SongArgs(PlayerFuncType.Playing, _currentSong, _audioFile));
+            OnAfterPlay();
+        }
+
+        private void OnPausePlay()
+        {
+            MusicPlayerEvent?.Invoke(this, new SongArgs(PlayerFuncType.Paused, _currentSong, _audioFile));
+            OnAfterPlay();
+        }
+
+        private void OnAfterPlay()
+        {
+            AfterMusicPlayerEvent?.Invoke(this, new EventArgs());
+        }
     }
 }
