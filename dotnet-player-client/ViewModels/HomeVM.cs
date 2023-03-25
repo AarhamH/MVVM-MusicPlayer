@@ -24,7 +24,7 @@ using dotnet_player_client.Enumeration;
 using dotnet_player_client.ViewModels;
 using dotnet_player_client.Utilities;
 
-namespace MusicPlayerClient.ViewModels
+namespace dotnet_player_client.ViewModels
 {
     public class HomeVM : VMBase
     {
