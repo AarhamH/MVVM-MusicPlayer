@@ -63,10 +63,10 @@ namespace MusicPlayerClient.Extensions
                 dataContext = ((FrameworkElement)sender).DataContext;
             }
             
-            if (!(dataContext is IFilesDropAsync filesDropped))
+            if (!(dataContext is IFileDrop filesDropped))
             {
                 if (dataContext != null)
-                    Trace.TraceError($"Binding error, '{dataContext.GetType().Name}' doesn't implement '{nameof(IFilesDropAsync)}'.");
+                    Trace.TraceError($"Binding error, '{dataContext.GetType().Name}' doesn't implement '{nameof(IFileDrop)}'.");
                 return;
             }
 
@@ -75,7 +75,7 @@ namespace MusicPlayerClient.Extensions
 
             if (e.Data.GetData(DataFormats.FileDrop) is string[] files)
             {
-                await filesDropped.OnFilesDroppedAsync(files, GetDropParam(element!));
+                await filesDropped.OnFilesDropAsync(files, GetDropParam(element!));
             }
         }
 
