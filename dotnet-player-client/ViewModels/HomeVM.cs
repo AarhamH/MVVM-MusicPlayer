@@ -23,7 +23,6 @@ using dotnet_player_client.Observables;
 using dotnet_player_client.Enumeration;
 using dotnet_player_client.ViewModels;
 using dotnet_player_client.Utilities;
-using MusicPlayerClient.Commands;
 
 namespace MusicPlayerClient.ViewModels
 {
@@ -37,16 +36,16 @@ namespace MusicPlayerClient.ViewModels
         public ICommand OpenExplorer { get; }
         public ICommand? DeleteSong { get; set; }
 
-        public HomeVM(IDbContextFactory<DataContext> dbContextFactory, MediaStore mediaStore, IMusicPlayerService musicService)
+        public HomeVM(IDbContextFactory<DataContext> dbContextFactory, SongStorage mediaStore, IPlayerService musicService)
         {
             _musicService = musicService;
 
             _mediaStore = mediaStore;
 
             _musicService.MusicPlayerEvent += OnMusicPlayerEvent;
-            _mediaStore.PlaylistSongsAdded += OnPlaylistSongsAdded;
+            _mediaStore.PLAppended += OnPlaylistSongsAdded;
 
-            PlaySong = new PlaySpecificSongCommand(musicService);
+            PlaySong = new PlaySongCommand(musicService);
 
             OpenExplorer = new OpenExplorerCommand();
 
@@ -72,7 +71,7 @@ namespace MusicPlayerClient.ViewModels
 
             OnPropertyChanged(nameof(AllSongs));
 
-            DeleteSong = new DeleteSpecificSongAsyncCommand(_musicService, _mediaStore, AllSongs);
+            DeleteSong = new DeleteSongCommandAsync(_musicService, _mediaStore, AllSongs);
         }
 
         private void OnMusicPlayerEvent(object? sender, SongArgs e)

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace dotnet_player_client.Command
 {
-    public class OpenExplorerCommand : BaseCommand
+    public class OpenExplorerAtPathCommand : BaseCommand
     {
-        public OpenExplorerCommand()
+        public OpenExplorerAtPathCommand()
         {
 
         }
