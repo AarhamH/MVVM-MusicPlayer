@@ -65,6 +65,31 @@
                        FontWeight="Regular"/>
         </Grid>
 
-
+        <DataGrid x:Name="SongItems"
+                  ItemsSource="{Binding AllSongs}"
+                  Background="Transparent"
+                  GridLinesVisibility="None"
+                  VerticalGridLinesBrush="Transparent"
+                  HorizontalGridLinesBrush="Transparent"
+                  CanUserAddRows="False"
+                  CanUserResizeColumns="False"
+                  CanUserReorderColumns="False"
+                  CanUserResizeRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserSortColumns="False"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column"
+                  Padding="5"
+                  AutoGenerateColumns="False"
+                  Grid.Row="1"
+                  Grid.Column="0"
+                  ColumnWidth="*"
+                  util:DropFileUtil.IsEnabled="True"
+                  RowDetailsVisibilityMode="Collapsed"
+                  FontFamily="{StaticResource Raleway}"
+                  ScrollViewer.CanContentScroll="True"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            
+        </DataGrid>
     </Grid>
 </UserControl>
