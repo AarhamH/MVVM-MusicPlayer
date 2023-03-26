@@ -1,6 +1,7 @@
 ﻿using dotnet_player_client.Services;
 using dotnet_player_client.Stores;
 using dotnet_player_client.Models;
+using dotnet_player_client.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,5 +35,17 @@ namespace dotnet_player_client.Command
             _observablePL = observablePL;
         }
 
+        protected override async Task ExecuteAsync(object? parameter)
+        {
+            if (parameter is int playlistID)
+            {
+                if (_musicService.CurrentSong?.ListID == playlistID)
+                {
+                    _musicService.Stop();
+                }
+                _observablePL?.RemoveAll(x => x.ID == playlistID);
+
+            }
+        }
     }
 }
