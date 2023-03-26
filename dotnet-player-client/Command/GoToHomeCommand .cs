@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace dotnet_player_client.Command
 {
-    public class GoToDownloadCommanAsync : BaseCommand
+    public class GoToHomeCommand : BaseCommand
     {
         private readonly INavigationService _navigationService;
         private readonly BrowserNavStorage _broswerNavStorage;
 
-        public GoToDownloadCommanAsync(INavigationService navigationService, BrowserNavStorage broswerNavStorage)
+        public GoToHomeCommand(INavigationService navigationService, BrowserNavStorage broswerNavStorage)
         {
             _navigationService = navigationService;
             _broswerNavStorage = broswerNavStorage;
