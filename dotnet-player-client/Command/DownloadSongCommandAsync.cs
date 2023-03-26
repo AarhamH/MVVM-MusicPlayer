@@ -4,6 +4,7 @@ using dotnet_player_client.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -32,8 +33,35 @@ namespace dotnet_player_client.Command
 
                 YoutubeModel? vid = _observableYoutube.FirstOrDefault(x => x.URL == url);
                 var fileName = dir.FullName + vid?.Title + ".mp3";
-            }
+                if (vid != null && !vid.IsDownloading)
+                {
+                    try
+                    {
+                        vid.FinishedDownload = false;
+                        vid.IsDownloading = true;
 
+                        var download = _youTubeClientService.DownloadYoutubeAudioAsync(vid.URL!, fileName);
+                        await foreach (var progress in download)
+                        {
+                            vid.DownloadProgress = progress;
+                        }
+                        vid.FinishedDownload = true;
+                    }
+
+                    catch
+                    {
+                        vid.FinishedDownload = default;
+                        vid.IsDownloading = default;
+                        vid.DownloadProgress = default;
+                        File.Delete(fileName);
+                    }
+                }
+                else if(vid != null && vid.FinishedDownload == true)
+                {
+                    string arg = "/select, \"" + fileName + "\"";
+                    Process.Start("explorer.exe", arg);
+                }
+            }
         }
     }
 }
