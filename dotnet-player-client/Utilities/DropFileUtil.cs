@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace MusicPlayerClient.Extensions
+namespace dotnet_player_client.Utilities
 {
     public class DropFileUtil
     {

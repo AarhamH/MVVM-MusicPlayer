@@ -63,7 +63,7 @@ namespace MusicPlayerClient.ViewModels
 
             PlaySong = new PlaySongCommand(musicService);
 
-            OpenExplorer = new OpenExplorerAtPathCommand();
+            OpenExplorer = new OpenExplorerCommand();
 
             _currentPlaylistName = playlistStore.PlayList.FirstOrDefault(x => x.Id == playlistBrowserNavigationStore.BrowserPlaylistID)?.PLTitle ?? "Undefined";
 

@@ -18,7 +18,6 @@ using System.Diagnostics;
 using dotnet_player_client.Stores;
 using dotnet_player_client.FileDropInterface;
 using System.Windows;
-using MusicPlayerClient.Extensions;
 using dotnet_player_client.Observables;
 using dotnet_player_client.Enumeration;
 using dotnet_player_client.ViewModels;
