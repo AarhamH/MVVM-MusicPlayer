@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <Folder Include="Controls\" />
-    <Folder Include="Icon\" />
     <Folder Include="Themes\FormComponents\" />
     <Folder Include="Properties\" />
   </ItemGroup>

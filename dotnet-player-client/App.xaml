@@ -8,6 +8,17 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="./Themes/Core/BarButton.xaml"/>
                 <ResourceDictionary Source="./Themes/Core/TransparentButton.xaml"/>
+                <ResourceDictionary Source="./Themes/Core/CloseButton.xaml"/>
+                <ResourceDictionary Source="./Themes/Core/FlatButton.xaml"/>
+                <ResourceDictionary Source="./Themes/Core/GenericButton.xaml"/>
+                <ResourceDictionary Source="./Themes/Core/Loading.xaml"/>
+                <ResourceDictionary Source="./Themes/Core/PrettyButton.xaml"/>
+                <ResourceDictionary Source="./Themes/Core/PrettyDataGrid.xaml"/>
+                <ResourceDictionary Source="./Themes/Core/PrettySlider.xaml"/>
+                <ResourceDictionary Source="./Themes/FormComponents/ModernButton.xaml"/>
+                <ResourceDictionary Source="./Themes/FormComponents/ModernTextBox.xaml"/>
+                <ResourceDictionary Source="./Themes/FormComponents/NewPasswordBox.xaml"/>
+                <ResourceDictionary Source="./Themes/FormComponents/NewTextBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <FontFamily x:Key="Raleway">pack://application:,,,/Fonts/Raleway/#Raleway</FontFamily>
