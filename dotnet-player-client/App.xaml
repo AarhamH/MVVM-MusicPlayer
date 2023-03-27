@@ -2,7 +2,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:dotnet_player_client"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow.xaml"
+             xmlns:vm ="clr-namespace:dotnet_player_client.ViewModels"
+             xmlns:view="clr-namespace:dotnet_player_client.Views">
+
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -11,7 +14,6 @@
                 <ResourceDictionary Source="./Themes/Core/CloseButton.xaml"/>
                 <ResourceDictionary Source="./Themes/Core/FlatButton.xaml"/>
                 <ResourceDictionary Source="./Themes/Core/GenericButton.xaml"/>
-                <ResourceDictionary Source="./Themes/Core/Loading.xaml"/>
                 <ResourceDictionary Source="./Themes/Core/PrettyButton.xaml"/>
                 <ResourceDictionary Source="./Themes/Core/PrettyDataGrid.xaml"/>
                 <ResourceDictionary Source="./Themes/Core/PrettySlider.xaml"/>
@@ -22,6 +24,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <FontFamily x:Key="Raleway">pack://application:,,,/Fonts/Raleway/#Raleway</FontFamily>
+
 
         </ResourceDictionary>
     </Application.Resources>

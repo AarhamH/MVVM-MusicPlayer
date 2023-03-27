@@ -9,8 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controls\" />
-    <Folder Include="Themes\FormComponents\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 

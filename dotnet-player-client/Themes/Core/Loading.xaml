@@ -1,9 +1,9 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="clr-namespace:MusicPlayerClient.Converters"
-    xmlns:components="clr-namespace:MusicPlayerClient.Components"
-    xmlns:local="clr-namespace:MusicPlayerClient">
+    xmlns:converters="clr-namespace:dotnet_player_client.Converters"
+    xmlns:components="clr-namespace:dotnet_player_client.Components"
+    xmlns:local="clr-namespace:dotnet_player_client">
     <Style TargetType="{x:Type components:LoadingSpinner}">
         <Setter Property="Template">
             <Setter.Value>
