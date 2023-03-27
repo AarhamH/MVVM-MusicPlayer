@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="./Themes/Core/GenericButton.xaml"/>
                 <ResourceDictionary Source="./Themes/Core/PrettyButton.xaml"/>
                 <ResourceDictionary Source="./Themes/Core/PrettyDataGrid.xaml"/>
+                <ResourceDictionary Source="./Themes/Core/Loading.xaml"/>
                 <ResourceDictionary Source="./Themes/Core/PrettySlider.xaml"/>
                 <ResourceDictionary Source="./Themes/FormComponents/ModernButton.xaml"/>
                 <ResourceDictionary Source="./Themes/FormComponents/ModernTextBox.xaml"/>

@@ -16,10 +16,10 @@ namespace dotnet_player_client.Components
         protected override void OnThumbDragStarted(DragStartedEventArgs e)
         {
             base.OnThumbDragStarted(e);
-            var expr = BindingOperations.GetBindingExpression(this, ValueProperty);
-            if (expr != null)
+            var expression = BindingOperations.GetBindingExpression(this, ValueProperty);
+            if (expression != null)
             {
-                SupressedBinding = expr.ParentBinding;
+                SupressedBinding = expression.ParentBinding;
                 var value = Value;
                 BindingOperations.ClearBinding(this, ValueProperty);
                 SetValue(ValueProperty, value);
@@ -28,7 +28,7 @@ namespace dotnet_player_client.Components
 
         protected override void OnThumbDragCompleted(DragCompletedEventArgs e)
         {
-            if(SupressedBinding != null)
+            if (SupressedBinding != null)
             {
                 var value = Value;
                 BindingOperations.SetBinding(this, ValueProperty, SupressedBinding);
