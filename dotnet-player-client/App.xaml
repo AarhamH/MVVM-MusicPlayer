@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:dotnet_player_client"
              StartupUri="MainWindow.xaml"
              xmlns:vm ="clr-namespace:dotnet_player_client.ViewModels"
-             xmlns:view="clr-namespace:dotnet_player_client.Views">
+             xmlns:view="clr-namespace:dotnet_player_client.Views"
+             xmlns:control="clr-namespace:dotnet_player_client.Controls">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -26,6 +27,19 @@
 
             <FontFamily x:Key="Raleway">pack://application:,,,/Fonts/Raleway/#Raleway</FontFamily>
 
+            <DataTemplate DataType="{x:Type vm:HomeVM}">
+                <view:Home />
+            </DataTemplate>
+
+
+
+            <DataTemplate DataType="{x:Type vm:PlayerVM}">
+                <control:PlayerControl />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:ToolbarVM}">
+                <control:ToolbarControl/>
+            </DataTemplate>
 
         </ResourceDictionary>
     </Application.Resources>
