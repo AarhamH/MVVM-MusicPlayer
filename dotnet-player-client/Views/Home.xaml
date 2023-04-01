@@ -77,23 +77,22 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="5*"/>
+                <RowDefinition Height="3*"/>
                 <RowDefinition Height="38"/>
-                <RowDefinition Height="9*"/>
+                <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
 
             <!-- Main Title -->
-            <TextBlock Grid.Row="1"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="3"
+            <TextBlock
+                       Grid.Column="1"
                        Text="Music Player"
                        FontFamily="{StaticResource Raleway}"
                        FontSize="40px"
-                       Margin="0 0 0 5"
+                       Margin="0,9,0,0"
                        Foreground="#fff"
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontWeight="Bold"/>
+                       VerticalAlignment="Top"
+                       FontWeight="Bold" Grid.RowSpan="2"/>
 
             <TextBlock Grid.Row="2"
                        Grid.Column="1"
