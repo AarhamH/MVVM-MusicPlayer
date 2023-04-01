@@ -26,7 +26,7 @@
                                            VerticalAlignment="Top"
                                            Margin="0 30 0 0"
                                            IsLoading="True"
-                                           Diameter="500"
+                                           Diameter="50"
                                            Color="#888"
                                            Thickness="5"/>
             </DataTemplate>
