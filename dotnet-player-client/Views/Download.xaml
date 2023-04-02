@@ -21,14 +21,15 @@
         <Grid.Resources>
             <DataTemplate x:Key="LoadingTemplate">
                 <component:LoadingSpinner HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"
-                                          IsLoading="True"
-                                          Diameter="50"
-                                          Color="#888"
-                                          Thickness="5"/>
+                                           VerticalAlignment="Center"
+                                           IsLoading="True"
+                                           Diameter="50"
+                                           Color="#888"
+                                           Thickness="5"/>
+
             </DataTemplate>
 
-            <DataTemplate x:Key="NoMediaTemplate">
+            <DataTemplate x:Key="NoMediaTemplate" >
                 <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
@@ -39,16 +40,23 @@
                     <TextBlock HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Margin="0 0 0 5"
-                               Text="Nothin Found"
+                               Text="Nothing was found."
                                FontFamily="{StaticResource Raleway}"
                                FontSize="24px"
                                Foreground="#888"
+                               FontWeight="Light"/>
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Text="Try to rephrase your search..."
+                               FontFamily="{StaticResource Raleway}"
+                               FontSize="16px"
+                               Foreground="#666"
                                FontWeight="Light"/>
                 </StackPanel>
 
             </DataTemplate>
 
-            <DataTemplate x:Key="ErrorTemplate">
+            <DataTemplate x:Key="ErrorTemplate" >
                 <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
@@ -59,11 +67,18 @@
                     <TextBlock HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Margin="0 0 0 5"
-                               Text="An Error Occured..."
+                               Text="An error occurred."
                                FontFamily="{StaticResource Raleway}"
                                FontSize="24px"
-                               FontWeight="Light"
-                               Foreground="#888"/>
+                               Foreground="#888"
+                               FontWeight="Light"/>
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Text="Try again in a few moments..."
+                               FontFamily="{StaticResource Raleway}"
+                               FontSize="16px"
+                               Foreground="#666"
+                               FontWeight="Light"/>
                 </StackPanel>
 
             </DataTemplate>
@@ -111,10 +126,11 @@
                      Text="{Binding SearchText, Mode=TwoWay}"
                      HorizontalAlignment="Left"
                      x:Name="SearchYoutubeTextBox"/>
+            
             <TextBlock Grid.Row="2"
                        Grid.Column="0"
                        Grid.ColumnSpan="3"
-                       Margin="62,5,78,-8"
+                       Margin="33,5,107,-8"
                        Height="30px"
                        IsHitTestVisible="False"
                        Foreground="#fff"
@@ -135,10 +151,11 @@
                 </TextBlock.Style>
             </TextBlock>
         </Grid>
-
+        
         <DataGrid x:Name="YoutubeItems"
                   ItemsSource="{Binding ResultMedia}"
                   GridLinesVisibility="None"
+                  Background="Transparent"
                   VerticalGridLinesBrush="Transparent"
                   HorizontalGridLinesBrush="Transparent"
                   CanUserAddRows="False"
@@ -181,17 +198,102 @@
                                             </Style>
                                         </svgc:SvgViewbox.Style>
                                     </svgc:SvgViewbox>
-                                                     
+
                                 </Button>
+                                <TextBlock x:Name="DownloadProgressText"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           IsHitTestVisible="False"
+                                           Foreground="#ccc"
+                                           FontSize="12px"
+                                           FontWeight="Bold"
+                                           Text="{Binding Path=DownloadProgress,StringFormat='{}{0}%'}">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsDownloading}" Value="false">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FinishedDownload}" Value="true">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+
+                                    </TextBlock.Style>
+                                </TextBlock>
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+
+                <DataGridTextColumn Binding="{Binding Path=Num}"
+                                MaxWidth="100"
+                                Header="#"/>
+                <DataGridTextColumn Binding="{Binding Path=Title}"
+                                Header="Title">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Binding="{Binding Path=Channel}"
+                                    MaxWidth="150"
+                                    Header="Channel">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Binding="{Binding Path=Views}"
+                                MaxWidth="100"
+                                Header="Views">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Binding="{Binding Path=Length}"
+                                Width="100"
+                                Header="Length"/>
             </DataGrid.Columns>
         </DataGrid>
-                  
-                  
-                  
+
+        <StackPanel x:Name="gridStatus"
+                    Grid.Row="1"
+                    Grid.Column="0"/>
+
+        <ContentControl Grid.Row="1"
+                        Grid.Column="0">
+            <ContentControl.Style>
+                <Style TargetType="{x:Type ContentControl}">
+                    <Setter Property="ContentTemplate" Value="{x:Null}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=gridStatus, Path=DataContext.ResultMedia.Count}" Value="0">
+                            <Setter Property="ContentTemplate" Value="{StaticResource NoMediaTemplate}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=gridStatus, Path=DataContext.IsFailedSearch}" Value="true">
+                            <Setter Property="ContentTemplate" Value="{StaticResource ErrorTemplate}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=gridStatus, Path=DataContext.IsLoadingSearch}" Value="true">
+                            <Setter Property="ContentTemplate" Value="{StaticResource LoadingTemplate}" />
+                        </DataTrigger>
+
+
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+
+
+
 
     </Grid>
 </UserControl>
