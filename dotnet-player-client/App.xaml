@@ -28,13 +28,19 @@
             <FontFamily x:Key="Raleway">pack://application:,,,/Fonts/Raleway/#Raleway</FontFamily>
 
             <DataTemplate DataType="{x:Type vm:HomeVM}">
-                <view:Home />
+                <view:Home/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type vm:PlayListVM}">
+                <view:Playlist/>
+            </DataTemplate>
 
+            <DataTemplate DataType="{x:Type vm:DownloadVM}">
+                <view:Download/>
+            </DataTemplate>
 
             <DataTemplate DataType="{x:Type vm:PlayerVM}">
-                <control:PlayerControl />
+                <control:PlayerControl/>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type vm:ToolbarVM}">

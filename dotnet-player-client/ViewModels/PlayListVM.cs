@@ -21,7 +21,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using dotnet_player_client.ViewModels;
 
-namespace MusicPlayerClient.ViewModels
+namespace dotnet_player_client.ViewModels
 {
     public class PlayListVM : VMBase
     {

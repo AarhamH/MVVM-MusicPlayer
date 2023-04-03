@@ -8,7 +8,7 @@ using dotnet_player_client.Services;
 using dotnet_player_client.Stores;
 using dotnet_player_client.Utilities;
 using dotnet_player_data.Objects;
-using MusicPlayerClient.ViewModels;
+using dotnet_player_client.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
