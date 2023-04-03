@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MusicPlayerData.Data;
+using dotnet_player_data.Data;
 
 #nullable disable
 
-namespace MusicPlayerData.Migrations
+namespace dotnet_player_data.Migrations
 {
     [DbContext(typeof(DataContext))]
     [Migration("20220624175449_init")]

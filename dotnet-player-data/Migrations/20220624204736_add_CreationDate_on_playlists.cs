@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace MusicPlayerData.Migrations
+namespace dotnet_player_data.Migrations
 {
     public partial class add_CreationDate_on_playlists : Migration
     {

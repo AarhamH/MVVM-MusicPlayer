@@ -19,7 +19,7 @@ namespace dotnet_player_client.Services
     public interface IYouTubeClientService
     {
         IAsyncEnumerable<int> DownloadYoutubeAudioAsync(string url, string FileName);
-        Task<List<YoutubeInfo>?> SearchVideoByName(string query);
+        Task<List<YoutubeVideoInfo>?> SearchVideoByName(string query);
         string GetSafeFileName(string name, char replace = ' ');
     }
 
@@ -27,9 +27,9 @@ namespace dotnet_player_client.Services
     {
         public const string YouTubeSearchUrl = "https://www.youtube.com/results?search_query=";
         public const string YouTubeBase = "https://www.youtube.com";
-        public async Task<List<YoutubeInfo>?> SearchVideoByName(string query)
+        public async Task<List<YoutubeVideoInfo>?> SearchVideoByName(string query)
         {
-            List<YoutubeInfo> videos = new List<YoutubeInfo>();
+            List<YoutubeVideoInfo> videos = new List<YoutubeVideoInfo>();
             try
             {
                 using (var client = new HttpClient())
@@ -61,13 +61,13 @@ namespace dotnet_player_client.Services
                                 if (title != null && url != null && length != null
                                     && channel != null && views != null)
                                 {
-                                    videos.Add(new YoutubeInfo
+                                    videos.Add(new YoutubeVideoInfo
                                     {
-                                        TitleInfo = GetSafeFileName(title.ToString()),
-                                        URLInfo = YouTubeBase + url.ToString(),
-                                        LengthInfo = length.ToString(),
-                                        ChannelInfo = channel.ToString(),
-                                        ViewsInfo = views.ToString()
+                                        Title = GetSafeFileName(title.ToString()),
+                                        Url = YouTubeBase + url.ToString(),
+                                        Duration = length.ToString(),
+                                        Channel = channel.ToString(),
+                                        Views = views.ToString()
                                     });
                                 }
                             }

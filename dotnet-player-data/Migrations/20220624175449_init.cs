@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace MusicPlayerData.Migrations
+namespace dotnet_player_data.Migrations
 {
     public partial class init : Migration
     {

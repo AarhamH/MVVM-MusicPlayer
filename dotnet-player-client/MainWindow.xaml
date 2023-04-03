@@ -4,57 +4,63 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotnet_player_client"
+        xmlns:views="clr-namespace:dotnet_player_client.Views"
+        xmlns:components="clr-namespace:dotnet_player_client.Controls"
+        xmlns:viewModels="clr-namespace:dotnet_player_client.ViewModels"
+        SizeChanged="Window_SizeChanged"
         mc:Ignorable="d"
-        Title="AarhamAudio" Height="720" Width="1100" MinHeight="600" MinWidth="800"
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
-        ResizeMode="CanResizeWithGrip">
-        
+        ResizeMode="CanResizeWithGrip"
+        Title="MusicPlayer"
+        MinHeight="600"
+        MinWidth="800"
+        Height="720"
+        Width="1100">
     <Border>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="180px"/>
+                <ColumnDefinition Width="180px"
+                                  MinWidth="150px"
+                                  MaxWidth="300px"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="30px"/>
-                <RowDefinition Height="600"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="90px"/>
             </Grid.RowDefinitions>
-            <Border Grid.Column="0"
-                    Grid.Row="0"
-                    Grid.ColumnSpan="2"
+            <Border Grid.Row="0"
+                    Grid.Column="0"
                     Grid.RowSpan="3"
-                    Background="#010409"/>
-
-            <Border Grid.Column="0"
-                    Grid.Row="0"
                     Grid.ColumnSpan="2"
-                    Background="#0d1117"
-                    x:Name="TopBorder" MouseDown="TopBorder_MouseDown">
+                    Background="#111"/>
 
+            <Border Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Background="#212121"
+                    x:Name="AppTopBorder" MouseDown="AppTopBorder_MouseDown">
                 <Grid Grid.Row="0"
                       Grid.Column="0"
                       HorizontalAlignment="Stretch">
-
-                    <Label Margin="5 0 0 0"
+                    <Label Margin="5,0,0,0"
                            FontFamily="{StaticResource Raleway}"
                            FontWeight="Regular"
-                           Content="{Binding BarTitle}"
+                           Content="{Binding AppTitle}"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
                            Foreground="White"/>
                     <StackPanel VerticalAlignment="Center"
                                 HorizontalAlignment="Right"
                                 Orientation="Horizontal">
-                        <Button Content="⎯" Style="{StaticResource BarButton}"
-                                    x:Name="MinButton" Click="MinButton_Click"/>
+                        <Button Content="⎯" Style="{StaticResource MinMaxButton}"
+                                    x:Name="MinimizeButton" Click="MinimizeButton_Click"/>
 
-                        <Button Content="X" Style="{StaticResource BarButton}"
-                                    x:Name="CloseButton" Click="CloseButton_Click"/>
-
+                        <Button Content="✕" Style="{StaticResource CloseButton}"
+                                    x:Name="ExitButton" Click="ExitButton_Click"/>
                     </StackPanel>
                 </Grid>
             </Border>

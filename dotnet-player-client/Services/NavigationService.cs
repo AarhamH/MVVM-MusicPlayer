@@ -1,5 +1,5 @@
-﻿using dotnet_player_client.Enumeration;
-using dotnet_player_client.Arguments;
+﻿using dotnet_player_client.Enums;
+using dotnet_player_client.Events;
 using dotnet_player_client.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace dotnet_player_client.Services
 {
     public interface INavigationService
     {
-        public event EventHandler<PageChangeArgs> PageChangedEvent;
+        public event EventHandler<PageChangedEventArgs> PageChangedEvent;
         public PageType CurrentPage { get; }
         public void NavigateHome();
         public void NavigatePlaylist();
@@ -20,16 +20,16 @@ namespace dotnet_player_client.Services
 
     public class NavigationService: INavigationService
     {
-        private readonly Func<MainVM>? _mainViewModelFunc;
-        private readonly Func<HomeVM>? _homeViewModelFunc;
-        private readonly Func<PlayListVM>? _playlistViewModelFunc;
-        private readonly Func<DownloadVM>? _downloadViewModelFunc;
+        private readonly Func<MainViewModel>? _mainViewModelFunc;
+        private readonly Func<HomeViewModel>? _homeViewModelFunc;
+        private readonly Func<PlaylistViewModel>? _playlistViewModelFunc;
+        private readonly Func<DownloadsViewModel>? _downloadViewModelFunc;
 
-        public event EventHandler<PageChangeArgs>? PageChangedEvent;
+        public event EventHandler<PageChangedEventArgs>? PageChangedEvent;
         public PageType CurrentPage { get; private set; } = PageType.Home;
 
-        public NavigationService(Func<MainVM> mainViewModelFunc, Func<HomeVM> homeViewModelFunc,
-                                 Func<PlayListVM> playlistViewModelFunc, Func<DownloadVM> downloadViewModelFunc)
+        public NavigationService(Func<MainViewModel> mainViewModelFunc, Func<HomeViewModel> homeViewModelFunc,
+                                 Func<PlaylistViewModel> playlistViewModelFunc, Func<DownloadsViewModel> downloadViewModelFunc)
         {
             _mainViewModelFunc = mainViewModelFunc;
             _homeViewModelFunc = homeViewModelFunc;
@@ -42,11 +42,11 @@ namespace dotnet_player_client.Services
             var mainVm = _mainViewModelFunc?.Invoke();
             var homeVm = _homeViewModelFunc?.Invoke();
 
-            if (mainVm != null && mainVm.CurrentView is not HomeVM)
+            if (mainVm != null && mainVm.CurrentView is not HomeViewModel)
             {
                 mainVm.CurrentView = homeVm;
                 CurrentPage = PageType.Home;
-                PageChangedEvent?.Invoke(this, new PageChangeArgs(CurrentPage));
+                PageChangedEvent?.Invoke(this, new PageChangedEventArgs(CurrentPage));
             }
         }
 
@@ -59,8 +59,7 @@ namespace dotnet_player_client.Services
             {
                 mainVm.CurrentView = playlistVm;
                 CurrentPage = PageType.Playlist;
-                PageChangedEvent?.Invoke(this, new PageChangeArgs(CurrentPage));
-                
+                PageChangedEvent?.Invoke(this, new PageChangedEventArgs(CurrentPage));
             }
         }
 
@@ -69,11 +68,11 @@ namespace dotnet_player_client.Services
             var mainVm = _mainViewModelFunc?.Invoke();
             var downloadsVm = _downloadViewModelFunc?.Invoke();
 
-            if (mainVm != null && mainVm.CurrentView is not DownloadVM)
+            if (mainVm != null && mainVm.CurrentView is not DownloadsViewModel)
             {
                 mainVm.CurrentView = downloadsVm;
-                CurrentPage = PageType.Download;
-                PageChangedEvent?.Invoke(this, new PageChangeArgs(CurrentPage));
+                CurrentPage = PageType.Downloads;
+                PageChangedEvent?.Invoke(this, new PageChangedEventArgs(CurrentPage));
             }
         }
     }

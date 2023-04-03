@@ -2,49 +2,48 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:dotnet_player_client"
-             StartupUri="MainWindow.xaml"
-             xmlns:vm ="clr-namespace:dotnet_player_client.ViewModels"
-             xmlns:view="clr-namespace:dotnet_player_client.Views"
-             xmlns:control="clr-namespace:dotnet_player_client.Controls">
-
+             xmlns:views="clr-namespace:dotnet_player_client.Views"
+             xmlns:controls="clr-namespace:dotnet_player_client.Controls"
+             xmlns:viewModels="clr-namespace:dotnet_player_client.ViewModels">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="./Themes/Core/BarButton.xaml"/>
-                <ResourceDictionary Source="./Themes/Core/TransparentButton.xaml"/>
                 <ResourceDictionary Source="./Themes/Core/CloseButton.xaml"/>
-                <ResourceDictionary Source="./Themes/Core/FlatButton.xaml"/>
-                <ResourceDictionary Source="./Themes/Core/GenericButton.xaml"/>
-                <ResourceDictionary Source="./Themes/Core/PrettyButton.xaml"/>
-                <ResourceDictionary Source="./Themes/Core/PrettyDataGrid.xaml"/>
                 <ResourceDictionary Source="./Themes/Core/Loading.xaml"/>
+                <ResourceDictionary Source="./Themes/Core/PrettyButton.xaml"/>
+                <ResourceDictionary Source="./Themes/Core/FlatButton.xaml"/>
+                <ResourceDictionary Source="./Themes/Core/MinMaxButton.xaml"/>
+                <ResourceDictionary Source="./Themes/Core/PrettyScrollbar.xaml"/>
+                <ResourceDictionary Source="./Themes/Core/TransparentButton.xaml"/>
                 <ResourceDictionary Source="./Themes/Core/PrettySlider.xaml"/>
-                <ResourceDictionary Source="./Themes/FormComponents/ModernButton.xaml"/>
+                <ResourceDictionary Source="./Themes/Core/PrettyDataGrid.xaml"/>
+                <ResourceDictionary Source="./Themes/Core/GenericButton.xaml"/>
                 <ResourceDictionary Source="./Themes/FormComponents/ModernTextBox.xaml"/>
                 <ResourceDictionary Source="./Themes/FormComponents/NewPasswordBox.xaml"/>
                 <ResourceDictionary Source="./Themes/FormComponents/NewTextBox.xaml"/>
+                <ResourceDictionary Source="./Themes/FormComponents/ModernButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <FontFamily x:Key="Raleway">pack://application:,,,/Fonts/Raleway/#Raleway</FontFamily>
 
-            <DataTemplate DataType="{x:Type vm:HomeVM}">
-                <view:Home/>
+            <DataTemplate DataType="{x:Type viewModels:HomeViewModel}">
+                <views:HomeView />
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type vm:PlayListVM}">
-                <view:Playlist/>
+            <DataTemplate DataType="{x:Type viewModels:PlaylistViewModel}">
+                <views:PlaylistView />
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type vm:DownloadVM}">
-                <view:Download/>
+            <DataTemplate DataType="{x:Type viewModels:DownloadsViewModel}">
+                <views:DownloadsView />
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type vm:PlayerVM}">
-                <control:PlayerControl/>
+            <DataTemplate DataType="{x:Type viewModels:PlayerViewModel}">
+                <controls:PlayerControl />
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type vm:ToolbarVM}">
-                <control:ToolbarControl/>
+            <DataTemplate DataType="{x:Type viewModels:ToolbarViewModel}">
+                <controls:ToolbarControl />
             </DataTemplate>
 
         </ResourceDictionary>

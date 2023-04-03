@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MusicPlayerData.DataEntities
+namespace dotnet_player_data.DataEntities
 {
     public class PlaylistEntity : BaseEntity
     {

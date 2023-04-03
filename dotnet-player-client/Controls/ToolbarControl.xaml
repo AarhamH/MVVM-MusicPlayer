@@ -5,14 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:dotnet_player_client.Controls"
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
-             xmlns:util="clr-namespace:dotnet_player_client.Utilities"
+             xmlns:ext="clr-namespace:dotnet_player_client.Extensions"
              xmlns:components="clr-namespace:dotnet_player_client.Components"
-             xmlns:enum="clr-namespace:dotnet_player_client.Enumeration"
+             xmlns:enums="clr-namespace:dotnet_player_client.Enums"
              mc:Ignorable="d" 
              d:DesignHeight="530" d:DesignWidth="200">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="116px" />
@@ -38,8 +38,7 @@
                                      Height="80px"
                                      Margin="0 20 0 20"
                                      Source="../icons/page-document-empty.svg"/>
-
-                    <TextBlock Text="No Playlists"
+                    <TextBlock Text="No playlists."
                                HorizontalAlignment="Center"
                                FontFamily="{StaticResource Raleway}"
                                FontSize="20px"
@@ -48,6 +47,7 @@
                 </StackPanel>
 
             </DataTemplate>
+            
         </Grid.Resources>
 
         <Border Background="#111"
@@ -55,11 +55,12 @@
                 Grid.Column="0"
                 Grid.RowSpan="3">
             <Border.Effect>
-                <DropShadowEffect ShadowDepth="10"
-                                  Direction="0"
-                                  Color="#212121"
-                                  Opacity="0.1"
-                                  BlurRadius="10"/>
+                <DropShadowEffect
+                      ShadowDepth="10"
+                      Direction="0"
+                      Color="#212121"
+                      Opacity="0.1"
+                      BlurRadius="10.0" />
             </Border.Effect>
         </Border>
 
@@ -74,9 +75,8 @@
                     FontFamily="{StaticResource Raleway}"
                     FontWeight="SemiBold"
                     Command="{Binding NavigateHome}"
-                    util:DropFileUtil.IsEnabled="True"
-                    util:DropFileUtil.InterfaceDataContext="{Binding ElementName=PlaylistItems, Path=DataContext}">
-
+                    ext:DropFilesBehaviorExtension.IsEnabled="True"
+                    ext:DropFilesBehaviorExtension.InterfaceDataContext="{Binding ElementName=PlaylistItems, Path=DataContext}">
                 <StackPanel Orientation="Horizontal"
                             Width="{Binding ElementName=NavigationPanel,Path=ActualWidth}"
                             HorizontalAlignment="Left">
@@ -84,18 +84,20 @@
                                      Height="20px"
                                      Margin="20 0 0 0"
                                      VerticalAlignment="Center"
-                                     Source="../icons/home-icon.svg"/>
+                                     Source="../Images/home-icon.svg" />
                     <TextBlock VerticalAlignment="Center"
                                Margin="15 0 0 0"
-                               Text="Home"/>
+                               Text="Home" />
                 </StackPanel>
 
                 <Button.Style>
+
                     <Style BasedOn="{StaticResource TransparentButton}"
                            TargetType="{x:Type Button}">
-                        <Setter Property="Foreground" Value="#888"/>
+                        <Setter Property="Foreground" Value="#888" />
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static enum:PageType.Home}">
+
+                            <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static enums:PageType.Home}">
                                 <Setter Property="Opacity" Value="1" />
                                 <DataTrigger.EnterActions>
                                     <BeginStoryboard>
@@ -116,11 +118,14 @@
                                     </BeginStoryboard>
                                 </DataTrigger.ExitActions>
                             </DataTrigger>
+
+
                         </Style.Triggers>
                     </Style>
+
                 </Button.Style>
+
             </Button>
-            
             <Button VerticalAlignment="Center"
                     Height="35"
                     FontSize="12px"
@@ -146,7 +151,7 @@
                        TargetType="{x:Type Button}">
                         <Setter Property="Foreground" Value="#888" />
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static enum:PageType.Download}">
+                            <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static enums:PageType.Downloads}">
                                 <Setter Property="Opacity" Value="1" />
                                 <DataTrigger.EnterActions>
                                     <BeginStoryboard>
@@ -173,8 +178,9 @@
                 </Button.Style>
 
             </Button>
-            
         </StackPanel>
+
+        
 
         <Grid VerticalAlignment="Bottom"
               Grid.Row="1"
@@ -267,15 +273,14 @@
 
             </Button>
         </Grid>
+        
 
         <ScrollViewer Grid.Row="2"
                       Grid.Column="0"
                       HorizontalContentAlignment="Stretch"
                       VerticalAlignment="Top"
                       VerticalScrollBarVisibility="Auto">
-            <ItemsControl Padding="0 10 0 10"
-                          x:Name="PlaylistsItems"
-                          ItemsSource="{Binding PlayLists}">
+            <ItemsControl Padding="0 10 0 10" x:Name="PlaylistItems" ItemsSource="{Binding Playlists}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Vertical"/>
@@ -283,9 +288,9 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Grid util:DropFileUtil.IsEnabled="True"
-                              util:DropFileUtil.InterfaceDataContext="{Binding ElementName= PlaylistItems, Path=DataContext}"
-                              util:DropFileUtil.DropParam="{Binding Id}">
+                        <Grid ext:DropFilesBehaviorExtension.IsEnabled="True"
+                              ext:DropFilesBehaviorExtension.InterfaceDataContext="{Binding ElementName=PlaylistItems, Path=DataContext}"
+                              ext:DropFilesBehaviorExtension.DropParam="{Binding Id}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*"/>
@@ -394,12 +399,11 @@
                                 </Button.Style>
                             </Button>
                         </Grid>
+
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-                
             </ItemsControl>
         </ScrollViewer>
-
         <StackPanel x:Name="playlistsStatus"
                    Grid.Row="2"
                    Grid.Column="0"
@@ -422,6 +426,5 @@
                 </Style>
             </ContentControl.Style>
         </ContentControl>
-
     </Grid>
 </UserControl>

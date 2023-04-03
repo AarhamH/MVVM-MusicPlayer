@@ -1,8 +1,10 @@
-﻿using dotnet_player_client.Utilities;
-using dotnet_player_client.ViewModels;
-using dotnet_player_data.Context;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using dotnet_player_client.Extensions;
+using dotnet_player_client.Services;
+using dotnet_player_client.ViewModels;
+using dotnet_player_data.Data;
+using dotnet_player_data.DataEntities;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,7 +22,6 @@ namespace dotnet_player_client
     public partial class App : Application
     {
         private IServiceProvider? _serviceProvider;
-
         protected override void OnStartup(StartupEventArgs e)
         {
             IServiceCollection services = new ServiceCollection();
@@ -43,11 +44,11 @@ namespace dotnet_player_client
 
             MainWindow = new MainWindow()
             {
-                DataContext = _serviceProvider.GetRequiredService<MainVM>()
+                DataContext = _serviceProvider.GetRequiredService<MainViewModel>()
             };
             MainWindow.Show();
 
             base.OnStartup(e);
-        } 
+        }
     }
 }
