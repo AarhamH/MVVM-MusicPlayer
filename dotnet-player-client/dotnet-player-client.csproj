@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icons\play.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Images\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 
@@ -21,6 +26,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\dotnet-player-data\dotnet-player-data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Icons\play.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
