@@ -58,7 +58,22 @@
                     </StackPanel>
                 </Grid>
             </Border>
-            
+
+            <ContentControl Grid.Row="1" Grid.Column="1" Content="{Binding CurrentView}" />
+            <ContentControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding PlayerView}" />
+
+            <ContentControl Grid.Row="1"
+                            Grid.Column="0"
+                            Content="{Binding ToolbarView}" />
+
+            <GridSplitter Grid.Column="0"
+                          Grid.Row="1"
+                          HorizontalAlignment="Right" 
+                          VerticalAlignment="Stretch"
+                          Background="Transparent"
+                          Cursor="ScrollWE"
+                          ShowsPreview="true"
+                          Width="3"/>
         </Grid>
     </Border>
 </Window>

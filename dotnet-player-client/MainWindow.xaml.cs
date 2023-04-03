@@ -22,6 +22,9 @@ namespace dotnet_player_client
     {
         public MainWindow()
         {
+            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
+
             InitializeComponent();
         }
 
