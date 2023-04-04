@@ -15,8 +15,9 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="150px" />
+            <RowDefinition Height="100px" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="20px" />
         </Grid.RowDefinitions>
         
         <Grid.Resources>
@@ -34,10 +35,11 @@
                 <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-                    <Image Width="200px"
-                                     Height="100px"
-                                     Margin="0 0 0 20"
-                                     Source="../Icons/empty-playlist.png"/>
+                    <Image Width="100"
+                           Height="50"
+                           Margin="0 0 0 20"
+                           Source="../Icons/empty-playlist.png"
+                           RenderOptions.BitmapScalingMode="HighQuality"/>
                     <TextBlock HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Margin="0 0 0 5"
@@ -57,18 +59,24 @@
 
             </DataTemplate>
         </Grid.Resources>
-        
+
         <Border Grid.Row="0">
-            <Border.Background>
-                <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
-                    <LinearGradientBrush.GradientStops>
-                        <GradientStop Offset="0.8" Color="#8155cf" />
-                        <GradientStop Offset="0.2" Color="#4e2a8c" />
-                    </LinearGradientBrush.GradientStops>
-                </LinearGradientBrush>
-            </Border.Background>
+            <Image Source="../Images/palm-tree-banner.jpg" Stretch="UniformToFill" Opacity="0.3" VerticalAlignment="Center"/>
         </Border>
+
         <Border Grid.Row="1" Background="#181818" />
+        <Border Grid.Row="2" Background="#181818"/>
+
+        <TextBlock Grid.Row="2"
+                   
+                       Grid.Column="1"
+                       Text="{Binding PlaylistCreationDate, StringFormat='Created on {0}'}"
+                       FontFamily="{StaticResource Raleway}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="15px"
+                       Foreground="#ebebeb"
+                       FontWeight="Bold"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150px" />
@@ -81,17 +89,6 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
-            <TextBlock Grid.Row="0"
-                       Grid.Column="2"
-                       FontFamily="{StaticResource Raleway}"
-                       FontSize="20px"
-                       Margin="0 10 10 0"
-                       Foreground="#fff"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center"
-                       FontWeight="Regular"
-                       Text="{Binding CurrentDateString}" />
             <TextBox Grid.Row="1"
                      Grid.Column="0"
                      Grid.ColumnSpan="3"
@@ -107,15 +104,6 @@
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      FontWeight="Bold"/>
-            <TextBlock Grid.Row="2"
-                       Grid.Column="1"
-                       Text="{Binding PlaylistCreationDate, StringFormat='Created on {0}'}"
-                       FontFamily="{StaticResource Raleway}"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontSize="15px"
-                       Foreground="#ebebeb"
-                       FontWeight="Regular"/>
         </Grid>
 
         <DataGrid x:Name="SongItems"
@@ -152,15 +140,17 @@
                                     Command="{Binding ElementName=SongItems, Path=DataContext.PlaySong}"
                                     CommandParameter="{Binding Id}">
 
-                                <Image Width="30px"
-                                                     Height="30px">
+                                <Image Width="15px"
+                                       Height="15px">
                                     <Image.Style>
                                         <Style TargetType="{x:Type Image}">
                                             <Setter Property="Source" Value="../Icons/play.png" />
+                                            <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
                                             <Style.Triggers>
 
                                                 <DataTrigger Binding="{Binding Playing}" Value="true">
                                                     <Setter Property="Source" Value="../Icons/pause.png" />
+                                                    <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
                                                 </DataTrigger>
 
                                             </Style.Triggers>
@@ -209,8 +199,9 @@
                                     CommandParameter="{Binding Id}">
 
                                 <Image Width="15px"
-                                                     Height="15px"
-                                                     Source="../Icons/discard.png"/>
+                                       Height="15px"
+                                       Source="../Icons/discard.png"
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

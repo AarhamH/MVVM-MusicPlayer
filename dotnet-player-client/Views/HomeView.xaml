@@ -62,10 +62,10 @@
         <Border Grid.Row="0">
             <Image Source="../Images/palm-tree-banner.jpg" Stretch="UniformToFill" Opacity="0.3" VerticalAlignment="Center"/>
         </Border>
-        <Border Grid.Row="2">
-            <Image Source="../Images/palm-tree-banner.jpg" Stretch="UniformToFill" VerticalAlignment="Top" Opacity="0.07" Height="414" Margin="0,-325,0,0"/>
-        </Border>
+
         <Border Grid.Row="1" Background="#181818" />
+        <Border Grid.Row="2" Background="#181818" />
+
         <TextBlock Grid.Row="2"
                    Text="Main Library"
                    FontFamily="{StaticResource Raleway}"

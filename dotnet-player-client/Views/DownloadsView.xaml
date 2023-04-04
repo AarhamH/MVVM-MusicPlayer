@@ -15,10 +15,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="150px" />
+            <RowDefinition Height="100px" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <Grid.Resources>
             <DataTemplate x:Key="LoadingTemplate">
                 <components:LoadingSpinner HorizontalAlignment="Center"
@@ -56,7 +56,7 @@
                                Foreground="#666"
                                FontWeight="Light"/>
                 </StackPanel>
-                
+
             </DataTemplate>
 
             <DataTemplate x:Key="ErrorTemplate" >
@@ -86,17 +86,11 @@
 
             </DataTemplate>
         </Grid.Resources>
-        
+
         <Border Grid.Row="0">
-            <Border.Background>
-                <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
-                    <LinearGradientBrush.GradientStops>
-                        <GradientStop Offset="0.8" Color="#bd3428" />
-                        <GradientStop Offset="0.2" Color="#a32c2c" />
-                    </LinearGradientBrush.GradientStops>
-                </LinearGradientBrush>
-            </Border.Background>
+            <Image Source="../Images/palm-tree-banner.jpg" Stretch="UniformToFill" Opacity="0.3" VerticalAlignment="Center"/>
         </Border>
+
         <Border Grid.Row="1" Background="#181818" />
         <Grid>
             <Grid.ColumnDefinitions>
@@ -111,20 +105,10 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0"
-                       Grid.Column="2"
-                       FontFamily="{StaticResource Raleway}"
-                       FontSize="20px"
-                       Margin="0 10 10 0"
-                       Foreground="#fff"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center"
-                       FontWeight="Regular"
-                       Text="{Binding CurrentDateString}" />
             <TextBlock Grid.Row="1"
                        Grid.Column="0"
                        Grid.ColumnSpan="3"
-                       Text="Search on youtube"
+                       Text="Search Online"
                        FontFamily="{StaticResource Raleway}"
                        FontSize="50px"
                        Margin="0 0 0 5"
@@ -133,44 +117,22 @@
                        VerticalAlignment="Center"
                        FontWeight="Bold"/>
 
-            <TextBox Grid.Row="2"
-                     Grid.Column="0"
-                     Grid.ColumnSpan="2"
-                     Width="350px"
-                     Margin="5 5 0 5"
-                     Height="30px"
-                     Background="#fff"
-                     Foreground="#963027"
-                     FontFamily="{StaticResource Raleway}"
-                     FontWeight="SemiBold"
-                     Style="{StaticResource NewTextBox}"
-                     ext:TextBoxPressEnterBehaviorExtension.EnterCommand="{Binding SearchMedia}"
-                     Text="{Binding SearchText, Mode=TwoWay}"
-                     HorizontalAlignment="Left"
-                     x:Name="SearchYoutubeTextBox"/>
-            <TextBlock Grid.Row="2"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="2"
-                       Margin="16 15 0 0"
-                       Height="30px"
-                       IsHitTestVisible="False"
-                       Foreground="#963027"
-                       Opacity="0.5"
-                       Text="Search url, artist or song name..."
-                       FontFamily="{StaticResource Raleway}"
-                       FontWeight="SemiBold">
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Text, ElementName=SearchYoutubeTextBox}" Value="">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-            
+            <TextBox
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Opacity="0.5"
+                    Margin="0,0,0,0"
+                    Background="#fff"
+                    Foreground="#000"
+                    FontFamily="{StaticResource Raleway}"
+                    FontWeight="SemiBold"
+                    Style="{StaticResource NewTextBox}"
+                    ext:TextBoxPressEnterBehaviorExtension.EnterCommand="{Binding SearchMedia}"
+                    Text="{Binding SearchText, Mode=TwoWay}"
+                    x:Name="SearchYoutubeTextBox"/>
+
+            <Image Grid.Row="2" Grid.Column="0" Width="15px" Source="../Icons/search.png" Margin="-25,0,99,0" RenderOptions.BitmapScalingMode="HighQuality"/>
         </Grid>
 
         <DataGrid x:Name="YoutubeItems"
@@ -231,7 +193,7 @@
                                                 </Style.Triggers>
                                             </Style>
                                         </Image.Style>
-                                        
+
                                     </Image>
 
                                 </Button>
@@ -300,7 +262,7 @@
                                     Header="Duration" />
 
             </DataGrid.Columns>
-            
+
         </DataGrid>
 
         <StackPanel x:Name="gridStatus"
@@ -324,8 +286,8 @@
                         <DataTrigger Binding="{Binding ElementName=gridStatus, Path=DataContext.IsLoadingSearch}" Value="true">
                             <Setter Property="ContentTemplate" Value="{StaticResource LoadingTemplate}" />
                         </DataTrigger>
-                        
-                        
+
+
                     </Style.Triggers>
                 </Style>
             </ContentControl.Style>

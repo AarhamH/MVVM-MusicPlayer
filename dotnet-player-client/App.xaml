@@ -8,16 +8,17 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="./Themes/Core/CloseButton.xaml"/>
-                <ResourceDictionary Source="./Themes/Core/Loading.xaml"/>
-                <ResourceDictionary Source="./Themes/Core/PrettyButton.xaml"/>
-                <ResourceDictionary Source="./Themes/Core/FlatButton.xaml"/>
-                <ResourceDictionary Source="./Themes/Core/MinMaxButton.xaml"/>
-                <ResourceDictionary Source="./Themes/Core/PrettyScrollbar.xaml"/>
-                <ResourceDictionary Source="./Themes/Core/TransparentButton.xaml"/>
-                <ResourceDictionary Source="./Themes/Core/PrettySlider.xaml"/>
-                <ResourceDictionary Source="./Themes/Core/PrettyDataGrid.xaml"/>
-                <ResourceDictionary Source="./Themes/Core/GenericButton.xaml"/>
+                <ResourceDictionary Source="./Themes/CloseButton.xaml"/>
+                <ResourceDictionary Source="./Themes/Loading.xaml"/>
+                <ResourceDictionary Source="./Themes/PrettyButton.xaml"/>
+                <ResourceDictionary Source="./Themes/FlatButton.xaml"/>
+                <ResourceDictionary Source="./Themes/MinMaxButton.xaml"/>
+                <ResourceDictionary Source="./Themes/PrettyScrollbar.xaml"/>
+                <ResourceDictionary Source="./Themes/TransparentButton.xaml"/>
+                <ResourceDictionary Source="./Themes/PrettySlider.xaml"/>
+                <ResourceDictionary Source="./Themes/PrettyDataGrid.xaml"/>
+                <ResourceDictionary Source="./Themes/GenericButton.xaml"/>
+                <ResourceDictionary Source="./Themes/NewTextBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <FontFamily x:Key="Raleway">pack://application:,,,/Fonts/Raleway/#Raleway</FontFamily>
