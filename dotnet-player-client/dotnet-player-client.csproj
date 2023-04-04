@@ -19,16 +19,15 @@
     <None Remove="Icons\Home.png" />
     <None Remove="Icons\mute.png" />
     <None Remove="Icons\open.png" />
-    <None Remove="Icons\palm-tree-banner.jpg" />
     <None Remove="Icons\pause.png" />
     <None Remove="Icons\play.png" />
     <None Remove="Icons\search.png" />
     <None Remove="Icons\sound.gif" />
     <None Remove="Icons\volume.png" />
+    <None Remove="Images\palm-tree-banner.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 
@@ -74,9 +73,6 @@
     <Resource Include="Icons\open.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Icons\palm-tree-banner.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Icons\pause.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -90,6 +86,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Icons\volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\palm-tree-banner.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

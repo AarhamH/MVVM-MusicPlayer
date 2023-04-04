@@ -34,10 +34,11 @@
                 <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-                    <Image Width="200px"
-                                     Height="100px"
-                                     Margin="0 0 0 20"
-                                     Source="../Icons/empty-playlist.png"/>
+                    <Image Width="100px"
+                           Height="50px"
+                           Margin="0 0 0 20"
+                           Source="../Icons/empty-playlist.png"
+                           RenderOptions.BitmapScalingMode="HighQuality"/>
                     <TextBlock HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Margin="0 0 0 5"
@@ -59,11 +60,10 @@
         </Grid.Resources>
 
         <Border Grid.Row="0">
-            <Image Source="../Icons/palm-tree-banner.jpg" Stretch="UniformToFill" VerticalAlignment="Center" Opacity="0.3"/>
+            <Image Source="../Images/palm-tree-banner.jpg" Stretch="UniformToFill" Opacity="0.3" VerticalAlignment="Center"/>
         </Border>
-
         <Border Grid.Row="2">
-            <Image Source="../Icons/palm-tree-banner.jpg" Stretch="UniformToFill" VerticalAlignment="Top" Opacity="0.07" Height="414" Margin="0,-325,0,0"/>
+            <Image Source="../Images/palm-tree-banner.jpg" Stretch="UniformToFill" VerticalAlignment="Top" Opacity="0.07" Height="414" Margin="0,-325,0,0"/>
         </Border>
         <Border Grid.Row="1" Background="#181818" />
         <TextBlock Grid.Row="2"

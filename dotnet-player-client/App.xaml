@@ -18,10 +18,6 @@
                 <ResourceDictionary Source="./Themes/Core/PrettySlider.xaml"/>
                 <ResourceDictionary Source="./Themes/Core/PrettyDataGrid.xaml"/>
                 <ResourceDictionary Source="./Themes/Core/GenericButton.xaml"/>
-                <ResourceDictionary Source="./Themes/FormComponents/ModernTextBox.xaml"/>
-                <ResourceDictionary Source="./Themes/FormComponents/NewPasswordBox.xaml"/>
-                <ResourceDictionary Source="./Themes/FormComponents/NewTextBox.xaml"/>
-                <ResourceDictionary Source="./Themes/FormComponents/ModernButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <FontFamily x:Key="Raleway">pack://application:,,,/Fonts/Raleway/#Raleway</FontFamily>
