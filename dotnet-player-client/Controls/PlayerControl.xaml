@@ -75,31 +75,32 @@
                 <Button Style="{StaticResource TransparentButton}"
                         Command="{Binding PlayBackward}"
                         Margin="0 0 30 0">
-                    <svgc:SvgViewbox Width="18px" Height="20px" Source="https://assets.dryicons.com/uploads/icon/svg/9896/465b684c-38ba-400e-88e3-048fc6798dad.svg"/>
+                    <Image Width="27px" Height="30px" Source="../Icons/backward.png" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
                 <Button Style="{StaticResource TransparentButton}"
                         Margin="0 0 30 0"
                         Command="{Binding TogglePlayer}">
-                    <svgc:SvgViewbox Width="35px"
-                                     Height="35px">
-                        <svgc:SvgViewbox.Style>
-                            <Style TargetType="{x:Type svgc:SvgViewbox}">
-                                <Setter Property="Source" Value="https://assets.dryicons.com/uploads/icon/svg/9894/47c2e8f7-651b-4a64-8e09-90f878cc93a1.svg" />
-
+                    <Image Width="25px"
+                           Height="25px">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Source" Value="../Icons/play.png" />
+                                <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
                                 <Style.Triggers>
 
                                     <DataTrigger Binding="{Binding IsPlaying}" Value="true">
-                                        <Setter Property="Source" Value="https://assets.dryicons.com/uploads/icon/svg/9893/ef127c46-38b9-4cf5-bd27-4474e15b105c.svg" />
+                                        <Setter Property="Source" Value="../Icons/pause.png" />
+                                        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
                                     </DataTrigger>
 
                                 </Style.Triggers>
                             </Style>
-                        </svgc:SvgViewbox.Style>
-                    </svgc:SvgViewbox>
+                        </Image.Style>
+                    </Image>
                 </Button>
                 <Button Style="{StaticResource TransparentButton}"
                         Command="{Binding PlayForward}">
-                    <svgc:SvgViewbox Width="18px" Height="20px" Source="https://assets.dryicons.com/uploads/icon/svg/9891/203f8c40-98b6-45c0-8c80-dfad2ec61254.svg"/>
+                    <Image Width="27px" Height="30px" Source="../Icons/forward.png" RenderOptions.BitmapScalingMode="HighQuality"/>
                 </Button>
 
 
@@ -164,24 +165,26 @@
                     VerticalAlignment="Center"
                     Command="{Binding ToggleVolume}"
                     CommandParameter="{Binding Volume}">
-                <svgc:SvgViewbox>
-                    <svgc:SvgViewbox.Style>
-                        <Style TargetType="{x:Type svgc:SvgViewbox}">
-                            <Setter Property="Source" Value="https://assets.dryicons.com/uploads/icon/svg/9892/03926c81-48e0-4673-ae8a-9cb84770540e.svg" />
+                <Image>
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="../Icons/volume.png" />
                             <Setter Property="Width" Value="20px" />
                             <Setter Property="Height" Value="20px" />
+                            <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
                             <Style.Triggers>
 
                                 <DataTrigger Binding="{Binding Volume}" Value="0">
-                                    <Setter Property="Source" Value="https://assets.dryicons.com/uploads/icon/svg/9888/81a1bae9-6a1e-4322-baf2-6ceee7d6ad43.svg" />
+                                    <Setter Property="Source" Value="../Icons/mute.png" />
                                     <Setter Property="Width" Value="14px" />
                                     <Setter Property="Height" Value="14px" />
+                                    <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
                                 </DataTrigger>
 
                             </Style.Triggers>
                         </Style>
-                    </svgc:SvgViewbox.Style>
-                </svgc:SvgViewbox>
+                    </Image.Style>
+                </Image>
             </Button>
             <Slider Style="{StaticResource PrettySlider}"
                     Value="{Binding Volume, Mode=TwoWay}"

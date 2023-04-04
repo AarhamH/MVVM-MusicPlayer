@@ -34,10 +34,10 @@
                 <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-                    <svgc:SvgViewbox Width="200px"
+                    <Image Width="200px"
                                      Height="100px"
                                      Margin="0 0 0 20"
-                                     Source="../icons/empty-folder.svg"/>
+                                     Source="../Icons/empty-playlist.png"/>
                     <TextBlock HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Margin="0 0 0 5"
@@ -152,21 +152,21 @@
                                     Command="{Binding ElementName=SongItems, Path=DataContext.PlaySong}"
                                     CommandParameter="{Binding Id}">
 
-                                <svgc:SvgViewbox Width="30px"
+                                <Image Width="30px"
                                                      Height="30px">
-                                    <svgc:SvgViewbox.Style>
-                                        <Style TargetType="{x:Type svgc:SvgViewbox}">
-                                            <Setter Property="Source" Value="../icons/play.svg" />
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Source" Value="../Icons/play.png" />
                                             <Style.Triggers>
 
                                                 <DataTrigger Binding="{Binding Playing}" Value="true">
-                                                    <Setter Property="Source" Value="../icons/pause.svg" />
+                                                    <Setter Property="Source" Value="../Icons/pause.png" />
                                                 </DataTrigger>
 
                                             </Style.Triggers>
                                         </Style>
-                                    </svgc:SvgViewbox.Style>
-                                </svgc:SvgViewbox>
+                                    </Image.Style>
+                                </Image>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -208,9 +208,9 @@
                                     Command="{Binding ElementName=SongItems, Path=DataContext.DeleteSong}"
                                     CommandParameter="{Binding Id}">
 
-                                <svgc:SvgViewbox Width="15px"
+                                <Image Width="15px"
                                                      Height="15px"
-                                                     Source="../icons/discard.svg"/>
+                                                     Source="../Icons/discard.png"/>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

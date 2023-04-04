@@ -20,7 +20,17 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RepeatButton">
-                    <Border Background="#02a374" CornerRadius="3 0 0 3" Height="4"/>
+                    <Border CornerRadius="3 0 0 3" Height="4">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0.8" Color="#d99a8b" />
+                                    <GradientStop Offset="0.2" Color="#2d4e6a" /> 
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                            
+                        </Border.Background>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

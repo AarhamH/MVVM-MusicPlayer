@@ -25,6 +25,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <FontFamily x:Key="Raleway">pack://application:,,,/Fonts/Raleway/#Raleway</FontFamily>
+            <FontFamily x:Key="FontAwesome"> /Fonts/fontawesome-webfont.ttf#FontAwesome</FontFamily>
 
             <DataTemplate DataType="{x:Type viewModels:HomeViewModel}">
                 <views:HomeView />

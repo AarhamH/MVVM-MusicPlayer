@@ -14,10 +14,11 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="150px" />
+            <RowDefinition Height="100px" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="20px" />
         </Grid.RowDefinitions>
-        
+
         <Grid.Resources>
             <DataTemplate x:Key="LoadingTemplate">
                 <components:LoadingSpinner HorizontalAlignment="Center"
@@ -33,10 +34,10 @@
                 <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-                    <svgc:SvgViewbox Width="200px"
+                    <Image Width="200px"
                                      Height="100px"
                                      Margin="0 0 0 20"
-                                     Source="../icons/empty-folder.svg"/>
+                                     Source="../Icons/empty-playlist.png"/>
                     <TextBlock HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Margin="0 0 0 5"
@@ -53,21 +54,26 @@
                                Foreground="#666"
                                FontWeight="Light"/>
                 </StackPanel>
-                
+
             </DataTemplate>
         </Grid.Resources>
-        
+
         <Border Grid.Row="0">
-            <Border.Background>
-                <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
-                    <LinearGradientBrush.GradientStops>
-                        <GradientStop Offset="0.8" Color="#00cc70" />
-                        <GradientStop Offset="0.2" Color="#00cc90" />
-                    </LinearGradientBrush.GradientStops>
-                </LinearGradientBrush>
-            </Border.Background>
+            <Image Source="../Icons/palm-tree-banner.jpg" Stretch="UniformToFill" VerticalAlignment="Center" Opacity="0.3"/>
+        </Border>
+
+        <Border Grid.Row="2">
+            <Image Source="../Icons/palm-tree-banner.jpg" Stretch="UniformToFill" VerticalAlignment="Top" Opacity="0.07" Height="414" Margin="0,-325,0,0"/>
         </Border>
         <Border Grid.Row="1" Background="#181818" />
+        <TextBlock Grid.Row="2"
+                   Text="Main Library"
+                   FontFamily="{StaticResource Raleway}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="15px"
+                   Foreground="#ebebeb"
+                   FontWeight="Bold"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150px" />
@@ -81,46 +87,27 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0"
-                       Grid.Column="2"
-                       FontFamily="{StaticResource Raleway}"
-                       FontSize="20px"
-                       Margin="0 10 10 0"
-                       Foreground="#fff"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center"
-                       FontWeight="Regular"
-                       Text="{Binding CurrentDateString}" />
             <TextBlock Grid.Row="1"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="3"
-                       Text="Music Player"
+                       Grid.Column="1"
+                       Text="Welcome To Palm"
                        FontFamily="{StaticResource Raleway}"
                        FontSize="50px"
-                       Margin="0 0 0 5"
                        Foreground="#fff"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        FontWeight="Bold"/>
-            <TextBlock Grid.Row="2"
+            <TextBlock Grid.Row="1"
                        Grid.Column="1"
-                       Text="By Daniel Krichevsky"
+                       Text="By Aarham Haider"
                        FontFamily="{StaticResource Raleway}"
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
+                       VerticalAlignment="Top"
                        FontSize="15px"
                        Foreground="#ebebeb"
-                       FontWeight="Regular"/>
-            <TextBlock Grid.Row="2"
-                       Grid.Column="0"
-                       Text="Main library"
-                       FontFamily="{StaticResource Raleway}"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       FontSize="20px"
-                       Margin="10 0 0 0"
-                       Foreground="#fff"
-                       FontWeight="SemiBold"/>
+                       FontWeight="Regular" Margin="0,57,0,0" Grid.RowSpan="2"/>
+
+
+
         </Grid>
 
         <DataGrid x:Name="SongItems"
@@ -156,21 +143,22 @@
                                     Command="{Binding ElementName=SongItems, Path=DataContext.PlaySong}"
                                     CommandParameter="{Binding Id}">
 
-                                <svgc:SvgViewbox Width="30px"
-                                                     Height="30px">
-                                    <svgc:SvgViewbox.Style>
-                                        <Style TargetType="{x:Type svgc:SvgViewbox}">
-                                            <Setter Property="Source" Value="../icons/play.svg" />
+                                <Image Width="15px"
+                                       Height="15px">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Source" Value="../Icons/play.png" />
+                                            <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
                                             <Style.Triggers>
 
                                                 <DataTrigger Binding="{Binding Playing}" Value="true">
-                                                    <Setter Property="Source" Value="../icons/pause.svg" />
+                                                    <Setter Property="Source" Value="../Icons/pause.png" />
                                                 </DataTrigger>
 
                                             </Style.Triggers>
                                         </Style>
-                                    </svgc:SvgViewbox.Style>
-                                </svgc:SvgViewbox>
+                                    </Image.Style>
+                                </Image>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -212,9 +200,10 @@
                                     Command="{Binding ElementName=SongItems, Path=DataContext.DeleteSong}"
                                     CommandParameter="{Binding Id}">
 
-                                <svgc:SvgViewbox Width="15px"
-                                                     Height="15px"
-                                                     Source="../icons/discard.svg"/>
+                                <Image Width="15px"
+                                       Height="15px"
+                                       Source="../Icons/discard.png"
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -233,7 +222,7 @@
                     </Style.Triggers>
                 </Style>
             </DataGrid.RowStyle>
-            
+
         </DataGrid>
 
         <StackPanel x:Name="gridStatus"

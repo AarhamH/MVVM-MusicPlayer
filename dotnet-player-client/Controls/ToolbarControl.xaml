@@ -8,6 +8,7 @@
              xmlns:ext="clr-namespace:dotnet_player_client.Extensions"
              xmlns:components="clr-namespace:dotnet_player_client.Components"
              xmlns:enums="clr-namespace:dotnet_player_client.Enums"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d" 
              d:DesignHeight="530" d:DesignWidth="200">
     <Grid>
@@ -34,10 +35,11 @@
             <DataTemplate x:Key="NoPlaylistsTemplate">
                 <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Center">
-                    <svgc:SvgViewbox Width="80px"
-                                     Height="80px"
-                                     Margin="0 20 0 20"
-                                     Source="../icons/page-document-empty.svg"/>
+                    <Image Width="80px"
+                           Height="80px"
+                           Margin="0 20 0 20"
+                           Opacity="0.3"            
+                           Source="../Icons/empty-playlist.png"/>
                     <TextBlock Text="No playlists."
                                HorizontalAlignment="Center"
                                FontFamily="{StaticResource Raleway}"
@@ -80,11 +82,12 @@
                 <StackPanel Orientation="Horizontal"
                             Width="{Binding ElementName=NavigationPanel,Path=ActualWidth}"
                             HorizontalAlignment="Left">
-                    <svgc:SvgViewbox Width="20px"
-                                     Height="20px"
+                    <Image Width="20px"
+                                     Height="15px"
                                      Margin="20 0 0 0"
                                      VerticalAlignment="Center"
-                                     Source="../Images/home-icon.svg" />
+                                     Source="../Icons/Home.png" 
+                                     RenderOptions.BitmapScalingMode="HighQuality"/>
                     <TextBlock VerticalAlignment="Center"
                                Margin="15 0 0 0"
                                Text="Home" />
@@ -135,11 +138,12 @@
                 <StackPanel Orientation="Horizontal"
                             Width="{Binding ElementName=NavigationPanel,Path=ActualWidth}"
                             HorizontalAlignment="Left">
-                    <svgc:SvgViewbox Width="20px"
-                                     Height="20px"
+                    <Image Width="20px"
+                                     Height="15px"
                                      Margin="20 0 0 0"
                                      VerticalAlignment="Center"
-                                     Source="../icons/search-icon.svg" />
+                                     Source="../Icons/search.png" 
+                                     RenderOptions.BitmapScalingMode="HighQuality"/>
                     <TextBlock VerticalAlignment="Center"
                                Margin="15 0 0 0"
                                Text="Search online" />
@@ -186,53 +190,14 @@
               Grid.Row="1"
               Grid.Column="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="15*"/>
                 <ColumnDefinition Width="85*"/>
+                <ColumnDefinition Width="15*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Button Grid.Column="0" Height="34px"
-                FontSize="12px"
-                Foreground="#ddd"
-                FontFamily="{StaticResource Raleway}"
-                FontWeight="UltraBlack"
-                Command="{Binding ToggleRemoveActive}"
-                Content="-">
-                <Button.Style>
-
-                    <Style BasedOn="{StaticResource FlatButton}"
-                       TargetType="{x:Type Button}">
-                        <Setter Property="Background" Value="#222"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=PlaylistItems, Path=DataContext.IsRemoveActive}" Value="true">
-                                <DataTrigger.EnterActions>
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#444" />
-                                            </ColorAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </DataTrigger.EnterActions>
-                                <DataTrigger.ExitActions>
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#222" />
-                                            </ColorAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </DataTrigger.ExitActions>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-
-                </Button.Style>
-
-            </Button>
-            <Button Grid.Column="1" Height="34px"
                 FontSize="12px"
                 Foreground="#ddd"
                 FontFamily="{StaticResource Raleway}"
@@ -266,6 +231,46 @@
                                     </BeginStoryboard>
                                 </Trigger.ExitActions>
                             </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                </Button.Style>
+
+            </Button>
+
+            <Button Grid.Column="1" Height="34px"
+                FontSize="12px"
+                Foreground="#ddd"
+                FontFamily="{StaticResource Raleway}"
+                FontWeight="UltraBlack"
+                Command="{Binding ToggleRemoveActive}"
+                Content="-">
+                <Button.Style>
+
+                    <Style BasedOn="{StaticResource FlatButton}"
+                       TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#222"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=PlaylistItems, Path=DataContext.IsRemoveActive}" Value="true">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#444" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#222" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
 
@@ -306,9 +311,10 @@
                                     CommandParameter="{Binding Id}"
                                     Width="30px">
 
-                                <svgc:SvgViewbox Width="15px"
-                                                     Height="15px"
-                                                     Source="../icons/discard.svg"/>
+                                <Image Width="15px"
+                                       Height="15px"
+                                       Source="../Icons/discard.png"
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
 
                                 <Button.Style>
                                     <Style BasedOn="{StaticResource TransparentButton}" TargetType="{x:Type Button}">
@@ -372,19 +378,19 @@
                                     VerticalAlignment="Center"
                                     Margin="0 0 10 0"
                                     Command="{Binding ElementName=PlaylistItems, Path=DataContext.TogglePlayer}">
-                                <svgc:SvgViewbox Width="15px"
+                                <Image Width="15px"
                                                  Height="15px">
-                                    <svgc:SvgViewbox.Style>
-                                        <Style TargetType="{x:Type svgc:SvgViewbox}">
-                                            <Setter Property="Source" Value="../icons/volume-green.svg" />
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Source" Value="../Icons/volume.png" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=IsMouseOver}" Value="True">
-                                                    <Setter Property="Source" Value="../icons/pause-plain.svg"/>
+                                                    <Setter Property="Source" Value="../Icons/pause.png"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
-                                    </svgc:SvgViewbox.Style>
-                                </svgc:SvgViewbox>
+                                    </Image.Style>
+                                </Image>
                                 <Button.Style>
                                     <Style BasedOn="{StaticResource TransparentButton}"
                                            TargetType="{x:Type Button}">

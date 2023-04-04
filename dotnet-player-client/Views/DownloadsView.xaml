@@ -34,10 +34,12 @@
                 <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-                    <svgc:SvgViewbox Width="200px"
-                                     Height="100px"
-                                     Margin="0 0 0 20"
-                                     Source="../icons/empty-folder.svg"/>
+                    <Image Width="200px"         
+                           Height="100px"       
+                           Margin="0 0 0 20"        
+                           Source="../Icons/empty-folder.png"
+                           Opacity="0.4"
+                           />
                     <TextBlock HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Margin="0 0 0 5"
@@ -61,10 +63,10 @@
                 <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-                    <svgc:SvgViewbox Width="200px"
+                    <Image Width="200px"
                                      Height="100px"
                                      Margin="0 0 0 20"
-                                     Source="../icons/error-screen.svg"/>
+                                     Source="../Icons/empty-folder.png"/>
                     <TextBlock HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Margin="0 0 0 5"
@@ -205,26 +207,32 @@
                                         Command="{Binding ElementName=YoutubeItems, Path=DataContext.DownloadMedia}"
                                         CommandParameter="{Binding Url}">
 
-                                    <svgc:SvgViewbox Width="30px"
-                                                     Height="30px">
-                                        <svgc:SvgViewbox.Style>
-                                            <Style TargetType="{x:Type svgc:SvgViewbox}">
-                                                <Setter Property="Source" Value="../icons/download.svg" />
+                                    <Image Width="15px"
+                                           Height="15px">
+                                        <Image.Style>
+                                            <Style TargetType="{x:Type Image}">
+                                                <Setter Property="Source" Value="../Icons/download.png" />
+                                                <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
                                                 <Style.Triggers>
 
                                                     <DataTrigger Binding="{Binding DownloadProgress}" Value="100">
-                                                        <Setter Property="Source" Value="../icons/open.svg" />
+                                                        <Setter Property="Source" Value="../Icons/open.png" />
+                                                        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
                                                     </DataTrigger>
 
                                                     <DataTrigger Binding="{Binding FinishedDownload}" Value="false">
-                                                        <Setter Property="Source" Value="../icons/blank-dark.svg" />
+                                                        <Setter Property="Source" Value="../Icons/fill.png" />
+                                                        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
+                                                        <Setter Property="Width" Value="60px"/>
+                                                        <Setter Property="Height" Value="60px"/>
+
                                                     </DataTrigger>
 
                                                 </Style.Triggers>
                                             </Style>
-                                        </svgc:SvgViewbox.Style>
+                                        </Image.Style>
                                         
-                                    </svgc:SvgViewbox>
+                                    </Image>
 
                                 </Button>
                                 <TextBlock x:Name="DownloadProgressTextBox"

@@ -9,7 +9,7 @@ namespace dotnet_player_client.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        public string AppTitle { get; } = "MusicPlayer";
+        public string AppTitle { get; } = "Palm MP";
 
         private ViewModelBase? _currentView;
         public ViewModelBase? CurrentView
