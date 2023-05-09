@@ -19,6 +19,7 @@
     <None Remove="Icons\Home.png" />
     <None Remove="Icons\mute.png" />
     <None Remove="Icons\open.png" />
+    <None Remove="Icons\palmlogo.png" />
     <None Remove="Icons\pause.png" />
     <None Remove="Icons\play.png" />
     <None Remove="Icons\search.png" />
@@ -73,6 +74,9 @@
     <Resource Include="Icons\open.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Icons\palmlogo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Icons\pause.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -80,9 +84,6 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Icons\search.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Icons\sound.gif">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Icons\volume.png">

@@ -24,5 +24,10 @@ namespace dotnet_player_client.Controls
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
