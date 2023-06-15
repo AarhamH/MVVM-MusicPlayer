@@ -72,19 +72,40 @@
                     Name="NavigationPanel">
             <StackPanel Height="50"
                         Margin ="0 0 0 0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="../Icons/palmlogo.png"
+                           Margin="40,10,0,0"
+                           Width="30" 
+                           Height="27" 
+                           Grid.Column="0" 
+                           RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <TextBlock Text="Palm" 
+                               Grid.Column="1" 
+                               Margin="10,10,0,0"
+                               Foreground="White"
+                               FontFamily="{StaticResource Raleway}"
+                               FontWeight="DemiBold"
+                               FontSize="25px"/>
+                </Grid>
+                <!--ddd
+                <Image Width="37"
+                          Height="20px"
+                          VerticalAlignment="Center"
+                          Source="../Icons/palmlogo.png" 
+                          RenderOptions.BitmapScalingMode="HighQuality"/>
                 <TextBlock Text="Palm"
                            Foreground="White"
                            FontFamily="{StaticResource Raleway}"
                            FontWeight="Demibold"
                            FontSize="25px"
                            Margin="40 17 0 0" Width="140" Height="28">
-                   <Image Width="37"
-                          Height="20px"
-                          VerticalAlignment="Center"
-                          Source="../Icons/palmlogo.png" 
-                          RenderOptions.BitmapScalingMode="HighQuality"/>
                 </TextBlock>
-
+                -->
 
             </StackPanel>
             <Button VerticalAlignment="Center"
