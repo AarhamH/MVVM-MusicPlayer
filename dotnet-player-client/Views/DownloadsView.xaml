@@ -87,52 +87,26 @@
             </DataTemplate>
         </Grid.Resources>
 
-        <Border Grid.Row="0">
-            <Image Source="../Images/palm-tree-banner.jpg" Stretch="UniformToFill" Opacity="0.3" VerticalAlignment="Center"/>
-        </Border>
-
         <Border Grid.Row="1" Background="#181818" />
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150px" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="150px"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <TextBlock Grid.Row="1"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="3"
-                       Text="Search Online"
-                       FontFamily="{StaticResource Raleway}"
-                       FontSize="50px"
-                       Margin="0 0 0 5"
-                       Foreground="#fff"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontWeight="Bold"/>
-
             <TextBox
-                    Grid.Row="2"
                     Grid.Column="0"
                     Grid.ColumnSpan="3"
                     Opacity="0.5"
-                    Margin="0,0,0,0"
-                    Background="#fff"
-                    Foreground="#000"
+                    Margin="20,20,300,40"
+                    Background="#3b3e42"
+                    Foreground="#fff"
                     FontFamily="{StaticResource Raleway}"
                     FontWeight="SemiBold"
                     Style="{StaticResource NewTextBox}"
                     ext:TextBoxPressEnterBehaviorExtension.EnterCommand="{Binding SearchMedia}"
                     Text="{Binding SearchText, Mode=TwoWay}"
                     x:Name="SearchYoutubeTextBox"/>
-
-            <Image Grid.Row="2" Grid.Column="0" Width="15px" Source="../Icons/search.png" Margin="-25,0,99,0" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <Image Grid.Column="0" Width="15px" Source="../Icons/search.png" Margin="0,0,0,20" RenderOptions.BitmapScalingMode="HighQuality"/>
         </Grid>
 
         <DataGrid x:Name="YoutubeItems"

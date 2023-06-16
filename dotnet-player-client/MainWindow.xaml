@@ -21,7 +21,7 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="180px"
+                <ColumnDefinition Width="200"
                                   MinWidth="150px"
                                   MaxWidth="300px"/>
                 <ColumnDefinition Width="*"/>
@@ -70,7 +70,8 @@
 
             <ContentControl Grid.Row="1"
                             Grid.Column="0"
-                            Content="{Binding ToolbarView}" />
+                            Content="{Binding ToolbarView}"
+                            />
 
             <GridSplitter Grid.Column="0"
                           Grid.Row="1"

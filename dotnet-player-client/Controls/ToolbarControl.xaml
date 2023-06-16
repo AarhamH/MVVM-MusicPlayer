@@ -16,8 +16,8 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="150px" />
-            <RowDefinition Height="34px" />
+            <RowDefinition Height="170px" />
+            <RowDefinition Height="40px" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -71,41 +71,28 @@
                     Grid.Column="0"
                     Name="NavigationPanel">
             <StackPanel Height="50"
-                        Margin ="0 0 0 0">
-                <Grid>
+                        Margin ="0 10 0 0">
+                <Grid HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
                     <Image Source="../Icons/palmlogo.png"
-                           Margin="40,10,0,0"
+                           Margin="0,10,5,0"
                            Width="30" 
                            Height="27" 
                            Grid.Column="0" 
                            RenderOptions.BitmapScalingMode="HighQuality"/>
                     <TextBlock Text="Palm" 
                                Grid.Column="1" 
-                               Margin="10,10,0,0"
+                               VerticalAlignment="Center"
+                               Margin="5,10,0,0"
                                Foreground="White"
                                FontFamily="{StaticResource Raleway}"
                                FontWeight="DemiBold"
                                FontSize="25px"/>
                 </Grid>
-                <!--ddd
-                <Image Width="37"
-                          Height="20px"
-                          VerticalAlignment="Center"
-                          Source="../Icons/palmlogo.png" 
-                          RenderOptions.BitmapScalingMode="HighQuality"/>
-                <TextBlock Text="Palm"
-                           Foreground="White"
-                           FontFamily="{StaticResource Raleway}"
-                           FontWeight="Demibold"
-                           FontSize="25px"
-                           Margin="40 17 0 0" Width="140" Height="28">
-                </TextBlock>
-                -->
 
             </StackPanel>
             <Button VerticalAlignment="Center"
@@ -117,18 +104,25 @@
                     Command="{Binding NavigateHome}"
                     ext:DropFilesBehaviorExtension.IsEnabled="True"
                     ext:DropFilesBehaviorExtension.InterfaceDataContext="{Binding ElementName=PlaylistItems, Path=DataContext}">
-                <StackPanel Orientation="Horizontal"
-                            Width="{Binding ElementName=NavigationPanel,Path=ActualWidth}"
-                            HorizontalAlignment="Left">
-                    <Image Width="20px"
-                                     Height="15px"
-                                     Margin="20 0 0 0"
-                                     VerticalAlignment="Center"
-                                     Source="../Icons/Home.png" 
-                                     RenderOptions.BitmapScalingMode="HighQuality"/>
-                    <TextBlock VerticalAlignment="Center"
-                               Margin="15 0 0 0"
-                               Text="Home" />
+                <StackPanel
+                            Width="{Binding ElementName=NavigationPanel,Path=ActualWidth}">
+                    <Grid HorizontalAlignment="Left" Margin="20,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Width="20px"
+                               Height="15px"
+                               Grid.Column="0"
+                               Margin="0,10,5,0"
+                               Source="../Icons/Home.png" 
+                               RenderOptions.BitmapScalingMode="HighQuality"/>
+                        <TextBlock
+                            Margin="0,10,0,0"
+                            Grid.Column="1"
+                            Text="Home" />
+                    </Grid>
                 </StackPanel>
 
                 <Button.Style>
@@ -173,18 +167,26 @@
                     FontFamily="{StaticResource Raleway}"
                     FontWeight="SemiBold"
                     Command="{Binding NavigateDownloads}">
-                <StackPanel Orientation="Horizontal"
-                            Width="{Binding ElementName=NavigationPanel,Path=ActualWidth}"
-                            HorizontalAlignment="Left">
-                    <Image Width="20px"
-                                     Height="15px"
-                                     Margin="20 0 0 0"
-                                     VerticalAlignment="Center"
-                                     Source="../Icons/search.png" 
-                                     RenderOptions.BitmapScalingMode="HighQuality"/>
-                    <TextBlock VerticalAlignment="Center"
-                               Margin="15 0 0 0"
-                               Text="Search For Songs" />
+                <StackPanel Width="{Binding ElementName=NavigationPanel,Path=ActualWidth}">
+                    <Grid HorizontalAlignment="Left" Margin="20,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Width="20px"
+                               Grid.Column="0"
+                               Height="15px"
+                               Margin="0 10 5 0"
+                               VerticalAlignment="Center"
+                               Source="../Icons/search.png" 
+                               RenderOptions.BitmapScalingMode="HighQuality"/>
+                        
+                        <TextBlock VerticalAlignment="Center"
+                            Margin="0,10,0,0"
+                            Grid.Column="1"
+                            Text="Search For Songs" />
+                    </Grid>
+
                 </StackPanel>
 
                 <Button.Style>
@@ -232,11 +234,11 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition/>
+                <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
 
             <Button Grid.Column="0"
-                FontSize="12px"
+                FontSize="20px"
                 Foreground="#ddd"
                 FontFamily="{StaticResource Raleway}"
                 FontWeight="SemiBold"
@@ -277,7 +279,7 @@
             </Button>
 
             <Button Grid.Column="1"
-                FontSize="12px"
+                FontSize="20px"
                 Foreground="#ddd"
                 FontFamily="{StaticResource Raleway}"
                 FontWeight="UltraBlack"

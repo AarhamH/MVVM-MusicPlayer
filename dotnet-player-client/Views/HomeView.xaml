@@ -15,11 +15,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100px" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="20px" />
-        </Grid.RowDefinitions>
 
         <Grid.Resources>
             <DataTemplate x:Key="LoadingTemplate">
@@ -61,56 +56,9 @@
             </DataTemplate>
         </Grid.Resources>
 
-        <Border Grid.Row="0">
-            <Image Source="../Images/palm-tree-banner.jpg" Stretch="UniformToFill" Opacity="0.3" VerticalAlignment="Center"/>
-        </Border>
 
         <Border Grid.Row="1" Background="#181818" />
         <Border Grid.Row="2" Background="#181818" />
-
-        <TextBlock Grid.Row="2"
-                   Text="Main Library"
-                   FontFamily="{StaticResource Raleway}"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="15px"
-                   Foreground="#ebebeb"
-                   FontWeight="Bold"/>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150px" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="150px"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <TextBlock Grid.Row="1"
-                       Grid.Column="1"
-                       Text="Welcome To Palm"
-                       FontFamily="{StaticResource Raleway}"
-                       FontSize="50px"
-                       Foreground="#fff"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontWeight="Bold"/>
-            <TextBlock Grid.Row="1"
-                       Grid.Column="1"
-                       Text="By Aarham Haider"
-                       FontFamily="{StaticResource Raleway}"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Top"
-                       FontSize="15px"
-                       Foreground="#ebebeb"
-                       FontWeight="Regular" Margin="0,57,0,0" Grid.RowSpan="2"/>
-
-
-
-        </Grid>
 
         <DataGrid x:Name="SongItems"
                   ItemsSource="{Binding AllSongs}"

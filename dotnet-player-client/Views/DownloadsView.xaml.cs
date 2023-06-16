@@ -24,5 +24,6 @@ namespace dotnet_player_client.Views
         {
             InitializeComponent();
         }
+
     }
 }

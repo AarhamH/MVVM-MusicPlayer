@@ -81,9 +81,5 @@ namespace dotnet_player_client.ViewModels
             CurrentDateString = DateTime.Now.ToString("dd MMM, yyyy");
         }
 
-        public override void Dispose()
-        {
-            
-        }
     }
 }
