@@ -15,7 +15,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100px" />
+            <RowDefinition Height="70px" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -90,23 +90,23 @@
         <Border Grid.Row="1" Background="#181818" />
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100px"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBox
                     Grid.Column="0"
                     Grid.ColumnSpan="3"
                     Opacity="0.5"
-                    Margin="20,20,300,40"
+                    Margin="20,20,300,15"
                     Background="#3b3e42"
                     Foreground="#fff"
                     FontFamily="{StaticResource Raleway}"
                     FontWeight="SemiBold"
                     Style="{StaticResource NewTextBox}"
                     ext:TextBoxPressEnterBehaviorExtension.EnterCommand="{Binding SearchMedia}"
-                    Text="{Binding SearchText, Mode=TwoWay}"
+                    Text="{Binding SearchText}"
                     x:Name="SearchYoutubeTextBox"/>
-            <Image Grid.Column="0" Width="15px" Source="../Icons/search.png" Margin="0,0,0,20" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <Image Grid.Column="0" Width="15px" Source="../Icons/search.png" Margin="0,5,0,0" RenderOptions.BitmapScalingMode="HighQuality"/>
         </Grid>
 
         <DataGrid x:Name="YoutubeItems"
@@ -200,10 +200,11 @@
                 </DataGridTemplateColumn>
 
                 <DataGridTextColumn Binding="{Binding Path=Num}"
-                                    MaxWidth="100"
+                                    MaxWidth="30"
                                     Header="#"/>
                 <DataGridTextColumn Binding="{Binding Path=Title}"
-                                    Header="Title">
+                                    Header="Song Title"
+                                    Width="300">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
                             <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
@@ -212,7 +213,7 @@
                 </DataGridTextColumn>
 
                 <DataGridTextColumn Binding="{Binding Path=Channel}"
-                                    MaxWidth="150"
+                                    Width="150"
                                     Header="Channel">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
@@ -222,7 +223,7 @@
                 </DataGridTextColumn>
 
                 <DataGridTextColumn Binding="{Binding Path=Views}"
-                                    MaxWidth="100"
+                                    MaxWidth="200"
                                     Header="Views">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
@@ -233,6 +234,7 @@
 
                 <DataGridTextColumn Binding="{Binding Path=Duration}"
                                     Width="100"
+                                    MaxWidth="250"
                                     Header="Duration" />
 
             </DataGrid.Columns>

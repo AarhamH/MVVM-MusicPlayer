@@ -13,7 +13,7 @@
         <Setter Property="BorderThickness" Value="0 0 0 0.1"/>
         <Setter Property="Padding" Value="0 0 0 10"/>
         <Setter Property="Margin" Value="0 10 0 10"/>
-        <Setter Property="BorderBrush" Value="#fff" />
+        <Setter Property="BorderBrush" Value="Firebrick" />
         <Setter Property="Foreground" Value="{StaticResource HeaderColorBrush}"/>
         <Setter Property="FontSize" Value="15px"/>
         <Setter Property="FontWeight" Value="SemiBold"/>

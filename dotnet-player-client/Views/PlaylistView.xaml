@@ -163,10 +163,11 @@
                 </DataGridTemplateColumn>
 
                 <DataGridTextColumn Binding="{Binding Path=Number}"
-                                    Width="100"
+                                    MaxWidth="30"
                                     Header="#"/>
                 <DataGridTextColumn Binding="{Binding Path=Title}"
-                                    Header="Title">
+                                    MaxWidth="2500"
+                                    Header="Song Title">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
                             <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
@@ -188,10 +189,10 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Binding="{Binding Path=Duration}"
-                                    Width="100"
+                                    Width="75"
                                     Header="Duration" />
 
-                <DataGridTemplateColumn Width="100">
+                <DataGridTemplateColumn Width="50">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource TransparentButton}"

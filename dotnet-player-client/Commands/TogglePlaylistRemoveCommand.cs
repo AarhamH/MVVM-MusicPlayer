@@ -20,7 +20,7 @@ namespace dotnet_player_client.Commands
 
         public override void Execute(object? parameter)
         {
-            _toolbar.IsRemoveActive = !_toolbar.IsRemoveActive;
+
         }
     }
 }

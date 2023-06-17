@@ -22,6 +22,7 @@
     <None Remove="Icons\palmlogo.png" />
     <None Remove="Icons\pause.png" />
     <None Remove="Icons\play.png" />
+    <None Remove="Icons\pldelete.png" />
     <None Remove="Icons\search.png" />
     <None Remove="Icons\sound.gif" />
     <None Remove="Icons\volume.png" />
@@ -83,6 +84,7 @@
     <Resource Include="Icons\play.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Icons\pldelete.png" />
     <Resource Include="Icons\search.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

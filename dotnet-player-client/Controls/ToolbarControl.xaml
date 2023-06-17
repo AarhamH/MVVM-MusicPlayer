@@ -231,19 +231,18 @@
               Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
 
             <Button Grid.Column="0"
-                FontSize="20px"
+                FontSize="10px"
                 Foreground="#ddd"
                 FontFamily="{StaticResource Raleway}"
                 FontWeight="SemiBold"
                 Command="{Binding CreatePlaylist}"
-                Content="+">
+                Content="(+) Create">
                 <Button.Style>
 
                     <Style BasedOn="{StaticResource FlatButton}"
@@ -278,45 +277,6 @@
 
             </Button>
 
-            <Button Grid.Column="1"
-                FontSize="20px"
-                Foreground="#ddd"
-                FontFamily="{StaticResource Raleway}"
-                FontWeight="UltraBlack"
-                Command="{Binding ToggleRemoveActive}"
-                Content="-">
-                <Button.Style>
-
-                    <Style BasedOn="{StaticResource FlatButton}"
-                       TargetType="{x:Type Button}">
-                        <Setter Property="Background" Value="#222"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=PlaylistItems, Path=DataContext.IsRemoveActive}" Value="true">
-                                <DataTrigger.EnterActions>
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#444" />
-                                            </ColorAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </DataTrigger.EnterActions>
-                                <DataTrigger.ExitActions>
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#222" />
-                                            </ColorAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </DataTrigger.ExitActions>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-
-                </Button.Style>
-
-            </Button>
         </Grid>
 
 
@@ -338,22 +298,22 @@
                               ext:DropFilesBehaviorExtension.DropParam="{Binding Id}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-
                             <Button Grid.Row="0"
-                                    Grid.Column="0"
+                                    Grid.Column="3"
                                     Command="{Binding ElementName=PlaylistItems, Path=DataContext.DeletePlaylist}"
                                     CommandParameter="{Binding Id}"
-                                    Width="30px">
+                                    Width="40px">
 
                                 <Image Width="15px"
                                        Height="15px"
-                                       Source="../Icons/discard.png"
+                                       Source="../Icons/pldelete.png"
                                        RenderOptions.BitmapScalingMode="HighQuality"/>
 
                                 <Button.Style>
@@ -369,8 +329,8 @@
                             </Button>
 
                             <Button Grid.Row="0"
-                                    Grid.Column="1" 
-                                    Padding="10"
+                                    Grid.Column="2" 
+                                    Padding="5"
                                     Command="{Binding ElementName=PlaylistItems, Path=DataContext.NavigatePlaylist}"
                                     CommandParameter="{Binding Id}"
                                     FontFamily="{StaticResource Raleway}"
@@ -416,10 +376,11 @@
                                     Grid.Column="2"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
-                                    Margin="0 0 10 0"
+                                    Margin="0 0 0 0"
                                     Command="{Binding ElementName=PlaylistItems, Path=DataContext.TogglePlayer}">
                                 <Image Width="15px"
-                                                 Height="15px">
+                                       Height="15px"
+                                       RenderOptions.BitmapScalingMode="HighQuality">
                                     <Image.Style>
                                         <Style TargetType="{x:Type Image}">
                                             <Setter Property="Source" Value="../Icons/volume.png" />

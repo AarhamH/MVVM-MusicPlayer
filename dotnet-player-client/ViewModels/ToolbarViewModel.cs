@@ -65,6 +65,7 @@ namespace dotnet_player_client.ViewModels
             _playlistStore = playlistStore;
             _mediaStore = mediaStore;
 
+            IsRemoveActive = true;
             TogglePlayer = new ToggleMusicPlayerStateCommand(musicPlayerService);
 
             playlistStore.PlaylistNameChanged += OnPlaylistNameChanged;
