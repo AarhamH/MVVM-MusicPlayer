@@ -161,6 +161,31 @@ namespace dotnet_player_client.ViewModels
             }
         }
 
+        public async Task AddSongAsync(string[] files, object? parameter)
+        {
+            var mediaEntities = files.Where(x => PathExtension.HasAudioVideoExtensions(x)).Select(x => new MediaEntity
+            {
+                PlayerlistId = _playlistBrowserNavigationStore.BrowserPlaylistId,
+                FilePath = x
+            }).ToList();
+
+            await _mediaStore.AddRange(mediaEntities);
+
+            foreach (MediaEntity mediaEntity in mediaEntities)
+            {
+                var songsIndex = AllSongsOfPlaylist?.Count;
+                AllSongsOfPlaylist?.Add(new MediaModel
+                {
+                    Playing = _musicService.PlayerState == PlaybackState.Playing && mediaEntity.Id == _musicService.CurrentMedia?.Id,
+                    Number = songsIndex + 1,
+                    Id = mediaEntity.Id,
+                    Title = Path.GetFileNameWithoutExtension(mediaEntity.FilePath),
+                    Path = mediaEntity.FilePath,
+                    Duration = AudioUtills.DurationParse(mediaEntity.FilePath)
+                });
+            }
+        }
+
         public override void Dispose()
         {
             _musicService.MusicPlayerEvent -= OnMusicPlayerEvent;

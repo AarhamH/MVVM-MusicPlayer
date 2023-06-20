@@ -106,6 +106,7 @@
                      FontWeight="Bold"/>
         </Grid>
 
+        
         <DataGrid x:Name="SongItems"
                   ItemsSource="{Binding AllSongsOfPlaylist}"
                   Background="Transparent"
