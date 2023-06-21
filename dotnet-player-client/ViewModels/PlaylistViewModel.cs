@@ -46,7 +46,7 @@ namespace dotnet_player_client.ViewModels
         public ICommand RenamePlaylist { get; }
         public ICommand PlaySong { get; }
         public ICommand OpenExplorer { get; }
-        public ICommand AddSong { get; }
+        public ICommand AddSong { get; set; }
 
 
         public ICommand? DeleteSong { get; set; }
@@ -73,8 +73,6 @@ namespace dotnet_player_client.ViewModels
 
             CurrentDateString = DateTime.Now.ToString("dd MMM, yyyy");
 
-            AddSong = new AddSongAsyncCommand();
-
             PlaylistCreationDate = playlistStore.Playlists.FirstOrDefault(x => x.Id == playlistBrowserNavigationStore.BrowserPlaylistId)?.CreationDate?.ToString("dd MMM, yyyy") ?? DateTime.Now.ToString("dd MMM, yyyy");
 
             Task.Run(LoadSongs);
@@ -98,6 +96,7 @@ namespace dotnet_player_client.ViewModels
             OnPropertyChanged(nameof(AllSongsOfPlaylist));
 
             DeleteSong = new DeleteSpecificSongAsyncCommand(_musicService, _mediaStore, AllSongsOfPlaylist);
+            AddSong = new AddSongAsyncCommand(_musicService, _mediaStore, _playlistBrowserNavigationStore, AllSongsOfPlaylist);
         }
 
         private void OnMusicPlayerEvent(object? sender, MusicPlayerEventArgs e)
