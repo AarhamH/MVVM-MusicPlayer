@@ -92,11 +92,10 @@ namespace dotnet_player_client.ViewModels
                     Duration = AudioUtills.DurationParse(x.FilePath)
                 };
             }).ToList());
-
-            OnPropertyChanged(nameof(AllSongsOfPlaylist));
-
             DeleteSong = new DeleteSpecificSongAsyncCommand(_musicService, _mediaStore, AllSongsOfPlaylist);
             AddSong = new AddSongAsyncCommand(_musicService, _mediaStore, _playlistBrowserNavigationStore, AllSongsOfPlaylist);
+            OnPropertyChanged(nameof(AllSongsOfPlaylist));
+
         }
 
         private void OnMusicPlayerEvent(object? sender, MusicPlayerEventArgs e)
@@ -163,11 +162,6 @@ namespace dotnet_player_client.ViewModels
                     Duration = AudioUtills.DurationParse(mediaEntity.FilePath)
                 });
             }
-        }
-
-        public void AddSongAsync()
-        {
-            System.Windows.Application.Current.Shutdown();
         }
 
         public override void Dispose()

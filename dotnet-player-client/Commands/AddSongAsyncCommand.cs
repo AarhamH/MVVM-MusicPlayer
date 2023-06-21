@@ -45,7 +45,8 @@ namespace dotnet_player_client.Commands
                 string fileName = openFileDialog.FileName;
                 
                 var songEntity = new MediaEntity
-                { 
+                {
+                    PlayerlistId = _playlistBrowserNavigationStore.BrowserPlaylistId,
                     FilePath = fileName,
                 };
 
