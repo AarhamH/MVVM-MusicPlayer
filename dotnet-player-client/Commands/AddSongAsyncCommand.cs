@@ -11,6 +11,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+
 namespace dotnet_player_client.Commands
 {
     public class AddSongAsyncCommand : CommandBase
@@ -26,7 +28,13 @@ namespace dotnet_player_client.Commands
 
         public override void Execute(object? parameter)
         {
-            Process.Start("explorer.exe", @"C:\Users");
+            var openFileDialog = new OpenFileDialog();
+
+            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = openFileDialog.FileName;
+                MessageBox.Show(fileName);
+            }
         }
 
     }
