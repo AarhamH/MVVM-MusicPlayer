@@ -67,16 +67,10 @@
         <Border Grid.Row="1" Background="#181818" />
         <Border Grid.Row="2" Background="#181818"/>
 
-        <TextBlock Grid.Row="2"
-                   
-                       Grid.Column="1"
-                       Text="{Binding PlaylistCreationDate, StringFormat='Created on {0}'}"
-                       FontFamily="{StaticResource Raleway}"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontSize="15px"
-                       Foreground="#ebebeb"
-                       FontWeight="Bold"/>
+        <Button Grid.Row="2" Width="20" Height="20" Command="{Binding ElementName=SongItems, Path=DataContext.AddSong }">
+            <Image Source="../Icons/download.png"/>
+        </Button>
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150px" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace dotnet_player_client.Commands
                 string argument = "/select, \"" + path + "\"";
 
                 Process.Start("explorer.exe", argument);
+
             }
         }
     }

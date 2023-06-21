@@ -12,6 +12,7 @@ using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -45,6 +46,8 @@ namespace dotnet_player_client.ViewModels
         public ICommand RenamePlaylist { get; }
         public ICommand PlaySong { get; }
         public ICommand OpenExplorer { get; }
+        public ICommand AddSong { get; }
+
 
         public ICommand? DeleteSong { get; set; }
 
@@ -69,6 +72,8 @@ namespace dotnet_player_client.ViewModels
             _currentPlaylistName = playlistStore.Playlists.FirstOrDefault(x => x.Id == playlistBrowserNavigationStore.BrowserPlaylistId)?.Name ?? "Undefined";
 
             CurrentDateString = DateTime.Now.ToString("dd MMM, yyyy");
+
+            AddSong = new AddSongAsyncCommand();
 
             PlaylistCreationDate = playlistStore.Playlists.FirstOrDefault(x => x.Id == playlistBrowserNavigationStore.BrowserPlaylistId)?.CreationDate?.ToString("dd MMM, yyyy") ?? DateTime.Now.ToString("dd MMM, yyyy");
 
@@ -161,29 +166,9 @@ namespace dotnet_player_client.ViewModels
             }
         }
 
-        public async Task AddSongAsync(string[] files, object? parameter)
+        public void AddSongAsync()
         {
-            var mediaEntities = files.Where(x => PathExtension.HasAudioVideoExtensions(x)).Select(x => new MediaEntity
-            {
-                PlayerlistId = _playlistBrowserNavigationStore.BrowserPlaylistId,
-                FilePath = x
-            }).ToList();
-
-            await _mediaStore.AddRange(mediaEntities);
-
-            foreach (MediaEntity mediaEntity in mediaEntities)
-            {
-                var songsIndex = AllSongsOfPlaylist?.Count;
-                AllSongsOfPlaylist?.Add(new MediaModel
-                {
-                    Playing = _musicService.PlayerState == PlaybackState.Playing && mediaEntity.Id == _musicService.CurrentMedia?.Id,
-                    Number = songsIndex + 1,
-                    Id = mediaEntity.Id,
-                    Title = Path.GetFileNameWithoutExtension(mediaEntity.FilePath),
-                    Path = mediaEntity.FilePath,
-                    Duration = AudioUtills.DurationParse(mediaEntity.FilePath)
-                });
-            }
+            System.Windows.Application.Current.Shutdown();
         }
 
         public override void Dispose()
