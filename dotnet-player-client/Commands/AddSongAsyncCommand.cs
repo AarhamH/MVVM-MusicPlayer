@@ -52,7 +52,7 @@ namespace dotnet_player_client.Commands
 
                 await _mediaStore.Add(songEntity);
 
-                _observableSongs?.Insert(0, new MediaModel
+                _observableSongs?.Insert(_observableSongs.Count, new MediaModel
                 {
                     Playing = false,
                     Id = songEntity.Id,
