@@ -103,11 +103,23 @@
                     FontFamily="{StaticResource Raleway}"
                     FontWeight="SemiBold"
                     Style="{StaticResource NewTextBox}"
-                    ext:TextBoxPressEnterBehaviorExtension.EnterCommand="{Binding SearchMedia}"
+                    ext:TextBoxPressEnterBehaviorExtension.EnterCommand="{Binding Path=SearchMedia}"
                     Text="{Binding SearchText}"
                     x:Name="SearchYoutubeTextBox"/>
-            <Image Grid.Column="0" Width="15px" Source="../Icons/search.png" Margin="0,5,0,0" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <Image Grid.Column="0" 
+                   Width="15px" 
+                   Source="../Icons/search.png" 
+                   Margin="0,5,0,0" 
+                   RenderOptions.BitmapScalingMode="HighQuality"/>
+            <Button Width="15px" 
+                    Height="15" 
+                    Margin="0,5,0,0" 
+                    Style="{StaticResource TransparentButton}" 
+                    Command="{Binding Path=SearchMedia}" 
+                    CommandParameter="{Binding SearchText}"/>
         </Grid>
+
+
 
         <DataGrid x:Name="YoutubeItems"
                   ItemsSource="{Binding ResultMedia}"

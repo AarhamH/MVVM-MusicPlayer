@@ -16,8 +16,8 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="100px" />
-            <RowDefinition Height="*" />
             <RowDefinition Height="20px" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
         <Grid.Resources>
@@ -67,7 +67,10 @@
         <Border Grid.Row="1" Background="#181818" />
         <Border Grid.Row="2" Background="#181818"/>
 
-        <Button Grid.Row="2" Width="20" Height="20" Command="{Binding ElementName=SongItems, Path=DataContext.AddSong }">
+        <Button Grid.Row="1" Width="20" Height="20" Command="{Binding ElementName=SongItems, Path=DataContext.AddSong }">
+            <Image Source="../Icons/download.png"/>
+        </Button>
+        <Button Grid.Row="1" Width="20" Height="20" Command="{Binding ElementName=SongItems, Path=DataContext.AddSong }">
             <Image Source="../Icons/download.png"/>
         </Button>
 
@@ -117,7 +120,7 @@
                   HeadersVisibility="Column"
                   Padding="5"
                   AutoGenerateColumns="False"
-                  Grid.Row="1"
+                  Grid.Row="2"
                   Grid.Column="0"
                   ColumnWidth="*"
                   ext:DropFilesBehaviorExtension.IsEnabled="True"
@@ -225,7 +228,7 @@
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"/>
 
-        <ContentControl Grid.Row="1"
+        <ContentControl Grid.Row="2"
                         Grid.Column="0"
                         IsHitTestVisible="False">
             <ContentControl.Style>

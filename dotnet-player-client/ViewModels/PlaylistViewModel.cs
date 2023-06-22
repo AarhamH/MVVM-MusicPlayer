@@ -78,6 +78,7 @@ namespace dotnet_player_client.ViewModels
             Task.Run(LoadSongs);
         }
 
+        // TODO: Fix number hierarchy after DeleteSong called
         private void LoadSongs()
         {
             AllSongsOfPlaylist = new ObservableCollection<MediaModel>(_mediaStore.Songs.Where(x => x.PlayerlistId == _playlistBrowserNavigationStore.BrowserPlaylistId).Select((x, num) =>
