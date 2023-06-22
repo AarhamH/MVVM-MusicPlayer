@@ -62,7 +62,8 @@ namespace dotnet_player_client.Commands
                         Url = x.Url,
                         Duration = x.Duration,
                         Channel = x.Channel,
-                        Views = x.Views
+                        Views = x.Views,
+                        Thumbnail = x.Thumbnail
                     };
                 });
 

@@ -14,6 +14,8 @@ namespace dotnet_player_client.Models
         public string? Views { get; set; }
         public string? Url { get; set; }
         public string? Duration { get; set; }
+
+        public string? Thumbnail { get; set; }
     }
 
     public class YoutubeVideoInfoModel : ObservableObject
@@ -27,6 +29,7 @@ namespace dotnet_player_client.Models
         private string? _title;
         private string? _url;
         private string? _duration;
+        private string? _thumbnail;
 
         public int Num
         {
@@ -127,6 +130,19 @@ namespace dotnet_player_client.Models
                 if (_url != value)
                 {
                     _url = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string? Thumbnail
+        {
+            get { return _thumbnail; }
+            set
+            {
+                if (_thumbnail != value)
+                {
+                    _thumbnail = value;
                     OnPropertyChanged();
                 }
             }

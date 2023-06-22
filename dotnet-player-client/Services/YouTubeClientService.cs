@@ -46,7 +46,6 @@ namespace dotnet_player_client.Services
                         var InitialData = JObject.Parse(response.Substring(startIndex, endIndex + 1 - startIndex));
 
                         var results = InitialData?["contents"]?["twoColumnSearchResultsRenderer"]?["primaryContents"]?["sectionListRenderer"]?["contents"]?[0]?["itemSectionRenderer"]?["contents"];
-
                         if (results != null)
                         {
                             foreach (var item in results)
@@ -57,6 +56,7 @@ namespace dotnet_player_client.Services
                                 var length = video_info?["lengthText"]?["simpleText"];
                                 var views = video_info?["shortViewCountText"]?["simpleText"];
                                 var channel = video_info?["ownerText"]?["runs"]?[0]?["text"];
+                                var thumbnail = video_info?["thumbnail"]?["thumbnails"]?[0]?["url"];
 
                                 if (title != null && url != null && length != null
                                     && channel != null && views != null)
@@ -67,7 +67,8 @@ namespace dotnet_player_client.Services
                                         Url = YouTubeBase + url.ToString(),
                                         Duration = length.ToString(),
                                         Channel = channel.ToString(),
-                                        Views = views.ToString()
+                                        Views = views.ToString(),
+                                        Thumbnail = thumbnail.ToString()
                                     });
                                 }
                             }
