@@ -5,6 +5,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
+using System.IO;
 
 namespace dotnet_player_client.Commands
 {
@@ -23,6 +25,11 @@ namespace dotnet_player_client.Commands
 
                 Process.Start("explorer.exe", argument);
 
+            }
+            else
+            {
+                string what = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)+"\\downloads";
+                Process.Start("explorer.exe",what);
             }
         }
     }
