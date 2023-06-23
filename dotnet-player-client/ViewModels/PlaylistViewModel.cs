@@ -127,15 +127,17 @@ namespace dotnet_player_client.ViewModels
             {
                 if (mediaEntity.PlayerlistId == _playlistBrowserNavigationStore.BrowserPlaylistId)
                 {
+                    string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\songs" + "\\" + Path.GetFileName(mediaEntity.FilePath);
+                    File.Copy(mediaEntity.FilePath, path);
                     var songsIndex = AllSongsOfPlaylist?.Count;
                     AllSongsOfPlaylist?.Add(new MediaModel
                     {
                         Playing = _musicService.PlayerState == PlaybackState.Playing && mediaEntity.Id == _musicService.CurrentMedia?.Id,
                         Number = songsIndex + 1,
                         Id = mediaEntity.Id,
-                        Title = Path.GetFileNameWithoutExtension(mediaEntity.FilePath),
-                        Path = mediaEntity.FilePath,
-                        Duration = AudioUtills.DurationParse(mediaEntity.FilePath)
+                        Title = Path.GetFileNameWithoutExtension(path),
+                        Path = path,
+                        Duration = AudioUtills.DurationParse(path)
                     });
                 }
             }
@@ -154,14 +156,16 @@ namespace dotnet_player_client.ViewModels
             foreach (MediaEntity mediaEntity in mediaEntities)
             {
                 var songsIndex = AllSongsOfPlaylist?.Count;
+                string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\songs" + "\\" + Path.GetFileName(mediaEntity.FilePath);
+                File.Copy(mediaEntity.FilePath, path);
                 AllSongsOfPlaylist?.Add(new MediaModel
                 {
                     Playing = _musicService.PlayerState == PlaybackState.Playing && mediaEntity.Id == _musicService.CurrentMedia?.Id,
                     Number = songsIndex + 1,
                     Id = mediaEntity.Id,
-                    Title = Path.GetFileNameWithoutExtension(mediaEntity.FilePath),
-                    Path = mediaEntity.FilePath,
-                    Duration = AudioUtills.DurationParse(mediaEntity.FilePath)
+                    Title = Path.GetFileNameWithoutExtension(path),
+                    Path = path,
+                    Duration = AudioUtills.DurationParse(path)
                 });
             }
         }
