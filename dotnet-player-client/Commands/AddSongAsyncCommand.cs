@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Reflection;
 
 namespace dotnet_player_client.Commands
 {
@@ -43,11 +44,14 @@ namespace dotnet_player_client.Commands
             {
 
                 string fileName = openFileDialog.FileName;
-                
+                string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)+"\\songs"+"\\"+Path.GetFileName(fileName);
+                MessageBox.Show(path);
+                File.Copy(fileName, path);
+
                 var songEntity = new MediaEntity
                 {
                     PlayerlistId = _playlistBrowserNavigationStore.BrowserPlaylistId,
-                    FilePath = fileName,
+                    FilePath = path,
                 };
 
                 await _mediaStore.Add(songEntity);
@@ -56,9 +60,9 @@ namespace dotnet_player_client.Commands
                 {
                     Playing = false,
                     Id = songEntity.Id,
-                    Title = Path.GetFileNameWithoutExtension(fileName),
-                    Path = fileName,
-                    Duration = AudioUtills.DurationParse(fileName),
+                    Title = Path.GetFileNameWithoutExtension(path),
+                    Path = path,
+                    Duration = AudioUtills.DurationParse(path),
                     Number = _observableSongs?.Count+1
                 });
                 
