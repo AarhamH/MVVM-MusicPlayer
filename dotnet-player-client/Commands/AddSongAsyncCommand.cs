@@ -3,7 +3,6 @@ using dotnet_player_client.Models;
 using dotnet_player_client.Services;
 using dotnet_player_client.Stores;
 using dotnet_player_data.DataEntities;
-using dotnet_player_client.Extensions;
 using NAudio.Wave;
 using System;
 using System.Collections.Generic;
@@ -45,7 +44,12 @@ namespace dotnet_player_client.Commands
 
                 string fileName = openFileDialog.FileName;
                 string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)+"\\songs"+"\\"+Path.GetFileName(fileName);
-                MessageBox.Show(path);
+
+                if (Path.GetFileName(fileName) == Path.GetFileName(path) && File.Exists(path))
+                {
+                    MessageBox.Show("Error: This file already exists in the player. Rename this file or delete the stored file in the player.");
+                    return;
+                }
                 File.Copy(fileName, path);
 
                 var songEntity = new MediaEntity

@@ -9,6 +9,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Windows;
 
 namespace dotnet_player_client.Commands
 {
@@ -37,8 +39,10 @@ namespace dotnet_player_client.Commands
                     _musicService.Stop();
                 }
 
-                _observableSongs?.RemoveAll(x => x.Id == SongId);
+                var songs = _observableSongs?.First(x => x.Id == SongId);
 
+                _observableSongs?.RemoveAll(x => x.Id == SongId);
+                File.Delete(songs.Path);
                 await _mediaStore.Remove(SongId);
             }
         }
