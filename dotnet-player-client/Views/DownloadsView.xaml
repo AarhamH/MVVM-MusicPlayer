@@ -44,14 +44,14 @@
                                VerticalAlignment="Center"
                                Margin="0 0 0 5"
                                Text="Nothing was found."
-                               FontFamily="{StaticResource Raleway}"
+                               FontFamily="{StaticResource Urbanist}"
                                FontSize="24px"
                                Foreground="#888"
                                FontWeight="Light"/>
                     <TextBlock HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Text="Try to rephrase your search..."
-                               FontFamily="{StaticResource Raleway}"
+                               FontFamily="{StaticResource Urbanist}"
                                FontSize="16px"
                                Foreground="#666"
                                FontWeight="Light"/>
@@ -71,14 +71,14 @@
                                VerticalAlignment="Center"
                                Margin="0 0 0 5"
                                Text="An error occurred."
-                               FontFamily="{StaticResource Raleway}"
+                               FontFamily="{StaticResource Urbanist}"
                                FontSize="24px"
                                Foreground="#888"
                                FontWeight="Light"/>
                     <TextBlock HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Text="Try again in a few moments..."
-                               FontFamily="{StaticResource Raleway}"
+                               FontFamily="{StaticResource Urbanist}"
                                FontSize="16px"
                                Foreground="#666"
                                FontWeight="Light"/>
@@ -100,8 +100,8 @@
                     Margin="20,20,300,15"
                     Background="#3b3e42"
                     Foreground="#fff"
-                    FontFamily="{StaticResource Raleway}"
-                    FontWeight="SemiBold"
+                    FontFamily="{StaticResource Urbanist}"
+                    FontWeight="Medium"
                     Style="{StaticResource NewTextBox}"
                     ext:TextBoxPressEnterBehaviorExtension.EnterCommand="{Binding Path=SearchMedia}"
                     Text="{Binding SearchText}"
@@ -141,7 +141,7 @@
                   Grid.Column="0"
                   ColumnWidth="*"
                   RowDetailsVisibilityMode="Collapsed"
-                  FontFamily="{StaticResource Raleway}"
+                  FontFamily="{StaticResource Urbanist}"
                   ScrollViewer.CanContentScroll="True"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 

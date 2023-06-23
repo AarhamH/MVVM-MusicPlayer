@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\Gotham Bold.ttf" />
+    <None Remove="Fonts\Urbanist\Urbanist.otf" />
+    <None Remove="Fonts\Midnight\Midnight.otf" />
     <None Remove="Icons\backward.png" />
     <None Remove="Icons\discard.png" />
     <None Remove="Icons\download.png" />
@@ -45,6 +48,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Fonts\Urbanist\Urbanist.otf" />
+    <Resource Include="Fonts\Midnight\Midnight.otf" />
     <Resource Include="Icons\backward.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

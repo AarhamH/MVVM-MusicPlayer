@@ -40,14 +40,14 @@
                                VerticalAlignment="Center"
                                Margin="0 0 0 5"
                                Text="No songs found."
-                               FontFamily="{StaticResource Raleway}"
+                               FontFamily="{StaticResource Urbanist}"
                                FontSize="24px"
                                Foreground="#888"
                                FontWeight="Light"/>
                     <TextBlock HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Text="Use drag and drop to add some..."
-                               FontFamily="{StaticResource Raleway}"
+                               FontFamily="{StaticResource Urbanist}"
                                FontSize="16px"
                                Foreground="#666"
                                FontWeight="Light"/>
@@ -81,7 +81,7 @@
                   ColumnWidth="*"
                   ext:DropFilesBehaviorExtension.IsEnabled="True"
                   RowDetailsVisibilityMode="Collapsed"
-                  FontFamily="{StaticResource Raleway}"
+                  FontFamily="{StaticResource Urbanist}"
                   ScrollViewer.CanContentScroll="True"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 

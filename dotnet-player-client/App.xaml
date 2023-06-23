@@ -22,8 +22,9 @@
                 <ResourceDictionary Source="./Themes/UIColors.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <FontFamily x:Key="Raleway">pack://application:,,,/Fonts/Raleway/#Raleway</FontFamily>
-            <FontFamily x:Key="FontAwesome"> /Fonts/fontawesome-webfont.ttf#FontAwesome</FontFamily>
+            <FontFamily x:Key="Urbanist">pack://application:,,,/Fonts/Urbanist/#Urbanist</FontFamily>
+            <FontFamily x:Key="Midnight">pack://application:,,,/Fonts/Midnight/#Midnight</FontFamily>
+
 
             <DataTemplate DataType="{x:Type viewModels:HomeViewModel}">
                 <views:HomeView />

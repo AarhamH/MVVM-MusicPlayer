@@ -41,9 +41,9 @@
                    Foreground="#fff"
                    FontSize="14px"
                    Margin="0 0 0 10"
-                   FontWeight="DemiBold"
+                   FontWeight="Medium"
                    TextTrimming="CharacterEllipsis"
-                   FontFamily="{StaticResource Raleway}"
+                   FontFamily="{StaticResource Urbanist}"
                    Text="{Binding SongName}"/>
             <TextBlock HorizontalAlignment="Center"
                    VerticalAlignment="Center"
@@ -51,9 +51,9 @@
                    Grid.Column="0"
                    Foreground="LightGray"
                    FontSize="11px"
-                   FontWeight="ExtraLight"
+                   FontWeight="Thin"
                    TextTrimming="CharacterEllipsis"
-                   FontFamily="{StaticResource Raleway}"
+                   FontFamily="{StaticResource Urbanist}"
                    Text="{Binding SongPath}">
                 <TextBlock.InputBindings>
                     <MouseBinding Command="{Binding OpenExplorer}"

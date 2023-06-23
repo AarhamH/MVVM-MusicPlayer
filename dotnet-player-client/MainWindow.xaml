@@ -47,8 +47,8 @@
                       Grid.Column="0"
                       HorizontalAlignment="Stretch">
                     <Label Margin="5,0,0,0"
-                           FontFamily="{StaticResource Raleway}"
-                           FontWeight="Regular"
+                           FontFamily="{StaticResource Urbanist}"
+                           FontWeight="Thin"
                            Content="{Binding AppTitle}"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
