@@ -34,7 +34,7 @@ namespace dotnet_player_data.Migrations
 
                     b.HasIndex("PlayerlistId");
 
-                    b.ToTable("Songs");
+                    b.ToTable("Songs", (string)null);
                 });
 
             modelBuilder.Entity("MusicPlayerData.DataEntities.PlaylistEntity", b =>
@@ -43,16 +43,13 @@ namespace dotnet_player_data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Name")
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Playlists");
+                    b.ToTable("Playlists", (string)null);
                 });
 
             modelBuilder.Entity("MusicPlayerData.DataEntities.MediaEntity", b =>

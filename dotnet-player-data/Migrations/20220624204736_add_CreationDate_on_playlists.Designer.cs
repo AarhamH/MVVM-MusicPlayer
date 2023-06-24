@@ -19,7 +19,7 @@ namespace dotnet_player_data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.6");
 
-            modelBuilder.Entity("MusicPlayerData.DataEntities.MediaEntity", b =>
+            modelBuilder.Entity("dotnet_player_data.DataEntities.MediaEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -39,7 +39,7 @@ namespace dotnet_player_data.Migrations
                     b.ToTable("Songs");
                 });
 
-            modelBuilder.Entity("MusicPlayerData.DataEntities.PlaylistEntity", b =>
+            modelBuilder.Entity("dotnet_player_data.DataEntities.PlaylistEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -57,16 +57,16 @@ namespace dotnet_player_data.Migrations
                     b.ToTable("Playlists");
                 });
 
-            modelBuilder.Entity("MusicPlayerData.DataEntities.MediaEntity", b =>
+            modelBuilder.Entity("dotnet_player_data.DataEntities.MediaEntity", b =>
                 {
-                    b.HasOne("MusicPlayerData.DataEntities.PlaylistEntity", "Playerlist")
+                    b.HasOne("dotnet_player_data.DataEntities.PlaylistEntity", "Playerlist")
                         .WithMany("Songs")
                         .HasForeignKey("PlayerlistId");
 
                     b.Navigation("Playerlist");
                 });
 
-            modelBuilder.Entity("MusicPlayerData.DataEntities.PlaylistEntity", b =>
+            modelBuilder.Entity("dotnet_player_data.DataEntities.PlaylistEntity", b =>
                 {
                     b.Navigation("Songs");
                 });

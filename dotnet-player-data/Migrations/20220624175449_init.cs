@@ -14,7 +14,9 @@ namespace dotnet_player_data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: true)
+                    Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: true),
+                    Banner = table.Column<string>(type: "TEXT", nullable: true)
+
                 },
                 constraints: table =>
                 {

@@ -8,6 +8,7 @@ using System.Text;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using dotnet_player_client.Events;
+using System.Xml.Linq;
 
 namespace dotnet_player_client.Stores
 {

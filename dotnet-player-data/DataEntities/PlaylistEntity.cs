@@ -11,7 +11,10 @@ namespace dotnet_player_data.DataEntities
     {
         [MaxLength(50)]
         public string? Name { get; set; }
+
         public DateTime? CreationDate { get; set; }
         public virtual ICollection<MediaEntity>? Songs { get; set; }
+        
+        public string? Banner { get; set; }
     }
 }
