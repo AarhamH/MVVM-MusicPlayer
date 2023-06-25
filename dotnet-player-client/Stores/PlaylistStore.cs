@@ -15,6 +15,8 @@ namespace dotnet_player_client.Stores
     public class PlaylistStore
     {
         public event EventHandler<PlaylistNameChangedEventArgs>? PlaylistNameChanged;
+        public event EventHandler<PlaylistBannerChangedArgs>? PlaylistBannerChanged;
+
 
         private readonly List<PlaylistEntity> _playlists;
         private readonly IDbContextFactory<DataContext> _dbContextFactory;
@@ -74,7 +76,8 @@ namespace dotnet_player_client.Stores
                         playlist.Banner = url;
                     }
 
-                    PlaylistNameChanged?.Invoke(this, new PlaylistNameChangedEventArgs(playlistId, url));
+                    PlaylistBannerChanged?.Invoke(this, new PlaylistBannerChangedArgs(playlistId, url));
+
                 }
             }
         }

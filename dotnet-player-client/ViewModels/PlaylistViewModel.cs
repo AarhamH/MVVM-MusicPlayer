@@ -12,6 +12,7 @@ using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -20,6 +21,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows;
 
 namespace dotnet_player_client.ViewModels
 {
@@ -32,6 +34,7 @@ namespace dotnet_player_client.ViewModels
         public string CurrentDateString { get; }
 
         public string? _currentPlaylistName;
+        public string? _bannerUrl;
         public string? CurrentPlaylistName
         {
             get => _currentPlaylistName;
@@ -42,16 +45,27 @@ namespace dotnet_player_client.ViewModels
             }
         }
 
+        public string? BannerUrl 
+        { 
+            get { return _bannerUrl; }
+            set
+            {
+                if(_bannerUrl != value)
+                {
+                    _bannerUrl = value;
+                    OnPropertyChanged(nameof(BannerUrl));
+                }
+            }
+        }
+
         public string PlaylistCreationDate { get; }
 
-        public string BannerUrl { get;  }
         public ObservableCollection<MediaModel>? AllSongsOfPlaylist { get; set; }
         public ICommand RenamePlaylist { get; }
         public ICommand PlaySong { get; }
         public ICommand OpenExplorer { get; }
         public ICommand AddSong { get; set; }
-
-
+        public ICommand ChangeBanner { get; set; }
         public ICommand? DeleteSong { get; set; }
 
         public PlaylistViewModel(IMusicPlayerService musicService, INavigationService navigationService, MediaStore mediaStore, PlaylistStore playlistStore, PlaylistBrowserNavigationStore playlistBrowserNavigationStore)
@@ -64,9 +78,11 @@ namespace dotnet_player_client.ViewModels
             _playlistStore = playlistStore;
 
             RenamePlaylist = new RenamePlaylistAsyncCommand(_playlistStore, _playlistBrowserNavigationStore);
+            ChangeBanner = new ChangeBannerAsyncCommand(_playlistStore, _playlistBrowserNavigationStore);
 
             _musicService.MusicPlayerEvent += OnMusicPlayerEvent;
             _mediaStore.PlaylistSongsAdded += OnPlaylistSongsAdded;
+            _playlistStore.PlaylistBannerChanged += OnPlaylistBannerChange;
 
             PlaySong = new PlaySpecificSongCommand(musicService);
 
@@ -77,7 +93,7 @@ namespace dotnet_player_client.ViewModels
             CurrentDateString = DateTime.Now.ToString("dd MMM, yyyy");
 
             BannerUrl = playlistStore.Playlists.FirstOrDefault(x => x.Id == playlistBrowserNavigationStore.BrowserPlaylistId)?.Banner;
-
+            
             PlaylistCreationDate = playlistStore.Playlists.FirstOrDefault(x => x.Id == playlistBrowserNavigationStore.BrowserPlaylistId)?.CreationDate?.ToString("dd MMM, yyyy") ?? DateTime.Now.ToString("dd MMM, yyyy");
 
             Task.Run(LoadSongs);
@@ -147,6 +163,11 @@ namespace dotnet_player_client.ViewModels
             }
         }
 
+        private void OnPlaylistBannerChange(object? sender, PlaylistBannerChangedArgs args)
+        {
+            BannerUrl = args.Banner;
+        }
+
         public async Task OnFilesDroppedAsync(string[] files, object? parameter)
         {
             var mediaEntities = files.Where(x => PathExtension.HasAudioVideoExtensions(x)).Select(x => new MediaEntity
@@ -161,7 +182,10 @@ namespace dotnet_player_client.ViewModels
             {
                 var songsIndex = AllSongsOfPlaylist?.Count;
                 string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\songs" + "\\" + Path.GetFileName(mediaEntity.FilePath);
-                File.Copy(mediaEntity.FilePath, path);
+                if (!File.Exists(mediaEntity.FilePath))
+                {
+                    File.Copy(mediaEntity.FilePath, path);
+                }
                 AllSongsOfPlaylist?.Add(new MediaModel
                 {
                     Playing = _musicService.PlayerState == PlaybackState.Playing && mediaEntity.Id == _musicService.CurrentMedia?.Id,
@@ -174,10 +198,14 @@ namespace dotnet_player_client.ViewModels
             }
         }
 
+
         public override void Dispose()
         {
             _musicService.MusicPlayerEvent -= OnMusicPlayerEvent;
             _mediaStore.PlaylistSongsAdded -= OnPlaylistSongsAdded;
+            _playlistStore.PlaylistBannerChanged -= OnPlaylistBannerChange;
+
+
         }
     }
 }

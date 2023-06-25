@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dotnet_player_client.Events
 {
-    public class PlaylistBannerChangedArgs
+    public class PlaylistBannerChangedArgs : EventArgs
     {
         public int Id { get; set; }
         public string Banner { get; set; }

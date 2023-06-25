@@ -86,6 +86,7 @@ namespace dotnet_player_client.Stores
                 {
                     var itemsRemove = dbContext.Songs.Where(predicate);
                     dbContext.Songs.RemoveRange(itemsRemove);
+                    Load();
                     await dbContext.SaveChangesAsync();
                 }
                 catch

@@ -61,7 +61,7 @@
         </Grid.Resources>
 
         <Border Grid.Row="0">
-            <Image Source="{Binding BannerUrl}" Stretch="UniformToFill" Opacity="0.3" VerticalAlignment="Center"/>
+            <Image Source="{Binding BannerUrl, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" Opacity="0.3" VerticalAlignment="Center"/>
         </Border>
 
         <Border Grid.Row="1" Background="#111" />
@@ -115,7 +115,7 @@
                     FontFamily="{StaticResource Urbanist}"
                     FontWeight="Thin"
                     Command="{Binding ElementName=SongItems, Path=DataContext.OpenExplorer}"
-                    Content="{Binding BannerUrl, StringFormat='Created on {0}'}"
+                    Content="View Downloads"
                     Width="90">
                     <Button.Style>
 
@@ -150,6 +150,48 @@
                     </Button.Style>
 
                 </Button>
+                <Button 
+                        FontSize="10px"
+                        Foreground="#ddd"
+                        FontFamily="{StaticResource Urbanist}"
+                        FontWeight="Thin"
+                        Command="{Binding ChangeBanner}"
+                        Content="Change Banner"
+                        Width="90">
+                    <Button.Style>
+
+                        <Style BasedOn="{StaticResource FlatButton}"
+                           TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#333"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" Value="1" />
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                                    <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#555" />
+                                                </ColorAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                                    <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#333" />
+                                                </ColorAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                    </Button.Style>
+
+                </Button>
+
 
         </StackPanel>
 

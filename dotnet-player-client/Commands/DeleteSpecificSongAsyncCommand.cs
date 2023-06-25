@@ -39,8 +39,6 @@ namespace dotnet_player_client.Commands
                     _musicService.Stop();
                 }
 
-                var songs = _observableSongs?.First(x => x.Id == SongId);
-
                 _observableSongs?.RemoveAll(x => x.Id == SongId);
                 await _mediaStore.Remove(SongId);
             }
