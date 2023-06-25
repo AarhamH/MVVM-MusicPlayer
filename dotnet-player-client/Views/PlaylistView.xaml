@@ -61,7 +61,7 @@
         </Grid.Resources>
 
         <Border Grid.Row="0">
-            <Image Source="../Images/palm-tree-banner.jpg" Stretch="UniformToFill" Opacity="0.3" VerticalAlignment="Center"/>
+            <Image Source="{Binding BannerUrl}" Stretch="UniformToFill" Opacity="0.3" VerticalAlignment="Center"/>
         </Border>
 
         <Border Grid.Row="1" Background="#111" />
@@ -115,7 +115,7 @@
                     FontFamily="{StaticResource Urbanist}"
                     FontWeight="Thin"
                     Command="{Binding ElementName=SongItems, Path=DataContext.OpenExplorer}"
-                    Content="View Downloads"
+                    Content="{Binding BannerUrl, StringFormat='Created on {0}'}"
                     Width="90">
                     <Button.Style>
 

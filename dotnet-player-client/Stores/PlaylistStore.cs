@@ -57,6 +57,28 @@ namespace dotnet_player_client.Stores
             }
         }
 
+        public async Task ChangeBanner(int playlistId, string url)
+        {
+            using (var dbContext = await _dbContextFactory.CreateDbContextAsync())
+            {
+                var dbPlaylist = await dbContext.Playlists.FindAsync(playlistId);
+                if (dbPlaylist != null)
+                {
+                    dbPlaylist.Banner = url;
+                    await dbContext.SaveChangesAsync();
+
+                    var playlist = _playlists.FirstOrDefault(x => x.Id == playlistId);
+
+                    if (playlist != null)
+                    {
+                        playlist.Banner = url;
+                    }
+
+                    PlaylistNameChanged?.Invoke(this, new PlaylistNameChangedEventArgs(playlistId, url));
+                }
+            }
+        }
+
         public async Task<bool> Add(PlaylistEntity playlistEntity)
         {
             using (var dbContext = await _dbContextFactory.CreateDbContextAsync())

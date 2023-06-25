@@ -43,6 +43,8 @@ namespace dotnet_player_client.ViewModels
         }
 
         public string PlaylistCreationDate { get; }
+
+        public string BannerUrl { get;  }
         public ObservableCollection<MediaModel>? AllSongsOfPlaylist { get; set; }
         public ICommand RenamePlaylist { get; }
         public ICommand PlaySong { get; }
@@ -70,9 +72,11 @@ namespace dotnet_player_client.ViewModels
 
             OpenExplorer = new OpenExplorerAtPathCommand();
 
-            _currentPlaylistName = playlistStore.Playlists.FirstOrDefault(x => x.Id == playlistBrowserNavigationStore.BrowserPlaylistId)?.Name ?? "Undefined";
+            CurrentPlaylistName = playlistStore.Playlists.FirstOrDefault(x => x.Id == playlistBrowserNavigationStore.BrowserPlaylistId)?.Name ?? "Undefined";
 
             CurrentDateString = DateTime.Now.ToString("dd MMM, yyyy");
+
+            BannerUrl = playlistStore.Playlists.FirstOrDefault(x => x.Id == playlistBrowserNavigationStore.BrowserPlaylistId)?.Banner;
 
             PlaylistCreationDate = playlistStore.Playlists.FirstOrDefault(x => x.Id == playlistBrowserNavigationStore.BrowserPlaylistId)?.CreationDate?.ToString("dd MMM, yyyy") ?? DateTime.Now.ToString("dd MMM, yyyy");
 

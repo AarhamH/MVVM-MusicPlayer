@@ -5,11 +5,14 @@ using dotnet_player_client.Stores;
 using dotnet_player_data.DataEntities;
 using NAudio.Wave;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace dotnet_player_client.Commands
 {
@@ -30,21 +33,27 @@ namespace dotnet_player_client.Commands
         protected override async Task ExecuteAsync(object? parameter)
         {
             var playlistId = _playlistStore.Playlists.Count() + 1;
+            string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\banners" + "\\default.jpg";
 
             var playlist = new PlaylistEntity
             {
                 Name = $"My Playlist #{playlistId}",
-                CreationDate = DateTime.Now
+                CreationDate = DateTime.Now,
+                Banner = path
             };
 
             await _playlistStore.Add(playlist);
+
 
             _observablePlaylists?.Insert(0, new PlaylistModel
             {
                 Id = playlist.Id,
                 Name = playlist.Name,
-                CreationDate = playlist.CreationDate
+                CreationDate = playlist.CreationDate,
+                Banner = playlist.Banner
             });
+
+            MessageBox.Show(playlist.Banner);
         }
     }
 }

@@ -14,6 +14,7 @@ namespace dotnet_player_client.Models
         private bool? _isSelected;
         private bool? _isPlaying;
         private string? _name;
+        private string? _banner;
         private DateTime? _creationDate;
 
         public int? Id
@@ -63,6 +64,19 @@ namespace dotnet_player_client.Models
                 if (_name != value)
                 {
                     _name = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string? Banner
+        {
+            get { return _banner; }
+            set
+            {
+                if (_banner != value)
+                {
+                    _banner = value;
                     OnPropertyChanged();
                 }
             }
