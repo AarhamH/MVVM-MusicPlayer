@@ -41,6 +41,11 @@ namespace dotnet_player_client.Commands
 
                 _observableSongs?.RemoveAll(x => x.Id == SongId);
                 await _mediaStore.Remove(SongId);
+
+                for(int i=0;i<_observableSongs?.Count;i++)
+                {
+                    _observableSongs[i].Number = i+1;
+                }
             }
         }
     }
