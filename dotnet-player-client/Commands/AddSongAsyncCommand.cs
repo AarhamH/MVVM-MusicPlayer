@@ -45,18 +45,28 @@ namespace dotnet_player_client.Commands
                 string fileName = openFileDialog.FileName;
                 string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)+"\\songs"+"\\"+Path.GetFileName(fileName);
 
-                if (Path.GetFileName(fileName) == Path.GetFileName(path) && File.Exists(path))
-                {
-                    MessageBox.Show("Error: This file already exists in the player. Rename this file or delete the stored file in the player.");
-                    return;
-                }
-                File.Copy(fileName, path);
-
                 var songEntity = new MediaEntity
                 {
                     PlayerlistId = _playlistBrowserNavigationStore.BrowserPlaylistId,
                     FilePath = path,
                 };
+
+                string alreadyFound = "";
+                if(_observableSongs.Count >0)
+                {
+                    alreadyFound = _observableSongs?.FirstOrDefault(x => Path.GetFileName(x.Path) == Path.GetFileName(fileName))?.Path;
+
+                }
+                if (Path.GetFileName(alreadyFound) == Path.GetFileName(fileName))
+                {
+                    MessageBox.Show("Error");
+                    return;
+                }
+
+                if (!File.Exists(path))
+                {
+                    File.Copy(fileName, path);
+                }
 
                 await _mediaStore.Add(songEntity);
 
