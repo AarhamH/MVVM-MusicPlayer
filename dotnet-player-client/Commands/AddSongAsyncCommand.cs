@@ -51,17 +51,6 @@ namespace dotnet_player_client.Commands
                     FilePath = path,
                 };
 
-                string alreadyFound = "";
-                if(_observableSongs.Count >0)
-                {
-                    alreadyFound = _observableSongs?.FirstOrDefault(x => Path.GetFileName(x.Path) == Path.GetFileName(fileName))?.Path;
-
-                }
-                if (Path.GetFileName(alreadyFound) == Path.GetFileName(fileName))
-                {
-                    MessageBox.Show("Error");
-                    return;
-                }
 
                 if (!File.Exists(path))
                 {
