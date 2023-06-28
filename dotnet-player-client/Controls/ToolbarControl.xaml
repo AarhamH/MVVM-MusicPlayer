@@ -179,7 +179,7 @@
                                VerticalAlignment="Center"
                                Source="../Icons/search.png" 
                                RenderOptions.BitmapScalingMode="HighQuality"/>
-                        
+
                         <TextBlock VerticalAlignment="Center"
                             Margin="0,10,0,0"
                             Grid.Column="1"

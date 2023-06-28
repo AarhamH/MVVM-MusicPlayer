@@ -12,12 +12,13 @@
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
-        ResizeMode="CanResizeWithGrip"
+        ResizeMode="NoResize"
         Title="Palm MP"
         MinHeight="600"
         MinWidth="800"
         Height="720"
-        Width="1100">
+        Width="1100"
+        WindowStartupLocation="CenterScreen">
 
         <Grid>
             <Grid.ColumnDefinitions>

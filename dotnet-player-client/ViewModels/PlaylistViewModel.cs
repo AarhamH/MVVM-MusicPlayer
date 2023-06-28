@@ -61,11 +61,11 @@ namespace dotnet_player_client.ViewModels
         public string PlaylistCreationDate { get; }
 
         public ObservableCollection<MediaModel>? AllSongsOfPlaylist { get; set; }
-        public ICommand RenamePlaylist { get; }
-        public ICommand PlaySong { get; }
-        public ICommand OpenExplorer { get; }
-        public ICommand AddSong { get; set; }
-        public ICommand ChangeBanner { get; set; }
+        public ICommand? RenamePlaylist { get; }
+        public ICommand? PlaySong { get; }
+        public ICommand? OpenExplorer { get; }
+        public ICommand? AddSong { get; set; }
+        public ICommand? ChangeBanner { get; set; }
         public ICommand? DeleteSong { get; set; }
 
         public PlaylistViewModel(IMusicPlayerService musicService, INavigationService navigationService, MediaStore mediaStore, PlaylistStore playlistStore, PlaylistBrowserNavigationStore playlistBrowserNavigationStore)
@@ -147,7 +147,7 @@ namespace dotnet_player_client.ViewModels
             {
                 if (mediaEntity.PlayerlistId == _playlistBrowserNavigationStore.BrowserPlaylistId)
                 {
-                    string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\songs" + "\\" + Path.GetFileName(mediaEntity.FilePath);
+                    string path = Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\songs" + "\\" + Path.GetFileName(mediaEntity.FilePath);
                     File.Copy(mediaEntity.FilePath, path);
                     var songsIndex = AllSongsOfPlaylist?.Count;
                     AllSongsOfPlaylist?.Add(new MediaModel
@@ -181,10 +181,10 @@ namespace dotnet_player_client.ViewModels
             foreach (MediaEntity mediaEntity in mediaEntities)
             {
                 var songsIndex = AllSongsOfPlaylist?.Count;
-                string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\songs" + "\\" + Path.GetFileName(mediaEntity.FilePath);
+                string path = Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\songs" + "\\" + Path.GetFileName(mediaEntity.FilePath);
                 if (!File.Exists(mediaEntity.FilePath))
                 {
-                    File.Copy(mediaEntity.FilePath, path);
+                    File.Copy(mediaEntity?.FilePath, path);
                 }
                 AllSongsOfPlaylist?.Add(new MediaModel
                 {

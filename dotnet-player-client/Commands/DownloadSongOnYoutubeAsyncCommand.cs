@@ -35,7 +35,7 @@ namespace dotnet_player_client.Commands
 
                 YoutubeVideoInfoModel? video = _observableMedia.FirstOrDefault(x => x.Url == url);
                 var fileName = dir.FullName + video?.Title + ".mp3";
-                if (video != null && !video.Downloading)
+                if (video != null && !video.Downloading) 
                 {
                     try
                     {

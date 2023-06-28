@@ -33,7 +33,7 @@ namespace dotnet_player_client.Commands
         protected override async Task ExecuteAsync(object? parameter)
         {
             var playlistId = _playlistStore.Playlists.Count() + 1;
-            string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\banners" + "\\default.jpg";
+            string path = Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\banners" + "\\default.jpg";
 
             var playlist = new PlaylistEntity
             {
@@ -52,8 +52,6 @@ namespace dotnet_player_client.Commands
                 CreationDate = playlist.CreationDate,
                 Banner = playlist.Banner
             });
-
-            MessageBox.Show(playlist.Banner);
         }
     }
 }

@@ -20,6 +20,8 @@
                 <ResourceDictionary Source="./Themes/GenericButton.xaml"/>
                 <ResourceDictionary Source="./Themes/NewTextBox.xaml"/>
                 <ResourceDictionary Source="./Themes/UIColors.xaml"/>
+                <ResourceDictionary Source="./Themes/RoundButton.xaml"/>
+
             </ResourceDictionary.MergedDictionaries>
 
             <FontFamily x:Key="Urbanist">pack://application:,,,/Fonts/Urbanist/#Urbanist</FontFamily>

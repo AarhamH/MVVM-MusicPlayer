@@ -68,7 +68,7 @@ namespace dotnet_player_client.Services
                                         Duration = length.ToString(),
                                         Channel = channel.ToString(),
                                         Views = views.ToString(),
-                                        Thumbnail = thumbnail.ToString()
+                                        Thumbnail = thumbnail?.ToString()
                                     });
                                 }
                             }
@@ -109,7 +109,7 @@ namespace dotnet_player_client.Services
                     client.DefaultRequestHeaders.Add("range", $"bytes=0-{contentLength}");
                     using var videoStream = await client.GetStreamAsync(videoUrl.ToString());
 
-                    byte[] buffer = new byte[8192];
+                    byte[] buffer = new byte[16384];
 
                     int currentBytes = 0;
 
@@ -119,7 +119,7 @@ namespace dotnet_player_client.Services
                         globalNumBytesRead += currentBytes;
                         await file.WriteAsync(buffer, 0, currentBytes);
 
-                        double percent = globalNumBytesRead / (contentLength * 1.0);
+                        double percent = globalNumBytesRead / (contentLength * 1);
                         yield return (int)(percent * 100);
                     }
                 }
