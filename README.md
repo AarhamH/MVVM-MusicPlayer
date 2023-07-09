@@ -34,7 +34,7 @@ A native desktop music player application for Windows, which allows users to sto
 3. To try out the program, open a debug window in Visual Studio or run:
 ```bash
 $ cd "where you kept the repo"
-$ MSBuild dotnet-media-player.csproj /t:Build /p:Configuration=Debug
+$ MSBuild MVVM-MusicPlayer.csproj /t:Build /p:Configuration=Debug
 $ cd bin\Debug
-$ dotnet-media-player.exe
+$ MVVM-MusicPlayer.exe
 ```
