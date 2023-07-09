@@ -16,7 +16,7 @@ namespace dotnet_player_client.Commands
 
         public override void Execute(object? parameter) 
         {
-            string url = "https://github.com/AarhamH/dotnet-media-player";
+            string url = "https://github.com/AarhamH/MVVM-MusicPlayer";
 
             try
             {

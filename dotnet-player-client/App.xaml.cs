@@ -36,6 +36,8 @@ namespace dotnet_player_client
             IDbContextFactory<DataContext> dbFactory = _serviceProvider.GetRequiredService<IDbContextFactory<DataContext>>();
 
             Directory.CreateDirectory("data"); // Create data directory for db files or temp files.
+            Directory.CreateDirectory("downloads"); // Create data directory for db files or temp files.
+
             Directory.CreateDirectory("banners");
             Directory.CreateDirectory("songs");
 

@@ -109,7 +109,7 @@ namespace dotnet_player_client.Services
                     client.DefaultRequestHeaders.Add("range", $"bytes=0-{contentLength}");
                     using var videoStream = await client.GetStreamAsync(videoUrl.ToString());
 
-                    byte[] buffer = new byte[16384];
+                    byte[] buffer = new byte[8192];
 
                     int currentBytes = 0;
 

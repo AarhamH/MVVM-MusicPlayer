@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Songs\**" />
+    <EmbeddedResource Remove="Songs\**" />
+    <None Remove="Songs\**" />
+    <Page Remove="Songs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Fonts\Gotham Bold.ttf" />
     <None Remove="Fonts\Urbanist\Urbanist.otf" />
     <None Remove="Fonts\Midnight\Midnight.otf" />
@@ -33,7 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Songs\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 
