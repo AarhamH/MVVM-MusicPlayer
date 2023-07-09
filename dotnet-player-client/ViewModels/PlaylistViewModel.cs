@@ -182,7 +182,7 @@ namespace dotnet_player_client.ViewModels
             {
                 var songsIndex = AllSongsOfPlaylist?.Count;
                 string path = Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\songs" + "\\" + Path.GetFileName(mediaEntity.FilePath);
-                if (!File.Exists(mediaEntity.FilePath))
+                if (!File.Exists(path))
                 {
                     File.Copy(mediaEntity?.FilePath, path);
                 }
