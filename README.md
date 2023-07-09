@@ -2,6 +2,8 @@
 
 Browse and play music on your desktop without WiFi!
 
+[Click here to see the player in action!](https://www.youtube.com/watch?v=dN3GfWkv3zE)
+
 ## Table of Contents
 
 - [Project Description](#project-description)
@@ -36,6 +38,3 @@ $ MSBuild dotnet-media-player.csproj /t:Build /p:Configuration=Debug
 $ cd bin\Debug
 $ dotnet-media-player.exe
 ```
-
-## Demo
-Live demo not available yet
