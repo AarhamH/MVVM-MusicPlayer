@@ -2,8 +2,7 @@
 
 Browse and play music on your desktop without WiFi!
 
-[Click here to see the player in action!](https://www.youtube.com/watch?v=dN3GfWkv3zE)
-
+[Click here to see the player in action!](https://youtu.be/HRxdCkUZAug)
 ## Table of Contents
 
 - [Project Description](#project-description)
