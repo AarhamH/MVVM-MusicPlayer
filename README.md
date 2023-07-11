@@ -8,7 +8,6 @@ Browse and play music on your desktop without WiFi!
 - [Project Description](#project-description)
 - [Features](#features)
 - [Installation and Running for Visual Studio](#installation-and-running-for-visual-studio)
-- [Demo](#demo)
 
 ## Project Description
 
