@@ -33,6 +33,6 @@ PalmPlayer, or Palm for short, is a native desktop music player application for 
 ```bash
 $ cd "where you kept the repo"
 $ MSBuild PalmPlayer.sln -restore /p:Configuration=Debug
-$ cd "where you kep repo"\PalmClient\bin\Debug\net7.0-windows
+$ cd "where you kept repo"\PalmClient\bin\Debug\net7.0-windows
 $ PalmPlayer.exe
 ```
