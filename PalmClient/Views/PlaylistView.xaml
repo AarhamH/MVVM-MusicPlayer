@@ -1,0 +1,372 @@
+﻿<UserControl x:Class="PalmClient.Views.PlaylistView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PalmClient.Views"
+             xmlns:ext="clr-namespace:PalmClient.Extensions"
+             xmlns:components="clr-namespace:PalmClient.Components"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             ext:ClickLoseFocusExtension.IsEnabled="True">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100px" />
+            <RowDefinition Height="20px" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Grid.Resources>
+            <DataTemplate x:Key="LoadingTemplate">
+                <components:LoadingSpinner HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           IsLoading="True"
+                                           Diameter="50"
+                                           Color="#888"
+                                           Thickness="5"/>
+
+            </DataTemplate>
+
+            <DataTemplate x:Key="NoSongsTemplate" >
+                <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <Image Width="100"
+                           Height="50"
+                           Margin="0 0 0 20"
+                           Source="../Icons/empty-playlist.png"
+                           RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="0 0 0 5"
+                               Text="No songs found."
+                               FontFamily="{StaticResource Urbanist}"
+                               FontSize="24px"
+                               Foreground="#888"
+                               FontWeight="Light"/>
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Text="Use drag and drop to add some..."
+                               FontFamily="{StaticResource Urbanist}"
+                               FontSize="16px"
+                               Foreground="#666"
+                               FontWeight="Light"/>
+                </StackPanel>
+
+            </DataTemplate>
+        </Grid.Resources>
+
+        <Border Grid.Row="0">
+            <Image Source="{Binding BannerUrl, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" Opacity="0.3" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </Border>
+
+        <Border Grid.Row="1" Background="#111" />
+        <Border Grid.Row="2" Background="#181818"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button 
+                    FontSize="10px"
+                    Foreground="#ddd"
+                    FontFamily="{StaticResource Urbanist}"
+                    FontWeight="Thin"
+                    Command="{Binding ElementName=SongItems, Path=DataContext.AddSong}"
+                    Content="Add Song +"
+                    Width="70">
+                    <Button.Style>
+
+                        <Style BasedOn="{StaticResource FlatButton}"
+                       TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#333"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" Value="1" />
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                                    <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#555" />
+                                                </ColorAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                                    <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#333" />
+                                                </ColorAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                    </Button.Style>
+
+                </Button>
+                <Button 
+                    FontSize="10px"
+                    Foreground="#ddd"
+                    FontFamily="{StaticResource Urbanist}"
+                    FontWeight="Thin"
+                    Command="{Binding ElementName=SongItems, Path=DataContext.OpenExplorer}"
+                    Content="View Downloads"
+                    Width="90">
+                    <Button.Style>
+
+                        <Style BasedOn="{StaticResource FlatButton}"
+                       TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#333"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" Value="1" />
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                                    <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#555" />
+                                                </ColorAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                                    <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#333" />
+                                                </ColorAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                    </Button.Style>
+
+                </Button>
+                <Button 
+                        FontSize="10px"
+                        Foreground="#ddd"
+                        FontFamily="{StaticResource Urbanist}"
+                        FontWeight="Thin"
+                        Command="{Binding ChangeBanner}"
+                        Content="Change Banner"
+                        Width="90">
+                    <Button.Style>
+
+                        <Style BasedOn="{StaticResource FlatButton}"
+                           TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#333"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" Value="1" />
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                                    <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#555" />
+                                                </ColorAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                                    <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#333" />
+                                                </ColorAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                    </Button.Style>
+
+                </Button>
+
+
+        </StackPanel>
+
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150px" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="150px"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="1"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="3"
+                     Text="{Binding CurrentPlaylistName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     ext:TextBoxPressEnterBehaviorExtension.EnterCommand="{Binding RenamePlaylist}"
+                     FontFamily="{StaticResource Urbanist}"
+                     FontSize="50px"
+                     Margin="0 0 0 5"
+                     MinWidth="100px"
+                     BorderThickness="0"
+                     Foreground="#fff"
+                     Background="Transparent"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     FontWeight="Bold"/>
+        </Grid>
+
+        
+        <DataGrid x:Name="SongItems"
+                  ItemsSource="{Binding AllSongsOfPlaylist}"
+                  Background="Transparent"
+                  GridLinesVisibility="None"
+                  VerticalGridLinesBrush="Transparent"
+                  HorizontalGridLinesBrush="Transparent"
+                  CanUserAddRows="False"
+                  CanUserResizeColumns="False"
+                  CanUserReorderColumns="False"
+                  CanUserResizeRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserSortColumns="False"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column"
+                  Padding="5"
+                  AutoGenerateColumns="False"
+                  Grid.Row="2"
+                  Grid.Column="0"
+                  ColumnWidth="*"
+                  ext:DropFilesBehaviorExtension.IsEnabled="True"
+                  RowDetailsVisibilityMode="Collapsed"
+                  FontFamily="{StaticResource Urbanist}"
+                  ScrollViewer.CanContentScroll="True"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+            <DataGrid.Columns>
+
+                <DataGridTemplateColumn Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource TransparentButton}"
+                                    Command="{Binding ElementName=SongItems, Path=DataContext.PlaySong}"
+                                    CommandParameter="{Binding Id}">
+
+                                <Image Width="15px"
+                                       Height="15px">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Source" Value="../Icons/play.png" />
+                                            <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
+                                            <Style.Triggers>
+
+                                                <DataTrigger Binding="{Binding Playing}" Value="true">
+                                                    <Setter Property="Source" Value="../Icons/pause.png" />
+                                                    <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Binding="{Binding Path=Number}"
+                                    MaxWidth="30"
+                                    Header="#"/>
+                <DataGridTextColumn Binding="{Binding Path=Title}"
+                                    MaxWidth="2500"
+                                    Header="Song Title">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Header="Path">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path}"
+                                       TextTrimming="CharacterEllipsis">
+                                <TextBlock.InputBindings>
+                                    <MouseBinding Command="{Binding ElementName=SongItems, Path=DataContext.OpenExplorer}"
+                                                  CommandParameter="{Binding Path}"
+                                                  MouseAction="LeftClick" />
+                                </TextBlock.InputBindings>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding Path=Duration}"
+                                    Width="75"
+                                    Header="Duration" />
+
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource TransparentButton}"
+                                    Command="{Binding ElementName=SongItems, Path=DataContext.DeleteSong}"
+                                    CommandParameter="{Binding Id}">
+
+                                <Image Width="15px"
+                                       Height="15px"
+                                       Source="../Icons/discard.png"
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+            <DataGrid.RowStyle>
+                <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="{x:Type DataGridRow}">
+                    <Style.Triggers>
+
+                        <DataTrigger Binding="{Binding Playing}" Value="true">
+                            <Setter Property="Background" Value="#252525" />
+                        </DataTrigger>
+
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+        </DataGrid>
+
+        <StackPanel x:Name="gridStatus"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+
+        <ContentControl Grid.Row="2"
+                        Grid.Column="0"
+                        IsHitTestVisible="False">
+            <ContentControl.Style>
+                <Style TargetType="{x:Type ContentControl}">
+                    <Setter Property="ContentTemplate" Value="{x:Null}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=gridStatus, Path=DataContext.AllSongsOfPlaylist}" Value="{x:Null}">
+                            <Setter Property="ContentTemplate" Value="{StaticResource LoadingTemplate}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=gridStatus, Path=DataContext.AllSongsOfPlaylist.Count}" Value="0">
+                            <Setter Property="ContentTemplate" Value="{StaticResource NoSongsTemplate}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+
+    </Grid>
+</UserControl>

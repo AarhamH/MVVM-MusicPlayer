@@ -1,0 +1,301 @@
+﻿<UserControl x:Class="PalmClient.Views.DownloadsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PalmClient.Views"
+             xmlns:ext="clr-namespace:PalmClient.Extensions"
+             xmlns:components="clr-namespace:PalmClient.Components"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             ext:ClickLoseFocusExtension.IsEnabled="True">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70px" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.Resources>
+            <DataTemplate x:Key="LoadingTemplate">
+                <components:LoadingSpinner HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           IsLoading="True"
+                                           Diameter="50"
+                                           Color="#888"
+                                           Thickness="5"/>
+
+            </DataTemplate>
+
+            <DataTemplate x:Key="NoMediaTemplate" >
+                <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <Image Width="200px"         
+                           Height="100px"       
+                           Margin="0 0 0 20"        
+                           Source="../Icons/empty-folder.png"
+                           Opacity="0.4"
+                           />
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="0 0 0 5"
+                               Text="Nothing was found."
+                               FontFamily="{StaticResource Urbanist}"
+                               FontSize="24px"
+                               Foreground="#888"
+                               FontWeight="Light"/>
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Text="Try to rephrase your search..."
+                               FontFamily="{StaticResource Urbanist}"
+                               FontSize="16px"
+                               Foreground="#666"
+                               FontWeight="Light"/>
+                </StackPanel>
+
+            </DataTemplate>
+
+            <DataTemplate x:Key="ErrorTemplate" >
+                <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <Image Width="200px"
+                                     Height="100px"
+                                     Margin="0 0 0 20"
+                                     Source="../Icons/empty-folder.png"/>
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="0 0 0 5"
+                               Text="An error occurred."
+                               FontFamily="{StaticResource Urbanist}"
+                               FontSize="24px"
+                               Foreground="#888"
+                               FontWeight="Light"/>
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Text="Try again in a few moments..."
+                               FontFamily="{StaticResource Urbanist}"
+                               FontSize="16px"
+                               Foreground="#666"
+                               FontWeight="Light"/>
+                </StackPanel>
+
+            </DataTemplate>
+        </Grid.Resources>
+
+        <Border Grid.Row="1" Background="#181818" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100px"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Opacity="0.5"
+                    Margin="20,20,300,15"
+                    Background="#3b3e42"
+                    Foreground="#fff"
+                    FontFamily="{StaticResource Urbanist}"
+                    FontWeight="Medium"
+                    Style="{StaticResource NewTextBox}"
+                    ext:TextBoxPressEnterBehaviorExtension.EnterCommand="{Binding Path=SearchMedia}"
+                    Text="{Binding SearchText}"
+                    x:Name="SearchYoutubeTextBox"/>
+            <Image Grid.Column="0" 
+                   Width="15px" 
+                   Source="../Icons/search.png" 
+                   Margin="0,5,0,0" 
+                   RenderOptions.BitmapScalingMode="HighQuality"/>
+            <Button Width="15px" 
+                    Height="15" 
+                    Margin="0,5,0,0" 
+                    Style="{StaticResource TransparentButton}" 
+                    Command="{Binding Path=SearchMedia}" 
+                    CommandParameter="{Binding SearchText}"/>
+        </Grid>
+
+
+
+        <DataGrid x:Name="YoutubeItems"
+                  ItemsSource="{Binding ResultMedia}"
+                  Background="Transparent"
+                  GridLinesVisibility="None"
+                  VerticalGridLinesBrush="Transparent"
+                  HorizontalGridLinesBrush="Transparent"
+                  CanUserAddRows="False"
+                  CanUserResizeColumns="False"
+                  CanUserReorderColumns="False"
+                  CanUserResizeRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserSortColumns="False"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column"
+                  Padding="5"
+                  AutoGenerateColumns="False"
+                  Grid.Row="1"
+                  Grid.Column="0"
+                  ColumnWidth="*"
+                  RowDetailsVisibilityMode="Collapsed"
+                  FontFamily="{StaticResource Urbanist}"
+                  ScrollViewer.CanContentScroll="True"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+            <DataGrid.Columns>
+
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button Style="{StaticResource TransparentButton}"
+                                        Command="{Binding ElementName=YoutubeItems, Path=DataContext.DownloadMedia}"
+                                        CommandParameter="{Binding Url}">
+
+                                    <Image Width="15px"
+                                           Height="15px">
+                                        <Image.Style>
+                                            <Style TargetType="{x:Type Image}">
+                                                <Setter Property="Source" Value="../Icons/download.png" />
+                                                <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
+                                                <Style.Triggers>
+
+                                                    <DataTrigger Binding="{Binding DownloadProgress}" Value="100">
+                                                        <Setter Property="Source" Value="../Icons/open.png" />
+                                                        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
+                                                    </DataTrigger>
+
+                                                    <DataTrigger Binding="{Binding FinishedDownload}" Value="false">
+                                                        <Setter Property="Source" Value="../Icons/fill.png" />
+                                                        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
+                                                        <Setter Property="Width" Value="60px"/>
+                                                        <Setter Property="Height" Value="60px"/>
+
+                                                    </DataTrigger>
+
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+
+                                    </Image>
+
+                                </Button>
+                                <TextBlock x:Name="DownloadProgressTextBox"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           IsHitTestVisible="False"
+                                           Foreground="#ccc"
+                                           FontSize="12px"
+                                           FontWeight="Bold"
+                                           Text="{Binding Path=DownloadProgress, StringFormat='{}{0}%'}">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Downloading}" Value="false">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FinishedDownload}" Value="true">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Binding="{Binding Path=Num}"
+                                    MaxWidth="30"
+                                    Header="#"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Path=Thumbnail}" 
+                                   Width="80" 
+                                   Height="80" 
+                                   VerticalAlignment="Center" 
+                                   HorizontalAlignment="Center"
+                                   RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTextColumn Binding="{Binding Path=Title}"
+                                    Header="Song Title"
+                                    Width="300">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Binding="{Binding Path=Channel}"
+                                    Width="150"
+                                    Header="Channel">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Binding="{Binding Path=Views}"
+                                    MaxWidth="200"
+                                    Header="Views">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Binding="{Binding Path=Duration}"
+                                    Width="100"
+                                    MaxWidth="250"
+                                    Header="Duration" />
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <StackPanel x:Name="gridStatus"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+
+        <ContentControl Grid.Row="1"
+                        Grid.Column="0">
+            <ContentControl.Style>
+                <Style TargetType="{x:Type ContentControl}">
+                    <Setter Property="ContentTemplate" Value="{x:Null}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=gridStatus, Path=DataContext.ResultMedia.Count}" Value="0">
+                            <Setter Property="ContentTemplate" Value="{StaticResource NoMediaTemplate}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=gridStatus, Path=DataContext.IsFailedSearch}" Value="true">
+                            <Setter Property="ContentTemplate" Value="{StaticResource ErrorTemplate}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=gridStatus, Path=DataContext.IsLoadingSearch}" Value="true">
+                            <Setter Property="ContentTemplate" Value="{StaticResource LoadingTemplate}" />
+                        </DataTrigger>
+
+
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+
+
+
+
+    </Grid>
+</UserControl>
