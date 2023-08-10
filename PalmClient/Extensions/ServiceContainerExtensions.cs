@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PalmClient.Services;
 using PalmClient.Stores;
 using PalmClient.ViewModels;
-using dotnet_player_data.Data;
+using PalmData.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;

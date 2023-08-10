@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PalmClient.Commands;
 using PalmClient.Services;
-using dotnet_player_data.Data;
-using dotnet_player_data.DataEntities;
+using PalmData.Data;
+using PalmData.DataEntities;
 using PalmClient.Models;
 using NAudio.Wave;
 using System;

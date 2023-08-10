@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net7.0-windows</TargetFramework>
-    <RootNamespace>dotnet_player_client</RootNamespace>
+    <RootNamespace>PalmClient</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
@@ -51,7 +51,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\dotnet-player-data\dotnet-player-data.csproj" />
+    <ProjectReference Include="..\PalmData\PalmData.csproj" />
   </ItemGroup>
 
   <ItemGroup>

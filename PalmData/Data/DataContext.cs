@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using dotnet_player_data.DataEntities;
+using PalmData.DataEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dotnet_player_data.Data
+namespace PalmData.Data
 {
     public class DataContext : DbContext
     {

@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "dotnet-player-client": {
+    "PalmClient": {
       "commandName": "Project",
       "nativeDebugging": false
     }

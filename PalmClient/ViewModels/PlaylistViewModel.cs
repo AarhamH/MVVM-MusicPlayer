@@ -7,7 +7,7 @@ using PalmClient.Interfaces;
 using PalmClient.Models;
 using PalmClient.Services;
 using PalmClient.Stores;
-using dotnet_player_data.DataEntities;
+using PalmData.DataEntities;
 using NAudio.Wave;
 using System;
 using System.Collections.Generic;

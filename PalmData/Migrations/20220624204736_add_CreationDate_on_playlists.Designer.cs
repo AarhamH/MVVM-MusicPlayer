@@ -2,22 +2,24 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using dotnet_player_data.Data;
+using PalmData.Data;
 
 #nullable disable
 
-namespace dotnet_player_data.Migrations
+namespace PalmData.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220624204736_add_CreationDate_on_playlists")]
+    partial class add_CreationDate_on_playlists
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.6");
 
-            modelBuilder.Entity("MusicPlayerData.DataEntities.MediaEntity", b =>
+            modelBuilder.Entity("dotnet_player_data.DataEntities.MediaEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,37 +36,37 @@ namespace dotnet_player_data.Migrations
 
                     b.HasIndex("PlayerlistId");
 
-                    b.ToTable("Songs", (string)null);
+                    b.ToTable("Songs");
                 });
 
-            modelBuilder.Entity("MusicPlayerData.DataEntities.PlaylistEntity", b =>
+            modelBuilder.Entity("dotnet_player_data.DataEntities.PlaylistEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime?>("CreationDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Banner")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Playlists", (string)null);
+                    b.ToTable("Playlists");
                 });
 
-            modelBuilder.Entity("MusicPlayerData.DataEntities.MediaEntity", b =>
+            modelBuilder.Entity("dotnet_player_data.DataEntities.MediaEntity", b =>
                 {
-                    b.HasOne("MusicPlayerData.DataEntities.PlaylistEntity", "Playerlist")
+                    b.HasOne("dotnet_player_data.DataEntities.PlaylistEntity", "Playerlist")
                         .WithMany("Songs")
                         .HasForeignKey("PlayerlistId");
 
                     b.Navigation("Playerlist");
                 });
 
-            modelBuilder.Entity("MusicPlayerData.DataEntities.PlaylistEntity", b =>
+            modelBuilder.Entity("dotnet_player_data.DataEntities.PlaylistEntity", b =>
                 {
                     b.Navigation("Songs");
                 });

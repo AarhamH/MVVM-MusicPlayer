@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using dotnet_player_data.Data;
+using PalmData.Data;
 
 #nullable disable
 
-namespace dotnet_player_data.Migrations
+namespace PalmData.Migrations
 {
     [DbContext(typeof(DataContext))]
     [Migration("20220624175449_init")]

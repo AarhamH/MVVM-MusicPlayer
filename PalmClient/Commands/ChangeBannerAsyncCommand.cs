@@ -1,5 +1,5 @@
 ﻿using PalmClient.Stores;
-using dotnet_player_data.DataEntities;
+using PalmData.DataEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using dotnet_player_data.Data;
-using dotnet_player_data.DataEntities;
+using PalmData.Data;
+using PalmData.DataEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace dotnet_player_data.Migrations
+namespace PalmData.Migrations
 {
     public partial class add_CreationDate_on_playlists : Migration
     {

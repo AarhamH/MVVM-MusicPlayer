@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dotnet_player_data.DataEntities
+namespace PalmData.DataEntities
 {
     public class PlaylistEntity : BaseEntity
     {

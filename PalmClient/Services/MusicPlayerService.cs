@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using dotnet_player_data.Data;
+using PalmData.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NAudio;
 using NAudio.Wave;
-using dotnet_player_data.DataEntities;
+using PalmData.DataEntities;
 using System.IO;
 using System.Diagnostics;
 using NAudio.Wave.SampleProviders;

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace dotnet_player_data.Migrations
+namespace PalmData.Migrations
 {
     public partial class init : Migration
     {
