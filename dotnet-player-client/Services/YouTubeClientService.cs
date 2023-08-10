@@ -35,7 +35,7 @@ namespace dotnet_player_client.Services
                 using (var client = new HttpClient())
                 {
                     var queryEncoded = query.Contains("//:") ? query : HttpUtility.UrlEncode(query);
-                    string ? response = await client.GetStringAsync(YouTubeSearchUrl + queryEncoded);
+                    string? response = await client.GetStringAsync(YouTubeSearchUrl + queryEncoded);
                     if (response != null)
                     {
                         string start = "var ytInitialData = ";
@@ -68,7 +68,7 @@ namespace dotnet_player_client.Services
                                         Duration = length.ToString(),
                                         Channel = channel.ToString(),
                                         Views = views.ToString(),
-                                        Thumbnail = thumbnail?.ToString()
+                                        Thumbnail = thumbnail.ToString()
                                     });
                                 }
                             }
@@ -119,7 +119,7 @@ namespace dotnet_player_client.Services
                         globalNumBytesRead += currentBytes;
                         await file.WriteAsync(buffer, 0, currentBytes);
 
-                        double percent = globalNumBytesRead / (contentLength * 1);
+                        double percent = globalNumBytesRead / (contentLength * 1.0);
                         yield return (int)(percent * 100);
                     }
                 }
