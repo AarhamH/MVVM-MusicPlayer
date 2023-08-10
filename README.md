@@ -11,7 +11,7 @@ Browse and play music on your desktop without WiFi!
 
 ## Project Description
 
-A native desktop music player application for Windows, which allows users to store MP3/WAV files into a playlist or browse media from Youtube. The program is built using  .NET WPF with XAML, and C#. Media and playlist information stored in a rooted SQLite database and interfaced via Microsoft Entity Framework. 
+PalmPlayer, or Palm for short, is a native desktop music player application for Windows, which allows users to store MP3/WAV files into a playlist or browse media from Youtube. The program is built using .NET WPF with C# and XAML. Media and playlist information stored in a rooted SQLite database and mapped via Microsoft Entity Framework. 
 
 <img src="https://github.com/AarhamH/dotnet-media-player/assets/105332385/7cc11524-ba70-4923-8a94-9a2049b2dcdb" width="600" height="400" /> 
 <img src="https://github.com/AarhamH/dotnet-media-player/assets/105332385/2ef9f871-db8f-48ea-a042-2fde25c565ca" width="600" height="400" /> 
@@ -32,7 +32,7 @@ A native desktop music player application for Windows, which allows users to sto
 3. To try out the program, open a debug window in Visual Studio or run:
 ```bash
 $ cd "where you kept the repo"
-$ MSBuild MVVM-MusicPlayer.csproj /t:Build /p:Configuration=Debug
+$ MSBuild PalmPlayer.csproj /t:Build /p:Configuration=Debug
 $ cd bin\Debug
-$ MVVM-MusicPlayer.exe
+$ PalmPlayer.exe
 ```
