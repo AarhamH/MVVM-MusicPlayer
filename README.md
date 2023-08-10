@@ -1,4 +1,4 @@
-# 🎧 Welcome to Palm Music Player 🎧 
+# 🎧 Welcome to PalmPlayer 🎧 
 
 Browse and play music on your desktop without WiFi!
 
