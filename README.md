@@ -32,7 +32,7 @@ PalmPlayer, or Palm for short, is a native desktop music player application for 
 3. To try out the program, open a debug window in Visual Studio or run:
 ```bash
 $ cd "where you kept the repo"
-$ MSBuild PalmPlayer.csproj /t:Build /p:Configuration=Debug
-$ cd bin\Debug
+$ MSBuild PalmPlayer.sln -restore /p:Configuration=Debug
+$ cd "where you kep repo"\PalmClient\bin\Debug\net7.0-windows
 $ PalmPlayer.exe
 ```
