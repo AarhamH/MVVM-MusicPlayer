@@ -13,6 +13,9 @@ using System.Windows;
 using System.Web;
 using System.Net.Http.Headers;
 using System;
+using YoutubeExplode;
+using YoutubeExplode.Videos;
+using YoutubeExplode.Videos.Streams;
 
 namespace PalmClient.Services
 {
@@ -84,44 +87,31 @@ namespace PalmClient.Services
             return videos;
         }
 
-        public async IAsyncEnumerable<int> DownloadYoutubeAudioAsync(string url, string FileName)
+        public async IAsyncEnumerable<int> DownloadYoutubeAudioAsync(string url, string fileName)
         {
-            var youTube = YouTube.Default;
-            var videos = await youTube.GetAllVideosAsync(url);
-            var video = videos.Where(x => x.AdaptiveKind == AdaptiveKind.Audio).MinBy(x => x.AudioBitrate) ?? videos.First(x => x.AdaptiveKind == AdaptiveKind.Audio);
+            var youtube = new YoutubeClient();
+            var videoId = VideoId.TryParse(url);
+            if (videoId == null) throw new ArgumentException("Invalid YouTube video URL.", nameof(url));
+            var streamManifest = await youtube.Videos.Streams.GetManifestAsync(videoId.Value);
+            var audioStreamInfo = streamManifest.GetAudioOnlyStreams().GetWithHighestBitrate();
+            if (audioStreamInfo == null) throw new Exception("No suitable audio stream found.");
+            long totalBytes = audioStreamInfo.Size.Bytes;
+            long bytesDownloaded = 0;
 
-            var videoUrl = HttpUtility.ParseQueryString(video.Uri);
-            long contentLength = 0;
-
-            using (var client = new HttpClient())
+            // Open the stream and the file
+            using (var progressStream = await youtube.Videos.Streams.GetAsync(audioStreamInfo))
+            using (var fileStream = new FileStream(fileName, FileMode.Create, FileAccess.Write))
             {
-                var res = await (await Task.Factory.StartNew(() => client.SendAsync(new HttpRequestMessage(HttpMethod.Head, video.Uri))));
-                contentLength = res.Content.Headers.ContentLength ?? 0;
-            }
-
-            using (var file = File.Create(FileName))
-            {
-
-                long globalNumBytesRead = 0;
-
-                using (var client = new HttpClient())
+                byte[] buffer = new byte[8192];
+                int bytesRead;
+                while ((bytesRead = await progressStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
                 {
-                    client.DefaultRequestHeaders.Add("range", $"bytes=0-{contentLength}");
-                    using var videoStream = await client.GetStreamAsync(videoUrl.ToString());
+                    await fileStream.WriteAsync(buffer, 0, bytesRead);
+                    bytesDownloaded += bytesRead;
 
-                    byte[] buffer = new byte[8192];
-
-                    int currentBytes = 0;
-
-                    while (globalNumBytesRead < contentLength)
-                    {
-                        currentBytes = await videoStream.ReadAsync(buffer, 0, buffer.Length);
-                        globalNumBytesRead += currentBytes;
-                        await file.WriteAsync(buffer, 0, currentBytes);
-
-                        double percent = globalNumBytesRead / (contentLength * 1.0);
-                        yield return (int)(percent * 100);
-                    }
+                    // Calculate and yield progress
+                    int progress = (int)(bytesDownloaded * 100 / totalBytes);
+                    yield return progress;
                 }
             }
         }
